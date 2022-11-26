@@ -1,0 +1,18 @@
+.search-box {
+    max-width: 900px;
+    margin: 0 auto;
+
+    .tab-content {
+        background-color: #00000099;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        box-shadow: 1px 1px 1px 1px #ccc;
+    }
+
+    .nav-link {
+        &.active {
+            background-color: #00000099;
+            color: #fff;
+        }
+    }
+}

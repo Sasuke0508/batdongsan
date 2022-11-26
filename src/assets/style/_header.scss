@@ -1,0 +1,71 @@
+.header {
+    .header__containter {
+        background-color: #fff;
+        height: 100px;
+        box-shadow: 1px 1px 1px 1px #ccc;
+
+        .logo-app {
+            width: 130px;
+            height: 100%;
+        }
+
+        .menu__item {
+            font-weight: 500;
+            cursor: pointer;
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                background-color: $primary_color;
+                height: 2px;
+                transition: all .5s ease-in-out;
+                top: 60px;
+            }
+
+            .sub-menu {
+                visibility: hidden;
+                top: 66px;
+                width: 200px;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0px 8px 20px rgb(182 182 182 / 30%);
+
+                .sub-menu__item {
+                    transition: all .1s ease-in-out;
+                    background-color: #fff;
+                    font-weight: normal;
+
+                    &:hover {
+                        background-color: rgb(218, 216, 216);
+
+                    }
+                }
+            }
+
+            &:hover {
+                .sub-menu {
+                    visibility: visible;
+                }
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+
+        .menu-action {
+            cursor: pointer;
+
+            .menu-action__item {
+                border-radius: 8px;
+                background-color: #fff;
+                @extend .transitionFade;
+                &:hover {
+                    background-color: rgb(221, 221, 221);
+                }
+
+            }
+        }
+    }
+}
