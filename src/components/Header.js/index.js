@@ -1,15 +1,17 @@
 import React from 'react';
 import { Heart } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { listMenuItem } from '../../constants';
 
 function Header(props) {
+    const navigate = useNavigate()
 
     return (
         <div className='header'>
-            <div className='d-flex header__containter justify-content-between px-4'>
+            <div className='d-flex header__container justify-content-between px-4'>
                 <div className='d-flex'>
-                    <div>
+                    <div onClick={() => navigate('/')}>
                         <img className='logo-app' src="https://staticfile.batdongsan.com.vn/images/logo/standard/red/logo.svg" alt='logo' />
                     </div>
                     {listMenuItem.map((menuItem, indexMenu) => (
