@@ -1,6 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 
-
 @keyframes fadeOpacity {
     from {
         opacity: 0;
@@ -9,10 +8,24 @@
         opacity: 1;
     }
 }
-.transitionFade{
-    transition: all .2s ease-in-out;
+.transitionFade {
+    transition: all 0.2s ease-in-out;
 }
 
-@import 'constants';
-@import 'header';
-@import 'searchBox';
+.page-container-sm {
+    max-width: 768px;
+    margin: 0 auto;
+}
+.page-container-lg {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.page-container-xl {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@import "constants";
+@import "header";
+@import "searchBox";
+@import "homePage";
