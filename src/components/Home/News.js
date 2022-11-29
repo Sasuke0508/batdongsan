@@ -204,7 +204,7 @@ function News(props) {
               <div
                 key={index}
                 className="news__content-header"
-                onClick={() => handleClickContent(item.id)}
+                onMouseOver={() => handleClickContent(item.id)}
               >
                 <div>
                   <h6>{item.title}</h6>
