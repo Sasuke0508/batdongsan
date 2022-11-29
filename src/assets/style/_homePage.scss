@@ -4,6 +4,7 @@
             cursor: pointer;
             h4 {
                 color: #999;
+                position: relative;
                 &::after {
                     content: "";
                     position: absolute;
@@ -19,7 +20,6 @@
             &:hover {
                 h4 {
                     color: #000;
-                    position: relative;
                     &::after {
                         width: 100%;
                     }

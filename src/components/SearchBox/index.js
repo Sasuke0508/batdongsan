@@ -106,9 +106,11 @@ function SearchBox(props) {
                 direction={"down"}
               >
                 <DropdownToggle className="w-100">
-                  <div className="d-flex flex-nowrap align-items-center">
-                    <House className="me-1" />
-                    <span>Loại nhà đất</span>
+                  <div className="d-flex flex-nowrap align-items-center justify-content-between">
+                    <span>
+                      <House className="me-1" />
+                      <span>Loại nhà đất</span>
+                    </span>
                     <CaretDown className="ms-1" />
                   </div>
                 </DropdownToggle>
@@ -195,7 +197,7 @@ function SearchBox(props) {
                     direction={"down"}
                   >
                     <DropdownToggle className="w-100">
-                      <div className="d-flex flex-nowrap align-items-center">
+                      <div className="d-flex flex-nowrap align-items-center justify-content-between">
                         <span>Trên toàn quốc</span>
                         <CaretDown className="ms-1" />
                       </div>
@@ -219,7 +221,7 @@ function SearchBox(props) {
                     direction={"down"}
                   >
                     <DropdownToggle className="w-100">
-                      <div className="d-flex flex-nowrap align-items-center">
+                      <div className="d-flex flex-nowrap align-items-center justify-content-between">
                         <span>Mức giá</span>
                         <CaretDown className="ms-1" />
                       </div>
@@ -243,7 +245,7 @@ function SearchBox(props) {
                     direction={"down"}
                   >
                     <DropdownToggle className="w-100">
-                      <div className="d-flex flex-nowrap align-items-center">
+                      <div className="d-flex flex-nowrap align-items-center justify-content-between">
                         <span>Diện tích</span>
                         <CaretDown className="ms-1" />
                       </div>
@@ -267,7 +269,7 @@ function SearchBox(props) {
                     direction={"down"}
                   >
                     <DropdownToggle className="w-100">
-                      <div className="d-flex flex-nowrap align-items-center">
+                      <div className="d-flex flex-nowrap align-items-center justify-content-between">
                         <span>Lọc thêm</span>
                         <CaretDown className="ms-1" />
                       </div>
