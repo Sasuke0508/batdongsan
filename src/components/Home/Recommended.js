@@ -123,16 +123,16 @@ function Recommended(props) {
                     </span>
                 </div>
             </div>
-            <div className="mt-3">
+            <div className="">
                 <Row>
                     {recommendedData.map((item, index) => (
                         <Col md={3} key={index} className="mt-4">
-                            <Card>
+                            <Card className="position-relative">
                                 <img
                                     alt="recommended"
                                     src={item.image_url[0]}
                                 />
-                                <div className="position-absolute d-flex align-items-center">
+                                <div className="image-count position-absolute d-flex align-items-center">
                                     {item.image_count}
                                     <Image className="ms-1" color="#fff" />
                                 </div>
