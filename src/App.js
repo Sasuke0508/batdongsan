@@ -3,6 +3,7 @@ import { Spinner } from "reactstrap";
 import "./assets/style/global.scss";
 import Header from "./components/Header.js";
 import Pages from "./pages/index.js";
+import Footer from './components/Footer'
 function App() {
   const [loading, setLoading] = useState(false);
   return (
@@ -18,6 +19,9 @@ function App() {
           </div>
           <div>
             <Pages />
+          </div>
+          <div>
+            <Footer />
           </div>
         </div>
       )}
