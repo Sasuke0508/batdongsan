@@ -1,0 +1,10 @@
+.posts{
+    .user-info{
+        border-radius: 4px;
+        @include box-shadow-element;
+    }
+    .key-search__item{
+        background-color: #F2F2F2;
+        border-radius: 14px;
+    }
+}

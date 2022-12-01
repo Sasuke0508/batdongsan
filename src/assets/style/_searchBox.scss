@@ -16,3 +16,9 @@
         }
     }
 }
+.search-bar{
+    @include box-shadow-element;
+    .search-bar__item{
+        min-width: 12%;
+    }
+}
