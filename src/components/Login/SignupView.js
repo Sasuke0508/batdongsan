@@ -22,6 +22,10 @@ function SignupView({ setViewMode }) {
                 <a color='info' href="#">Điều khoản sử dụng</a>{" "}
                 của chúng tôi
             </p>
+            <p className='mt-3'>
+                Đã có tài khoản?{" "}
+                <a color='info' href="#" onClick={() => setViewMode('login')}>Đăng nhập</a>{" "}
+            </p>
         </div>
     );
 }

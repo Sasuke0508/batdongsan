@@ -41,13 +41,6 @@
             }
         }
     }
-    .recommended {
-        .image-count {
-            top: 132px;
-            right: 12px;
-            color: #fff;
-        }
-    }
     .location-recommended {
         .card__title {
             top: 12px;
@@ -103,20 +96,20 @@
                     height: 90px;
                     object-fit: contain;
                     filter: saturate(0);
-                    transition: all .5s ease-in-out;
+                    transition: all 0.5s ease-in-out;
                     cursor: pointer;
-                    &:hover{
+                    &:hover {
                         filter: saturate(1);
                     }
                 }
             }
         }
     }
-    .footer{
-        .title__item{
+    .footer {
+        .title__item {
             font-size: 14px;
             cursor: pointer;
-            &.title__item--bold{
+            &.title__item--bold {
                 font-weight: 500;
                 font-size: 16px;
             }

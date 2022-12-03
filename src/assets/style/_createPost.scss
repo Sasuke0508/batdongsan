@@ -1,0 +1,49 @@
+.create-post {
+    background-color: #f5f5f9;
+    .side-bar{
+        height: 100vmax;
+    }
+}
+
+.user-info {
+    background-color: #fff;
+    @include box-shadow-element;
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: contain;
+    }
+
+    .info__card {
+        border-radius: 12px;
+        background-color: #f2f2f2;
+        .transfer-box {
+            border-radius: 12px;
+            background-color: #fff;
+        }
+    }
+}
+
+.side__menu {
+    background-color: #fff;
+    .menu__item {
+        cursor: pointer;
+        .menu__item-main {
+            height: 40px;
+        }
+        .menu__item-sub {
+            transition: all .3s ease-in-out;
+            height: 0px;
+            overflow: hidden;
+            .menu__icon {
+                opacity: 0;
+            }
+        }
+        &.menu__item--active{
+            height: 100%;
+            .menu__item-sub {
+                height: 40px;
+        }}
+    }
+}

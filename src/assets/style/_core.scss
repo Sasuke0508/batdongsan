@@ -1,0 +1,26 @@
+.news-card {
+    .image-count {
+        top: 132px;
+        right: 12px;
+        color: #fff;
+    }
+    .card-list__container {
+        .card__item {
+            cursor: grab;
+            @include box-shadow-element;
+            .card__title{
+                color: #004E7F;
+            }
+        }
+        &.card-list__container--row {
+            overflow-x: auto;
+            .row {
+                flex-wrap: nowrap;
+                margin-bottom: 16px;
+                > .col-md-3 {
+                    min-width: 300px;
+                }
+            }
+        }
+    }
+}

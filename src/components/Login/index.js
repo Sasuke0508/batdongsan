@@ -3,8 +3,8 @@ import { Col, Row } from 'reactstrap';
 import LoginView from './LoginView';
 import SignupView from './SignupView';
 
-function Login(props) {
-    const [viewMode, setViewMode] = useState('login')
+function Login({initMode}) {
+    const [viewMode, setViewMode] = useState( initMode || 'login')
     return (
         <div className='login container-sm'>
             <Row>
