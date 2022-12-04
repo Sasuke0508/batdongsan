@@ -1,10 +1,15 @@
 import React, { useRef } from "react";
 import { Heart, HeartFill, Image } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Row } from "reactstrap";
 import DragToScroll from "./DragToScroll";
 
 function NewsCard(props) {
     const { data, wrapItem } = props;
+    const navigate = useNavigate()
+    const handleClickCard = () => {
+        navigate('/post/1')
+    }
     return (
         <div className="news-card">
             <div className={`card-list__container ${wrapItem ? "card-list__container--row" : ""}`}>
@@ -19,7 +24,7 @@ function NewsCard(props) {
                                         <Image className="ms-1" color="#fff" />
                                     </div>
                                     <div className="p-3">
-                                        <h6 className="card__title">{item.title}</h6>
+                                        <h6 className="card__title cursor-pointer" onClick={handleClickCard}>{item.title}</h6>
                                         <div className="mt-1">
                                             <b>{item.price}</b> - <b>{item.areaSize}</b>
                                         </div>
