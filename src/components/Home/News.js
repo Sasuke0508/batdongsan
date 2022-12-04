@@ -161,7 +161,7 @@ function News(props) {
   };
 
   return (
-    <div className="news page-container-sm mt-5">
+    <div className="news page-container-md mt-5">
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex">
           {tabs.map((item, index) => (

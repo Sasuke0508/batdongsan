@@ -13,6 +13,11 @@
 }
 
 .page-container-sm {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.page-container-md {
     max-width: 768px;
     margin: 0 auto;
 }
@@ -28,6 +33,12 @@
     background-color: #f2f2f2;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+
 @mixin box-shadow-element {
     border-top: 1px solid #F2F2F2;
     box-shadow: 0px 4px 10px rgb(182 182 182 / 18%) !important;
@@ -38,3 +49,5 @@
 @import "searchBox";
 @import "homePage";
 @import "post";
+@import "createPost";
+@import "core";

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
-import { Button, Carousel, CarouselCaption, CarouselControl, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
+import { ArrowLeft, ArrowRight, Dot, ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
+import { Button, ButtonGroup, Carousel, CarouselCaption, CarouselControl, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
+import Recommended from "../Home/Recommended";
 import SearchBar from "../core/SearchBar";
+import NewsCard from "../core/NewsCard";
+import { recommendedData } from "../../constants";
+import RequestModal from "../core/RequestModal";
+import useWindowHeight from "../core/useWindowHeight";
 
 function Post(props) {
     const slideItems = [
@@ -61,9 +66,51 @@ function Post(props) {
         "Bán căn hộ Vinhomes Grand Park Quận 9",
         "Bán căn hộ chung cư Vinhomes Grand Park Quận 9",
     ];
+    const [openRequestModal, setOpenRequestModal] = useState(false);
+
+    const scrollHeight = useWindowHeight()
     return (
         <div className="posts">
+            <RequestModal open={openRequestModal} onToggle={() => setOpenRequestModal(!openRequestModal)} />
             <SearchBar />
+            <div className={`action-bar py-2 ${scrollHeight > 400 ? 'action-bar--active' : ''}`}>
+                <div className="page-container-xl">
+                    <div className="d-flex justify-content-between">
+                        <div>
+                            <div className="d-flex">
+                                <span>
+                                    <h5>110 tỷ</h5>
+                                </span>
+                                <span className="mx-1">
+                                    <Dot />
+                                </span>
+                                <span>
+                                    <h5>189 m²</h5>
+                                </span>
+                                <span className="mx-1">
+                                    <Dot />
+                                </span>
+                                <span>
+                                    <h5>1 PN</h5>
+                                </span>
+                            </div>
+                            <div>Đường Nguyễn Đình Chiểu, Phường Đa Kao, Quận 1, Hồ Chí Minh</div>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <img
+                                className="avatar me-1"
+                                src="https://file4.batdongsan.com.vn/resize/200x200/2021/05/11/20210511095658-0e22.jpg"
+                                alt="avatar"
+                            />
+                            <div className="me-1"><h5>Su</h5></div>
+                            <Button outline className="me-1" onClick={() => setOpenRequestModal(true)}>
+                                Yêu cầu liên hệ lại
+                            </Button>
+                            <Button color="info">0832 025 *** · Hiện số</Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="page-container-xl mt-3">
                 <Row>
                     <Col md={9}>
@@ -102,37 +149,20 @@ function Post(props) {
                         <hr />
                         <h5 className="mt-4">Thông tin mô tả</h5>
                         <p className="mt-3">
-                            {`Mở bán chính thức đại đô thị thông minh chuẩn Singapore - Vinhomes Grand Park.
-                        Tổng quan dự án:
-                        - Tên dự án: Vinhomes Grand Park Quận 9.
-                        - Vị trí: Đường Nguyễn Xiển và Phước Thiện, phường Long Bình, Quận 9, TP. Hồ Chí Minh.
-                        - Đầu tư dự án: Tập đoàn Vingroup. Nhà thầu xây dựng chính: Coteccons.
-                        - Tổng diện tích của dự án: 271ha.
-                        - Mật độ xây dựng: 40%.
-                        - Các loại hình xây dựng: Căn hộ - nhà phố - Shophouse - Biệt thự và dinh thự.
-                        - Quy mô dự án căn hộ Vinhomes Quận 9: Cao 26 - 35 tầng.
-                        - Số lượng khoảng hơn 44.000 căn hộ với diện tích dự kiến vào khoảng 35m² đến 139m².
-                        - Nhà phố, shophouse, biệt thự diện tích từ 84m² đến 500m².
-                        - Tiện ích nổi bật: Trung tâm thương mại Vincom, bệnh viện Quốc tế Vinmec, trường học Quốc tế Vinschool, siêu thị Vinmart, Tuyến xe Vinbus. Thương mại dịch vụ hồ bơi, khu vui chơi, công viên ánh sáng lớn nhất Đông Nam Á...
-                        Phân khu Rainbow:
-                        - Studio (diện tích 30 - 35m) Giá bán hiện tại: 1.25 tỷ - 1.4 tỷ.
-
-                        - Căn hộ 1PN + 1 (diện tích 46.5 - 51.5 m²) Giá bán hiện tại: 1.7 tỷ - 1.9 tỷ.
-
-                        - Căn hộ 2PN 1WC (diện tích: 59m²) Giá bán hiện tại: 2 tỷ - 2.3 tỷ.
-
-                        - Căn hộ 2PN + 1 (2WC) diện tích 69m² căn góc. Giá bán hiện tại: 2.5 - 2.8 tỷ.
-
-                        - Căn hộ 3PN 81.7m² giá bán hiện tại: 2.8 tỷ - 3 tỷ.
-                        Ngân hàng hỗ trợ 70%. Chỉ cần trả trước 30% giá gốc.
-                        Lưu ý: Giá căn hộ có thể phụ thuộc vào tầng view và chủ nhà.
-                        Liên hệ: 0832 025 *** PKD.
-                        Và còn thêm nhiều phân khu bán mới như Origami, Solari, The Beverly, Lumier nhiều chính sách ưu đãi.
-                        Chuyển nhượng nhà phố The Mahattan giá tốt nhất thị trường.
-                        PKD có 5 năm kinh nghiệm về bất động sản.
-                        Có xe đưa đón xem dự án tận nơi.
-                        Công ty nằm trong dự án xem nhà 24/24.
-                        Liên hệ ngay: 0832 025 *** PKD.`}
+                            Mở bán chính thức đại đô thị thông minh chuẩn Singapore - Vinhomes Grand Park. Tổng quan dự án: - Tên dự án: Vinhomes
+                            Grand Park Quận 9. - Vị trí: Đường Nguyễn Xiển và Phước Thiện, phường Long Bình, Quận 9, TP. Hồ Chí Minh. - Đầu tư dự án:
+                            Tập đoàn Vingroup. Nhà thầu xây dựng chính: Coteccons. - Tổng diện tích của dự án: 271ha. - Mật độ xây dựng: 40%. - Các
+                            loại hình xây dựng: Căn hộ - nhà phố - Shophouse - Biệt thự và dinh thự. - Quy mô dự án căn hộ Vinhomes Quận 9: Cao 26 -
+                            35 tầng. - Số lượng khoảng hơn 44.000 căn hộ với diện tích dự kiến vào khoảng 35m² đến 139m². - Nhà phố, shophouse, biệt
+                            thự diện tích từ 84m² đến 500m². - Tiện ích nổi bật: Trung tâm thương mại Vincom, bệnh viện Quốc tế Vinmec, trường học
+                            Quốc tế Vinschool, siêu thị Vinmart, Tuyến xe Vinbus. Thương mại dịch vụ hồ bơi, khu vui chơi, công viên ánh sáng lớn nhất
+                            Đông Nam Á... Phân khu Rainbow: - Studio (diện tích 30 - 35m) Giá bán hiện tại: 1.25 tỷ - 1.4 tỷ. - Căn hộ 1PN + 1 (diện
+                            tích 46.5 - 51.5 m²) Giá bán hiện tại: 1.7 tỷ - 1.9 tỷ. - Căn hộ 2PN 1WC (diện tích: 59m²) Giá bán hiện tại: 2 tỷ - 2.3
+                            tỷ. - Căn hộ 2PN + 1 (2WC) diện tích 69m² căn góc. Giá bán hiện tại: 2.5 - 2.8 tỷ. - Căn hộ 3PN 81.7m² giá bán hiện tại:
+                            2.8 tỷ - 3 tỷ. Ngân hàng hỗ trợ 70%. Chỉ cần trả trước 30% giá gốc. Lưu ý: Giá căn hộ có thể phụ thuộc vào tầng view và
+                            chủ nhà. Liên hệ: 0832 025 *** PKD. Và còn thêm nhiều phân khu bán mới như Origami, Solari, The Beverly, Lumier nhiều
+                            chính sách ưu đãi. Chuyển nhượng nhà phố The Mahattan giá tốt nhất thị trường. PKD có 5 năm kinh nghiệm về bất động sản.
+                            Có xe đưa đón xem dự án tận nơi. Công ty nằm trong dự án xem nhà 24/24. Liên hệ ngay: 0832 025 *** PKD.
                         </p>
                         <div className="mt-5">
                             <h5>Đặc điểm bất động sản</h5>
@@ -189,8 +219,8 @@ function Post(props) {
                                     height="450"
                                     style={{ border: 0 }}
                                     loading="lazy"
-                                    allowfullscreen
-                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowFullScreen
+                                    referrerPolicy="no-referrer-when-downgrade"
                                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCH53Cs6qjDqx5QHSwkj1_LZkREJVKjhIE&q=Space+Needle,Seattle+WA"
                                 ></iframe>
                             </div>
@@ -227,6 +257,47 @@ function Post(props) {
                                 <hr />
                             </div>
                         </div>
+                        <div className="mt-5 d-flex align-items-center justify-content-between">
+                            <h5>Bất động sản dành cho bạn</h5>
+                            <div className="d-flex">
+                                <div>
+                                    <ButtonGroup>
+                                        <Button outline>
+                                            <ArrowLeft />
+                                        </Button>
+                                        <Button outline>
+                                            <ArrowRight />
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
+                            </div>
+                        </div>
+                        <NewsCard data={recommendedData} wrapItem={true} />
+                        <div className="mt-5 d-flex align-items-center justify-content-between">
+                            <h5>Tin đăng đã xem</h5>
+                            <div className="d-flex">
+                                <div>
+                                    <ButtonGroup>
+                                        <Button outline>
+                                            <ArrowLeft />
+                                        </Button>
+                                        <Button outline>
+                                            <ArrowRight />
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
+                            </div>
+                        </div>
+                        <NewsCard data={recommendedData} wrapItem={true} />
+                        <hr />
+                        <div className="my-4">
+                            Quý vị đang xem nội dung tin rao "Bán hàng hiếm góc 2 MT Nguyễn Đình Chiểu, P Đa Kao Q1 DT 8x24m CN 189m2 trệt 1L. Chỉ 110
+                            tỷ tl" - Mã tin 34845360. Mọi thông tin, nội dung liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách
+                            nhiệm. Batdongsan.com.vn luôn cố gắng để các thông tin được hữu ích nhất cho quý vị tuy nhiên Batdongsan.com.vn không đảm
+                            bảo và không chịu trách nhiệm về bất kỳ thông tin, nội dung nào liên quan tới tin rao này. Trường hợp phát hiện nội dung
+                            tin đăng không chính xác, Quý vị hãy thông báo và cung cấp thông tin cho Ban quản trị Batdongsan.com.vn theo Hotline
+                            19001881 để được hỗ trợ nhanh và kịp thời nhất.
+                        </div>
                     </Col>
                     <Col md={3}>
                         <div className="user-info p-2">
@@ -250,7 +321,7 @@ function Post(props) {
                                 <Button className="w-100 mt-2" outline>
                                     Gửi email
                                 </Button>
-                                <Button className="w-100 mt-2" outline>
+                                <Button className="w-100 mt-2" outline onClick={() => setOpenRequestModal(true)}>
                                     Yêu cầu liên hệ lại
                                 </Button>
                             </div>

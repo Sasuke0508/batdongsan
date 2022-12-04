@@ -1,186 +1,246 @@
 export const listMenuItem = [
     {
-        id : 1,
-        title: 'Nhà đất bán',
-        path : '',
-        subMenu : [
+        id: 1,
+        title: "Nhà đất bán",
+        path: "",
+        subMenu: [
             {
-                title: 'Bán căn hộ chung cư',
-                path : ''
+                title: "Bán căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Bán nhà riêng',
-                path : ''
+                title: "Bán nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Bán nhà mặt phố',
-                path : ''
+                title: "Bán nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 2,
-        title: 'Nhà đất cho thuê',
-        path : '',
-        subMenu : [
+        id: 2,
+        title: "Nhà đất cho thuê",
+        path: "",
+        subMenu: [
             {
-                title: 'Cho thuê căn hộ chung cư',
-                path : ''
+                title: "Cho thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 3,
-        title: 'Dự án',
-        path : '',
-        subMenu : [
+        id: 3,
+        title: "Dự án",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 4,
-        title: 'Tin tức',
-        path : '',
-        subMenu : [
+        id: 4,
+        title: "Tin tức",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 5,
-        title: 'Wiki BĐS',
-        path : '',
-        subMenu : [
+        id: 5,
+        title: "Wiki BĐS",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 6,
-        title: 'Phong thuỷ',
-        path : '',
-        subMenu : [
+        id: 6,
+        title: "Phong thuỷ",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 7,
-        title: 'Nội - Ngoại thất',
-        path : '',
-        subMenu : [
+        id: 7,
+        title: "Nội - Ngoại thất",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
     {
-        id : 8,
-        title: 'Danh bạ',
-        path : '',
-        subMenu : [
+        id: 8,
+        title: "Danh bạ",
+        path: "",
+        subMenu: [
             {
-                title: 'Thuê căn hộ chung cư',
-                path : ''
+                title: "Thuê căn hộ chung cư",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà riêng',
-                path : ''
+                title: "Cho thuê nhà riêng",
+                path: "",
             },
             {
-                title: 'Biệt thự liền kề',
-                path : ''
+                title: "Biệt thự liền kề",
+                path: "",
             },
             {
-                title: 'Cho thuê nhà mặt phố',
-                path : ''
+                title: "Cho thuê nhà mặt phố",
+                path: "",
             },
-        ]
+        ],
     },
-]
+];
+
+export const sellTypes = [
+    {
+        label: "Bán căn hộ, chung cư",
+        value: 1,
+    },
+    {
+        label: "Bán nhà riêng",
+        value: 2,
+    },
+    {
+        label: "Bán nhà biệt thự, liền kề",
+        value: 3,
+    },
+    {
+        label: "Bán nhà mặt phố",
+        value: 4,
+    },
+    {
+        label: "Bán shophouse, nhà phố thương mại",
+        value: 5,
+    },
+    {
+        label: "Bán đất nền dự án",
+        value: 6,
+    },
+    {
+        label: "Bán đất",
+        value: 7,
+    },
+    {
+        label: "Bán trang trại, khu nghỉ dưỡng",
+        value: 8,
+    },
+    {
+        label: "Bán condotel",
+        value: 9,
+    },
+    {
+        label: "Bán loại bất động sản khác",
+        value: 10,
+    },
+];
+
+export const utilityList = [
+    {
+        label: "Điều hoà",
+        value: "dieu_hoa",
+    },
+    {
+        label: "Bình nóng lạnh",
+        value: "binh_nong_lanh",
+    },
+];
+
+export const sellUnits = [
+    { value: "vnd", label: "VND" },
+    { value: "gia_m2", label: "Giá/ m2" },
+    { value: "thoa_thuan", label: "Thoả thuận" },
+];
