@@ -76,11 +76,10 @@ function index(props) {
                                 (024) 3562 5939 - (024) 3562 5940
                             </span>
                         </div>
-                        <div className="d-flex flex-column align-items-end justify-content-end mt-3">
+                        <div className="d-flex flex-column align-items-start justify-content-end mt-3">
                             <img
                                 style={{
                                     height: "30px",
-                                    width: "100%",
                                     objectFit: "contain",
                                 }}
                                 alt="contact"
@@ -89,7 +88,6 @@ function index(props) {
                             <img
                                 style={{
                                     height: "30px",
-                                    width: "100%",
                                     objectFit: "contain",
                                 }}
                                 alt="contact"

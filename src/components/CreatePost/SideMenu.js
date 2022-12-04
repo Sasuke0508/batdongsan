@@ -1,25 +1,11 @@
 import React, { useState } from "react";
 import {
-    ArrowDown,
-    ArrowUp,
     BoxSeam,
-    Buildings,
-    CaretDown,
-    CaretDownFill,
-    CaretUp,
-    CaretUpFill,
-    ChevronDown,
-    ChevronUp,
-    Clipboard,
-    CreditCard,
-    Gear,
-    GraphUp,
-    GraphUpArrow,
+    Buildings, ChevronDown,
+    ChevronUp, Gear, GraphUpArrow,
     ListUl,
-    Paperclip,
-    QuestionCircleFill,
+    Paperclip
 } from "react-bootstrap-icons";
-import { Button, Tooltip } from "reactstrap";
 
 function SideMenu(props) {
     const menuItem = [

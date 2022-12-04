@@ -13,6 +13,11 @@
 }
 
 .page-container-sm {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.page-container-md {
     max-width: 768px;
     margin: 0 auto;
 }

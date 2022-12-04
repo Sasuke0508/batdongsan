@@ -24,3 +24,9 @@
         }
     }
 }
+
+.card {
+    background-color: #fff;
+    border-radius: 4px;
+    @include box-shadow-element;
+}
