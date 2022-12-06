@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import { useMemo, useState } from "react";
 import { ChevronRight, CloudArrowUp, Dash, InfoCircle, Play, PlayCircle, Plus, X, Youtube } from "react-bootstrap-icons";
 import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
@@ -116,6 +117,14 @@ function CreatePost(props) {
         );
     };
     const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
+
+    // Post config
+    const [postType, setPostType] = useState("vip_1");
+    const [viewMorePostType, setViewMorePostType] = useState(true);
+    const [highlightPost, setHighlightPost] = useState(false);
+    const [postDays, setPostDays] = useState(10);
+    const [postStartDate, setPostStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
+    const [postStartTime, setPostStartTime] = useState(moment(new Date()).format('HH:mm'));
     return (
         <div className="create-post">
             <Row className="w-100">
@@ -446,9 +455,32 @@ function CreatePost(props) {
                             </div>
                         </Card>
                         <Card className="mt-3 p-4">
+                            <h5>Cấu hình tin đăng</h5>
+                            {console.log(postStartTime)}
+                            <Input type="date" value={postStartDate} onChange={e => setPostStartDate(e.target.value)}/>
+                            <Input type="time" value={postStartTime} onChange={e => setPostStartTime(e.target.value)}/>
+
                             <div className="d-flex justify-content-between align-items-center">
                                 <Button outline>Xem trước giao diện</Button>
-                                <Button color="danger">Tiếp tục <ChevronRight /></Button>
+                                <Button color="danger">
+                                    Tiếp tục <ChevronRight />
+                                </Button>
+                            </div>
+                        </Card>
+                        <Card className="mt-3 p-4">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <Button outline>Xem trước giao diện</Button>
+                                <div className="d-flex align-items-center">
+                                    <div className="me-2">
+                                        <div>Tổng tiền</div>
+                                        <div className="d-flex align-items-start">
+                                            <b>50.000</b>đ
+                                        </div>
+                                    </div>
+                                    <Button color="danger">
+                                        Thanh toán và đăng tin <ChevronRight />
+                                    </Button>
+                                </div>
                             </div>
                         </Card>
                     </div>
