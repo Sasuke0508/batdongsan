@@ -18,6 +18,12 @@
     .create-post-upload__label{
         @include box-shadow-element;
     }
+    .post-plan__container{
+        .post-plan__item{
+            border : 1px solid #ccc;
+            border-radius: 4px;
+        }
+    }
 }
 
 .user-info {

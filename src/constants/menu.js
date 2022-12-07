@@ -244,3 +244,66 @@ export const sellUnits = [
     { value: "gia_m2", label: "Giá/ m2" },
     { value: "thoa_thuan", label: "Thoả thuận" },
 ];
+
+export const postTypePlan = [
+    {
+        id: 0,
+        performance: "0",
+        title: "Tin thường",
+        titleColor: {
+            color: "#004e7f",
+            label: "màu xanh",
+        },
+        position: "Hiện dưới cùng",
+        postDays: "Đăng tối thiểu 7 ngày",
+        price: 2727,
+    },
+    {
+        id: 1,
+        performance: "11",
+        title: "VIP 3",
+        titleColor: {
+            color: "#ff661f",
+            label: "màu cam",
+        },
+        position: "Hiện dưới VIP 2",
+        postDays: "Đăng tối thiểu 7 ngày",
+        price: 50000,
+    },
+    {
+        id: 2,
+        performance: "18",
+        title: "Tin VIP 2",
+        titleColor: {
+            color: "#ff661f",
+            label: "MÀU CAM",
+        },
+        position: "Hiện dưới VIP 1",
+        postDays: "Đăng tối thiểu 7 ngày",
+        price: 63636,
+    },
+    {
+        id: 3,
+        performance: "36",
+        title: "VIP 1",
+        titleColor: {
+            color: "#e03c31",
+            label: "MÀU ĐỎ",
+        },
+        position: "Hiện dưới VIP Đặc Biệt",
+        postDays: "Đăng tối thiểu 7 ngày",
+        price: 90909,
+    },
+    {
+        id: 4,
+        performance: "90",
+        title: "VIP Đặc Biệt",
+        titleColor: {
+            color: "#e03c31",
+            label: "MÀU ĐỎ",
+        },
+        position: "Luôn hiện đầu danh sách tin",
+        postDays: "Đăng tối thiểu 10 ngày",
+        price: 200000,
+    },
+];

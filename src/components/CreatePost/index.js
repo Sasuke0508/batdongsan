@@ -1,8 +1,22 @@
 import moment from "moment/moment";
 import { useMemo, useState } from "react";
-import { ChevronRight, CloudArrowUp, Dash, InfoCircle, Play, PlayCircle, Plus, X, Youtube } from "react-bootstrap-icons";
-import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
-import { sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
+import {
+    ArrowClockwise,
+    ChevronRight,
+    CloudArrowUp,
+    Dash,
+    Fonts,
+    InfoCircle,
+    List,
+    Play,
+    PlayCircle,
+    Plus,
+    QuestionCircleFill,
+    X,
+    Youtube,
+} from "react-bootstrap-icons";
+import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row, Tooltip } from "reactstrap";
+import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import { checkArrayHasItem, convertInputTextToObject } from "../../utils";
 import Select from "../core/Select";
 import SideMenu from "./SideMenu";
@@ -119,12 +133,19 @@ function CreatePost(props) {
     const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
 
     // Post config
-    const [postType, setPostType] = useState("vip_1");
+    const [postType, setPostType] = useState(1);
     const [viewMorePostType, setViewMorePostType] = useState(true);
     const [highlightPost, setHighlightPost] = useState(false);
     const [postDays, setPostDays] = useState(10);
-    const [postStartDate, setPostStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
-    const [postStartTime, setPostStartTime] = useState(moment(new Date()).format('HH:mm'));
+    const [postStartDate, setPostStartDate] = useState(moment(new Date()).format("YYYY-MM-DD"));
+    const [postStartTime, setPostStartTime] = useState(moment(new Date()).format("HH:mm"));
+    const [autoRePost, setAutoRePost] = useState(false);
+
+    const [tooltipOpen, setTooltipOpen] = useState({
+        highlightPost: false,
+        rePost: false,
+    });
+    const toggle = (type) => setTooltipOpen({ ...tooltipOpen, [type]: !tooltipOpen[type] });
     return (
         <div className="create-post">
             <Row className="w-100">
@@ -456,15 +477,140 @@ function CreatePost(props) {
                         </Card>
                         <Card className="mt-3 p-4">
                             <h5>Cấu hình tin đăng</h5>
-                            {console.log(postStartTime)}
-                            <Input type="date" value={postStartDate} onChange={e => setPostStartDate(e.target.value)}/>
-                            <Input type="time" value={postStartTime} onChange={e => setPostStartTime(e.target.value)}/>
+                            <h6>Chọn loại tin đăng</h6>
+                            <div className="d-flex post-plan__container">
+                                {postTypePlan.map((plan, index) => (
+                                    <div style={{ flex: "1" }} className="post-plan__item text-center p-2" key={index}>
+                                        <span className="plan__tag">X{plan.performance} hiệu quả</span>
+                                        <h6 className="mt-2">{plan.title}</h6>
+                                        <Button color="info" outline={postType !== plan.id}>
+                                            {postType !== plan.id ? "Chọn" : "Đã chọn"}
+                                        </Button>
+                                        <hr />
+                                        <Fonts />
+                                        <div>
+                                            Tiêu đề chữ {plan.id > 1 ? "hoa" : "thường"}{" "}
+                                            <span style={{ color: plan.titleColor.color }}>{plan.titleColor.label}</span>
+                                        </div>
+                                        <hr />
+                                        <List />
+                                        <div className="mt-3">{plan.position}</div>
+                                        <hr />
+                                        <div className="mt-3">{plan.postDays}</div>
+                                        <hr />
+                                        <div className="mt-3">
+                                            Từ{" "}
+                                            <b>
+                                                {plan.price}đ <br />
+                                            </b>
+                                            ngày
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
 
-                            <div className="d-flex justify-content-between align-items-center">
-                                <Button outline>Xem trước giao diện</Button>
-                                <Button color="danger">
-                                    Tiếp tục <ChevronRight />
-                                </Button>
+                            <div className="d-flex mt-3">
+                                <Input
+                                    className="me-1"
+                                    id="highlight-post"
+                                    type="checkbox"
+                                    value={highlightPost}
+                                    onChange={(e) => setHighlightPost(e.target.value)}
+                                />
+                                <Label for="highlight-post" id="highlight-post__label">
+                                    Làm nổi bật tin đăng
+                                    <QuestionCircleFill />
+                                </Label>
+                                <Tooltip target="highlight-post__label" isOpen={tooltipOpen.highlightPost} toggle={() => toggle("highlightPost")}>
+                                    • Gắn nhãn NỔI BẬT có màu theo loại tin
+                                    <br />
+                                    • Hiển thị 3 ảnh đại diện ở trang danh sách
+                                    <br />• Nút bấm Hiện số điện thoại
+                                </Tooltip>
+                            </div>
+                            <hr />
+                            <Row>
+                                <Col md={4}>
+                                    <div className="mt-2">
+                                        <h6>
+                                            Số ngày đăng
+                                            <RequiredMark />
+                                        </h6>
+                                        <Input
+                                            type="number"
+                                            value={postDays}
+                                            onChange={(e) => setPostDays(e.target.value)}
+                                            placeholder="Nhập số ngày đăng"
+                                        />
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <div className="mt-2">
+                                        <h6>
+                                            Ngày bắt đầu
+                                            <RequiredMark />
+                                        </h6>
+                                        <Input type="date" value={postStartDate} onChange={(e) => setPostStartDate(e.target.value)} />
+                                        <div>
+                                            Kết thúc ngày{" "}
+                                            {moment(new Date(postStartDate).setDate(new Date(postStartDate).getDate() + postDays)).format(
+                                                "DD/MM/YYYY"
+                                            )}
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <div className="mt-2">
+                                        <h6>
+                                            Hẹn giờ đăng tin
+                                            <RequiredMark />
+                                        </h6>
+                                        <Input disabled type="time" value={postStartTime} onChange={(e) => setPostStartTime(e.target.value)} />
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Card>
+                        <Card className="mt-3 p-4">
+                            <h5>Tiện ích</h5>
+                            <div className="mt-3 d-flex justify-content-between">
+                                <div className="d-flex align-items-center">
+                                    <Button disabled className="me-3" color="danger">
+                                        <ArrowClockwise />
+                                    </Button>
+                                    <div>
+                                        <h6>Tự động đăng lại </h6>
+                                        <div id="auto_repost">
+                                            Tin sẽ được đăng lại ngay khi tin vừa hết hạn. Mỗi lần đăng lại, hệ thống chỉ trừ tiền của lần đăng lại
+                                            đó.
+                                            <QuestionCircleFill />
+                                        </div>
+                                        <Tooltip isOpen={tooltipOpen.rePost} target="auto_repost" toggle={() => toggle("rePost")}>
+                                            Tin sẽ được đăng lại ngay khi tin vừa hết hạn. <br />• Đến thời điểm đăng lại, hệ thống mới thực hiện trừ
+                                            tiền.
+                                            <br />
+                                            • Mỗi lần tin được đăng lại, hệ thống chỉ trừ tiền của lần đăng lại đó.
+                                            <br />• Trước đó, quý khách có thể hủy chế độ tự động, và không phát sinh chi phí gì thêm.
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Input
+                                        className=""
+                                        color="danger"
+                                        type="switch"
+                                        value={autoRePost}
+                                        onChange={(e) => setAutoRePost(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        </Card>
+                        <Card className="mt-3 p-4">
+                            <h5>Thanh toán</h5>
+                            <div className="mt-2">
+                                <div className="d-flex justify-content-between">
+                                    <div>Loại tin</div>
+                                    <h6>VIP 3</h6>
+                                </div>
                             </div>
                         </Card>
                         <Card className="mt-3 p-4">
