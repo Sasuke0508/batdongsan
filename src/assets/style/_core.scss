@@ -5,6 +5,10 @@
         color: #fff;
     }
     .card-list__container {
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar {
+            display: none;
+        }
         .card__item {
             cursor: grab;
             @include box-shadow-element;

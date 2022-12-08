@@ -273,7 +273,7 @@ export const postTypePlan = [
     {
         id: 2,
         performance: "18",
-        title: "Tin VIP 2",
+        title: "VIP 2",
         titleColor: {
             color: "#ff661f",
             label: "MÀU CAM",

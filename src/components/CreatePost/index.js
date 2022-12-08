@@ -17,7 +17,7 @@ import {
 } from "react-bootstrap-icons";
 import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row, Tooltip } from "reactstrap";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
-import { checkArrayHasItem, convertInputTextToObject } from "../../utils";
+import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
 import Select from "../core/Select";
 import SideMenu from "./SideMenu";
 import UserInfo from "./UserInfo";
@@ -133,7 +133,7 @@ function CreatePost(props) {
     const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
 
     // Post config
-    const [postType, setPostType] = useState(1);
+    const [postPlan, setPostPlan] = useState(1);
     const [viewMorePostType, setViewMorePostType] = useState(true);
     const [highlightPost, setHighlightPost] = useState(false);
     const [postDays, setPostDays] = useState(10);
@@ -141,10 +141,28 @@ function CreatePost(props) {
     const [postStartTime, setPostStartTime] = useState(moment(new Date()).format("HH:mm"));
     const [autoRePost, setAutoRePost] = useState(false);
 
+    const totalPrice = useMemo(() => {
+        let total = 0;
+        total = Number(postTypePlan[postPlan].price) * postDays;
+        if (highlightPost) {
+            total = Math.ceil(total * 1.2);
+        }
+        return total;
+    }, [postPlan, postDays, highlightPost]);
+
     const [tooltipOpen, setTooltipOpen] = useState({
         highlightPost: false,
         rePost: false,
     });
+
+    const handleClickPostPlan = (id) => {
+        setPostPlan(id);
+    };
+
+    const handleClickSubmit = (e) => {
+        e.preventDefault();
+    };
+
     const toggle = (type) => setTooltipOpen({ ...tooltipOpen, [type]: !tooltipOpen[type] });
     return (
         <div className="create-post">
@@ -172,28 +190,28 @@ function CreatePost(props) {
                                     <h6>
                                         Loại bất động sản <RequiredMark />
                                     </h6>
-                                    <Select fullWidth value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
+                                    <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                                 </div>
                                 <div className="mt-4">
                                     <h6>
                                         Tỉnh, thành phố
                                         <RequiredMark />
                                     </h6>
-                                    <Select fullWidth value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
+                                    <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                                 </div>
                                 <div className="mt-4">
                                     <h6>
                                         Quận, huyện
                                         <RequiredMark />
                                     </h6>
-                                    <Select fullWidth value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
+                                    <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                                 </div>
                                 <div className="mt-4">
                                     <h6>
                                         Phường, xã
                                         <RequiredMark />
                                     </h6>
-                                    <Select fullWidth value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
+                                    <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                                 </div>
                                 <div className="mt-4">
                                     <h6>
@@ -212,6 +230,7 @@ function CreatePost(props) {
                                         value={address}
                                         placeholder="Bạn có thể bổ sung hẻm, ngách, ngõ,.."
                                         onChange={(e) => setAddress(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -478,13 +497,20 @@ function CreatePost(props) {
                         <Card className="mt-3 p-4">
                             <h5>Cấu hình tin đăng</h5>
                             <h6>Chọn loại tin đăng</h6>
-                            <div className="d-flex post-plan__container">
+                            <div className="d-flex post-plan__container mt-2">
                                 {postTypePlan.map((plan, index) => (
-                                    <div style={{ flex: "1" }} className="post-plan__item text-center p-2" key={index}>
-                                        <span className="plan__tag">X{plan.performance} hiệu quả</span>
-                                        <h6 className="mt-2">{plan.title}</h6>
-                                        <Button color="info" outline={postType !== plan.id}>
-                                            {postType !== plan.id ? "Chọn" : "Đã chọn"}
+                                    <div
+                                        style={{ flex: "1" }}
+                                        className={`post-plan__item text-center cursor-pointer p-2 ${
+                                            postPlan === index ? "post-plan__item--selected" : ""
+                                        }`}
+                                        key={index}
+                                        onClick={() => handleClickPostPlan(index)}
+                                    >
+                                        <div className={`mt-2 plan__tag plan__tag--${index}`}>X{plan.performance} hiệu quả</div>
+                                        <h6 className="mb-4 mt-3">{plan.title}</h6>
+                                        <Button color="info" outline={postPlan !== plan.id}>
+                                            {postPlan !== plan.id ? "Chọn" : "Đã chọn"}
                                         </Button>
                                         <hr />
                                         <Fonts />
@@ -494,14 +520,16 @@ function CreatePost(props) {
                                         </div>
                                         <hr />
                                         <List />
-                                        <div className="mt-3">{plan.position}</div>
+                                        <div style={{ minHeight: "52px" }} className="mt-3">
+                                            {plan.position}
+                                        </div>
                                         <hr />
                                         <div className="mt-3">{plan.postDays}</div>
                                         <hr />
-                                        <div className="mt-3">
+                                        <div className="mt-3 pb-3">
                                             Từ{" "}
                                             <b>
-                                                {plan.price}đ <br />
+                                                {formatCurrency(plan.price)}đ <br />
                                             </b>
                                             ngày
                                         </div>
@@ -515,7 +543,7 @@ function CreatePost(props) {
                                     id="highlight-post"
                                     type="checkbox"
                                     value={highlightPost}
-                                    onChange={(e) => setHighlightPost(e.target.value)}
+                                    onChange={(e) => setHighlightPost(e.target.checked)}
                                 />
                                 <Label for="highlight-post" id="highlight-post__label">
                                     Làm nổi bật tin đăng
@@ -573,12 +601,21 @@ function CreatePost(props) {
                         <Card className="mt-3 p-4">
                             <h5>Tiện ích</h5>
                             <div className="mt-3 d-flex justify-content-between">
-                                <div className="d-flex align-items-center">
+                                <div className="d-flex align-items-start">
                                     <Button disabled className="me-3" color="danger">
                                         <ArrowClockwise />
                                     </Button>
                                     <div>
-                                        <h6>Tự động đăng lại </h6>
+                                        <h6>
+                                            <Input
+                                                className="me-2"
+                                                color="danger"
+                                                type="switch"
+                                                value={autoRePost}
+                                                onChange={(e) => setAutoRePost(e.target.value)}
+                                            />
+                                            Tự động đăng lại{" "}
+                                        </h6>
                                         <div id="auto_repost">
                                             Tin sẽ được đăng lại ngay khi tin vừa hết hạn. Mỗi lần đăng lại, hệ thống chỉ trừ tiền của lần đăng lại
                                             đó.
@@ -593,23 +630,28 @@ function CreatePost(props) {
                                         </Tooltip>
                                     </div>
                                 </div>
-                                <div>
-                                    <Input
-                                        className=""
-                                        color="danger"
-                                        type="switch"
-                                        value={autoRePost}
-                                        onChange={(e) => setAutoRePost(e.target.value)}
-                                    />
-                                </div>
+                                <div></div>
                             </div>
                         </Card>
                         <Card className="mt-3 p-4">
                             <h5>Thanh toán</h5>
                             <div className="mt-2">
-                                <div className="d-flex justify-content-between">
+                                <div className="d-flex justify-content-between mt-2">
                                     <div>Loại tin</div>
-                                    <h6>VIP 3</h6>
+                                    <h6>{postTypePlan[postPlan].title}</h6>
+                                </div>
+                                <div className="d-flex justify-content-between mt-2">
+                                    <div>Đơn giá / ngày</div>
+                                    <h6>{formatCurrency(postTypePlan[postPlan].price)}đ</h6>
+                                </div>
+                                <div className="d-flex justify-content-between mt-2">
+                                    <div>Thời gian đăng tin</div>
+                                    <h6>{postDays} ngày</h6>
+                                </div>
+                                <hr />
+                                <div className="d-flex justify-content-between mt-2">
+                                    <div>Tổng tiền</div>
+                                    <h3>{formatCurrency(totalPrice)} đ</h3>
                                 </div>
                             </div>
                         </Card>
@@ -620,10 +662,10 @@ function CreatePost(props) {
                                     <div className="me-2">
                                         <div>Tổng tiền</div>
                                         <div className="d-flex align-items-start">
-                                            <b>50.000</b>đ
+                                            <b>{formatCurrency(totalPrice)} đ</b>
                                         </div>
                                     </div>
-                                    <Button color="danger">
+                                    <Button color="danger" type="submit" onClick={handleClickSubmit}>
                                         Thanh toán và đăng tin <ChevronRight />
                                     </Button>
                                 </div>

@@ -1,13 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 function DragToScroll(props) {
-    // const { props.children } = props;
-    let isDown = false;
-    let startX;
-    let scrollLeft;
     const ref = useRef();
+    const [xPosition, setXPosition] = useState(0);
+    const handleMouseDown = (e) => {
+        if (e.clientX !== 0) {
+            setXPosition(e.pageX);
+        }
+    };
+    const handleDrag = (e) => {
+        let scrollValue = e.pageX - xPosition;
+        if (e.clientX !== 0) {
+            props.containerRef.current.scrollLeft -= scrollValue;
+        }
+    };
 
-    return <div onMouseDown={e => console.log(e)} onScroll={e=> console.log(e)} onDrag={e => console.log(e)} ref={ref}>{props.children}</div>;
+    return (
+        <div onMouseDown={handleMouseDown} onDrag={handleDrag} ref={ref}>
+            {props.children}
+        </div>
+    );
 }
 
 export default DragToScroll;

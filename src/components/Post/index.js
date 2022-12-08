@@ -69,6 +69,8 @@ function Post(props) {
     const [openRequestModal, setOpenRequestModal] = useState(false);
 
     const scrollHeight = useWindowHeight()
+
+    //
     return (
         <div className="posts">
             <RequestModal open={openRequestModal} onToggle={() => setOpenRequestModal(!openRequestModal)} />
@@ -257,38 +259,9 @@ function Post(props) {
                                 <hr />
                             </div>
                         </div>
-                        <div className="mt-5 d-flex align-items-center justify-content-between">
-                            <h5>Bất động sản dành cho bạn</h5>
-                            <div className="d-flex">
-                                <div>
-                                    <ButtonGroup>
-                                        <Button outline>
-                                            <ArrowLeft />
-                                        </Button>
-                                        <Button outline>
-                                            <ArrowRight />
-                                        </Button>
-                                    </ButtonGroup>
-                                </div>
-                            </div>
-                        </div>
-                        <NewsCard data={recommendedData} wrapItem={true} />
-                        <div className="mt-5 d-flex align-items-center justify-content-between">
-                            <h5>Tin đăng đã xem</h5>
-                            <div className="d-flex">
-                                <div>
-                                    <ButtonGroup>
-                                        <Button outline>
-                                            <ArrowLeft />
-                                        </Button>
-                                        <Button outline>
-                                            <ArrowRight />
-                                        </Button>
-                                    </ButtonGroup>
-                                </div>
-                            </div>
-                        </div>
-                        <NewsCard data={recommendedData} wrapItem={true} />
+                            
+                        <NewsCard title="Bất động sản dành cho bạn" data={recommendedData} wrapItem={true} />
+                        <NewsCard title="Tin đăng đã xem" data={recommendedData} wrapItem={true} />
                         <hr />
                         <div className="my-4">
                             Quý vị đang xem nội dung tin rao "Bán hàng hiếm góc 2 MT Nguyễn Đình Chiểu, P Đa Kao Q1 DT 8x24m CN 189m2 trệt 1L. Chỉ 110
