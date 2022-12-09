@@ -1,29 +1,45 @@
 import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, Dot, ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
-import { Button, ButtonGroup, Carousel, CarouselCaption, CarouselControl, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
+import {
+    Button,
+    ButtonGroup,
+    Carousel,
+    CarouselCaption,
+    CarouselControl,
+    CarouselIndicators,
+    CarouselItem,
+    Col,
+    Input,
+    Label,
+    Modal,
+    ModalBody,
+    ModalHeader,
+    Row,
+} from "reactstrap";
 import Recommended from "../Home/Recommended";
 import SearchBar from "../core/SearchBar";
 import NewsCard from "../core/NewsCard";
-import { recommendedData } from "../../constants";
+import { recommendedData, reportReasonList } from "../../constants";
 import RequestModal from "../core/RequestModal";
 import useWindowHeight from "../core/useWindowHeight";
+import SliderImage from "react-zoom-slider";
 
 function Post(props) {
     const slideItems = [
         {
-            src: "https://picsum.photos/id/123/1200/400",
+            image: "https://picsum.photos/id/123/1200/400",
             altText: "Slide 1",
             caption: "Slide 1",
             key: 1,
         },
         {
-            src: "https://picsum.photos/id/456/1200/400",
+            image: "https://picsum.photos/id/456/1200/400",
             altText: "Slide 2",
             caption: "Slide 2",
             key: 2,
         },
         {
-            src: "https://picsum.photos/id/678/1200/400",
+            image: "https://picsum.photos/id/678/1200/400",
             altText: "Slide 3",
             caption: "Slide 3",
             key: 3,
@@ -68,14 +84,59 @@ function Post(props) {
     ];
     const [openRequestModal, setOpenRequestModal] = useState(false);
 
-    const scrollHeight = useWindowHeight()
+    const scrollHeight = useWindowHeight();
 
     //
+    const [openModalReport, setOpenModalReport] = useState(false);
+    const [reportContent, setReportContent] = useState({
+        reason: [],
+        reason_text: "",
+    });
+    const [reportInfo, setReportInfo] = useState({
+        name: "",
+        phone: "",
+        email: "",
+    });
+
+    const handleChangeReason = (type, value) => {
+        if (type === "reason_text") {
+            setReportContent({
+                ...reportContent,
+                reason_text: value,
+            });
+        } else {
+            let newValue = reportContent.reason;
+            if (reportContent.reason.indexOf(value) !== -1) {
+                newValue = reportContent.reason.filter((item) => item !== value);
+            } else {
+                newValue.push(value);
+            }
+            setReportContent({
+                ...reportContent,
+                reason: newValue,
+            });
+        }
+    };
+
+    const handleChangeReportInfo = (type, value) => {
+        setReportInfo({
+            ...reportInfo,
+            [type]: value,
+        });
+    };
+
+    const handleSubmitReport = async () => {
+        setOpenModalReport(false);
+    };
+
+    const toggleModalReport = () => {
+        setOpenModalReport(!openModalReport);
+    };
     return (
         <div className="posts">
             <RequestModal open={openRequestModal} onToggle={() => setOpenRequestModal(!openRequestModal)} />
             <SearchBar />
-            <div className={`action-bar py-2 ${scrollHeight > 400 ? 'action-bar--active' : ''}`}>
+            <div className={`action-bar py-2 ${scrollHeight > 400 ? "action-bar--active" : ""}`}>
                 <div className="page-container-xl">
                     <div className="d-flex justify-content-between">
                         <div>
@@ -104,7 +165,9 @@ function Post(props) {
                                 src="https://file4.batdongsan.com.vn/resize/200x200/2021/05/11/20210511095658-0e22.jpg"
                                 alt="avatar"
                             />
-                            <div className="me-1"><h5>Su</h5></div>
+                            <div className="me-1">
+                                <h5>Su</h5>
+                            </div>
                             <Button outline className="me-1" onClick={() => setOpenRequestModal(true)}>
                                 Yêu cầu liên hệ lại
                             </Button>
@@ -116,12 +179,13 @@ function Post(props) {
             <div className="page-container-xl mt-3">
                 <Row>
                     <Col md={9}>
-                        <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+                        {/* <Carousel activeIndex={activeIndex} next={next} previous={previous}>
                             <CarouselIndicators items={slideItems} activeIndex={activeIndex} onClickHandler={goToIndex} />
                             {slides}
                             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
                             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-                        </Carousel>
+                        </Carousel> */}
+                        <SliderImage data={slideItems} showDescription={true} direction="right" />
                         <p className="mt-3">Bán/Hồ Chí Minh/Quận 9/Căn hộ chung cư tại Vinhomes Grand Park</p>
                         <h5>SANG NHƯỢNG VINHOMES GRAND PARK QUẬN 9 STUDIO 1.2 TỶ, 1PN 1.7 TỶ, 2PN 2 TỶ, LH 0832 025 ***</h5>
                         <p className="mt-1">Dự án Vinhomes Grand Park, Quận 9, Hồ Chí Minh</p>
@@ -143,9 +207,58 @@ function Post(props) {
                                 </div>
                             </div>
                             <div className="d-flex align-items-center">
-                                <Share className="mx-2" size={26} />
-                                <ExclamationTriangle className="mx-2" size={26} />
-                                <Heart className="mx-2" size={26} />
+                                <Share className="mx-2 cursor-pointer" size={26} />
+                                <ExclamationTriangle onClick={() => setOpenModalReport(true)} className="mx-2 cursor-pointer" size={26} />
+                                <Heart className="mx-2 cursor-pointer" size={26} />
+                                <Modal isOpen={openModalReport} toggle={toggleModalReport}>
+                                    <div className="p-3">
+                                        <ModalHeader toggle={toggleModalReport}>Báo cáo tin rao có thông tin không đúng</ModalHeader>
+                                        <ModalBody>
+                                            {reportReasonList.map((item, index) => (
+                                                <div className="my-2" key={index}>
+                                                    <Input
+                                                        type="checkbox"
+                                                        id={`report-reason-${item.value}`}
+                                                        className="me-2"
+                                                        checked={reportContent.reason.indexOf(item.value) !== -1}
+                                                        onChange={(e) => handleChangeReason("reason", item.value)}
+                                                    />
+                                                    <Label for={`report-reason-${item.value}`}>{item.label}</Label>
+                                                </div>
+                                            ))}
+                                            <div className="mt-3">Phản hồi khác</div>
+                                            <Input
+                                                type="textarea"
+                                                className="mt-1"
+                                                placeholder="Nhập nội dung"
+                                                value={reportContent.reason_text}
+                                                onChange={(e) => handleChangeReason("reason_text", e.target.value)}
+                                            />
+                                            <h6 className="mt-3">Thông tin của bạn</h6>
+                                            <Input
+                                                className="mt-3"
+                                                value={reportInfo.name}
+                                                placeholder="Họ và tên"
+                                                onChange={(e) => handleChangeReportInfo("name", e.target.value)}
+                                            />
+                                            <Input
+                                                className="mt-3"
+                                                value={reportInfo.phone}
+                                                placeholder="Số điện thoại"
+                                                onChange={(e) => handleChangeReportInfo("phone", e.target.value)}
+                                            />
+                                            <Input
+                                                className="mt-3"
+                                                value={reportInfo.email}
+                                                placeholder="Email"
+                                                onChange={(e) => handleChangeReportInfo("email", e.target.value)}
+                                            />
+                                            <Button color="danger" className="mt-5 w-100" onClick={handleSubmitReport}>
+                                                Gửi
+                                            </Button>
+                                        </ModalBody>
+                                    </div>
+                                </Modal>
                             </div>
                         </div>
                         <hr />
@@ -259,7 +372,7 @@ function Post(props) {
                                 <hr />
                             </div>
                         </div>
-                            
+
                         <NewsCard title="Bất động sản dành cho bạn" data={recommendedData} wrapItem={true} />
                         <NewsCard title="Tin đăng đã xem" data={recommendedData} wrapItem={true} />
                         <hr />

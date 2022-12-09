@@ -307,3 +307,34 @@ export const postTypePlan = [
         price: 200000,
     },
 ];
+
+export const reportReasonList = [
+    {
+        value: "dia_chi",
+        label: "Địa chỉ của bất động sản",
+    },
+    {
+        value: "thong_tin",
+        label: "Các thông tin về: giá, diện tích, mô tả,..",
+    },
+    {
+        value: "anh",
+        label: "Ảnh",
+    },
+    {
+        value: "trung",
+        label: "Trùng với tin rao khác",
+    },
+    {
+        value: "khong_lien_lac",
+        label: "Không liên lạc được",
+    },
+    {
+        value: "khong_co_that",
+        label: "Tin không có thật",
+    },
+    {
+        value: "da_ban",
+        label: "Bất động sản đã bán",
+    },
+];
