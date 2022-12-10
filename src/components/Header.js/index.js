@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Heart } from "react-bootstrap-icons";
+import { Bell, Heart } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
-import { listMenuItem } from "../../constants";
+import { listMenuItem, notiList } from "../../constants";
+import { countUnreadNoti } from "../../utils";
 import LoginModal from "../core/LoginModal";
+import Notification from "../Notification";
+import Notice from "../Notification";
 
 function Header(props) {
     const navigate = useNavigate();
     const [openModalLogin, setOpenModalLogin] = useState(false);
     const [initMode, setInitMode] = useState("login");
+    const [openNoti, setOpenNoti] = useState(false);
     return (
         <div className="header">
             <LoginModal open={openModalLogin} initMode={initMode} onToggle={() => setOpenModalLogin(!openModalLogin)} />
@@ -34,6 +38,16 @@ function Header(props) {
                     <div className="menu-action__item px-2 py-1 mx-2">
                         <Heart />
                     </div>
+
+                    <div className="position-relative">
+                        <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
+                            <Bell />
+                        </div>
+                        <div className="noti__count position-absolute">
+                            {countUnreadNoti(notiList)}
+                        </div>
+                        <Notification open={openNoti} setOpen={setOpenNoti} />
+                    </div>
                     <div
                         className="menu-action__item px-2 py-1 mx-2"
                         onClick={() => {
@@ -53,7 +67,7 @@ function Header(props) {
                         Đăng ký
                     </div>
                     <div className="menu-action__item mx-2">
-                        <Button onClick={() => navigate('/manager-post')}>Đăng tin</Button>
+                        <Button onClick={() => navigate("/manager-post")}>Đăng tin</Button>
                     </div>
                 </div>
             </div>

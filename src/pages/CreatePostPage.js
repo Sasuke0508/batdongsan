@@ -1,8 +1,8 @@
 import React from "react";
-import CreatePost from "../components/CreatePost";
+import ManagerPost from "../components/ManagePost";
 
 function CreatePostPage(props) {
-    return <CreatePost />;
+    return <ManagerPost />;
 }
 
 export default CreatePostPage;
