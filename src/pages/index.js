@@ -11,7 +11,7 @@ function Pages(props) {
             <Route path='/' element={<HomePage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/post/:id' element={<PostPage />} />
-            <Route path='/create-post' element={<CreatePostPage />} />
+            <Route path='/manager-post/*' element={<CreatePostPage />} />
             <Route path='*' element={<Navigate to={'/'} />} />
         </Routes>
     );

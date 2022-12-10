@@ -1,45 +1,34 @@
-import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, Dot, ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
-import {
-    Button,
-    ButtonGroup,
-    Carousel,
-    CarouselCaption,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselItem,
-    Col,
-    Input,
-    Label,
-    Modal,
-    ModalBody,
-    ModalHeader,
-    Row,
-} from "reactstrap";
-import Recommended from "../Home/Recommended";
-import SearchBar from "../core/SearchBar";
-import NewsCard from "../core/NewsCard";
+import React, { useRef, useState } from "react";
+import { Dot, ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
+import ReactImageGallery from "react-image-gallery";
+import { useDispatch } from "react-redux";
+import { Button, CarouselCaption, CarouselItem, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { recommendedData, reportReasonList } from "../../constants";
+import { settingsDispatch } from "../../store/slices/settingsSlice";
+import NewsCard from "../core/NewsCard";
 import RequestModal from "../core/RequestModal";
+import SearchBar from "../core/SearchBar";
 import useWindowHeight from "../core/useWindowHeight";
-import SliderImage from "react-zoom-slider";
 
 function Post(props) {
     const slideItems = [
         {
-            image: "https://picsum.photos/id/123/1200/400",
+            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-c46d_wm.jpg",
+            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-c46d_wm.jpg",
             altText: "Slide 1",
             caption: "Slide 1",
             key: 1,
         },
         {
-            image: "https://picsum.photos/id/456/1200/400",
+            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-0f54_wm.jpg",
+            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-0f54_wm.jpg",
             altText: "Slide 2",
             caption: "Slide 2",
             key: 2,
         },
         {
-            image: "https://picsum.photos/id/678/1200/400",
+            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115040-11af_wm.jpg",
+            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115040-11af_wm.jpg",
             altText: "Slide 3",
             caption: "Slide 3",
             key: 3,
@@ -132,6 +121,21 @@ function Post(props) {
     const toggleModalReport = () => {
         setOpenModalReport(!openModalReport);
     };
+
+    const numberPhoneRef = useRef();
+
+    const dispatch = useDispatch();
+    function copyToClipboard(e) {
+        const copyText = e.target.innerText;
+        navigator.clipboard.writeText(copyText);
+        dispatch(
+            settingsDispatch.actSetToastMessage({
+                open: true,
+                content: "Copied!",
+                error: false,
+            })
+        );
+    }
     return (
         <div className="posts">
             <RequestModal open={openRequestModal} onToggle={() => setOpenRequestModal(!openRequestModal)} />
@@ -179,13 +183,7 @@ function Post(props) {
             <div className="page-container-xl mt-3">
                 <Row>
                     <Col md={9}>
-                        {/* <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-                            <CarouselIndicators items={slideItems} activeIndex={activeIndex} onClickHandler={goToIndex} />
-                            {slides}
-                            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-                            <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-                        </Carousel> */}
-                        <SliderImage data={slideItems} showDescription={true} direction="right" />
+                        <ReactImageGallery items={slideItems} showPlayButton={false} autoPlay={true} />
                         <p className="mt-3">Bán/Hồ Chí Minh/Quận 9/Căn hộ chung cư tại Vinhomes Grand Park</p>
                         <h5>SANG NHƯỢNG VINHOMES GRAND PARK QUẬN 9 STUDIO 1.2 TỶ, 1PN 1.7 TỶ, 2PN 2 TỶ, LH 0832 025 ***</h5>
                         <p className="mt-1">Dự án Vinhomes Grand Park, Quận 9, Hồ Chí Minh</p>
@@ -398,7 +396,7 @@ function Post(props) {
                                 <div>Được đăng bởi</div>
                                 <h6>Lê Phi Long</h6>
                                 <div>Xem thêm 1 tin khác</div>
-                                <Button className="w-100 mt-2" color="info">
+                                <Button ref={numberPhoneRef} className="w-100 mt-2" color="info" onClick={(e) => copyToClipboard(e)}>
                                     0832 025 *** · Hiện số
                                 </Button>
                                 <Button className="w-100 mt-2" outline>

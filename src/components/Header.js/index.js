@@ -53,7 +53,7 @@ function Header(props) {
                         Đăng ký
                     </div>
                     <div className="menu-action__item mx-2">
-                        <Button onClick={() => navigate('/create-post')}>Đăng tin</Button>
+                        <Button onClick={() => navigate('/manager-post')}>Đăng tin</Button>
                     </div>
                 </div>
             </div>

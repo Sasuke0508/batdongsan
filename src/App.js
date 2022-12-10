@@ -3,29 +3,31 @@ import { Spinner } from "reactstrap";
 import "./assets/style/global.scss";
 import Header from "./components/Header.js";
 import Pages from "./pages/index.js";
-import Footer from './components/Footer'
+import Footer from "./components/Footer";
+import ToastMessage from "./components/core/ToastMessage";
 function App() {
-  const [loading, setLoading] = useState(false);
-  return (
-    <div className="App">
-      {loading ? (
-        <div className="d-flex justify-content-center mt-5">
-          <Spinner>Loading...</Spinner>
+    const [loading, setLoading] = useState(false);
+    return (
+        <div className="App">
+            {loading ? (
+                <div className="d-flex justify-content-center mt-5">
+                    <Spinner>Loading...</Spinner>
+                </div>
+            ) : (
+                <div>
+                    <div>
+                        <Header />
+                        <ToastMessage />
+                    </div>
+                    <div>
+                        <Pages />
+                    </div>
+                    <div>
+                        <Footer />
+                    </div>
+                </div>
+            )}
         </div>
-      ) : (
-        <div>
-          <div>
-            <Header />
-          </div>
-          <div>
-            <Pages />
-          </div>
-          <div>
-            <Footer />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
 }
 export default App;

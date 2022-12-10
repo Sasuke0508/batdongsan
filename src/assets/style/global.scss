@@ -1,4 +1,23 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.image-gallery-thumbnails-container {
+    display: flex;
+}
+.image-gallery-left-nav .image-gallery-svg, .image-gallery-right-nav .image-gallery-svg {
+    height: 60px;
+}
+
+.toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #ddede5;
+    z-index: 1000;
+    &.toast--error {
+        background-color: #fae1e3;
+    }
+}
 
 @keyframes fadeOpacity {
     from {

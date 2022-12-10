@@ -42,10 +42,10 @@ function NewsCard(props) {
             </div>
             <div className="news-card">
                 <div className={`card-list__container ${wrapItem ? "card-list__container--row" : ""}`} ref={containerRef}>
-                    <DragToScroll containerRef={containerRef}>
+                    <DragToScroll containerRef={containerRef.current} childrenClassName={"card__item-wrapper"}>
                     <Row>
                         {data.map((item, index) => (
-                            <Col md={3} key={index} className="mt-4 card__item-wrapper" draggable>
+                            <Col md={3} key={index} className="mt-4 card__item-wrapper" >
                                 <Card className="position-relative card__item">
                                     <img alt="recommended" src={item.image_url[0]} />
                                     <div className="image-count position-absolute d-flex align-items-center">
