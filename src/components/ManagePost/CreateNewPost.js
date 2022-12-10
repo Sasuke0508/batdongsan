@@ -7,20 +7,15 @@ import {
     Dash,
     Fonts,
     InfoCircle,
-    List,
-    Play,
-    PlayCircle,
-    Plus,
+    List, Plus,
     QuestionCircleFill,
     X,
-    Youtube,
+    Youtube
 } from "react-bootstrap-icons";
 import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row, Tooltip } from "reactstrap";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
 import Select from "../core/Select";
-import SideMenu from "./SideMenu";
-import UserInfo from "./UserInfo";
 
 function CreateNewPost(props) {
     // thong tin co ban

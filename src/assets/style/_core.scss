@@ -44,3 +44,44 @@
 .bg-gray {
     background-color: #f2f2f2;
 }
+
+.notification {
+    border: 1px solid #f2f2f2;
+    border-radius: 4px;
+    width: 500px;
+    top: 33px;
+    right: -259px;
+    z-index: 10000;
+    @include box-shadow-element;
+    .noti__list {
+        .noti__item {
+            border-bottom: 1px solid #ccc;
+            &:hover {
+                background-color: #f2f2f2;
+            }
+            .noti__text {
+                max-width: 80%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+    .noti__view-more {
+        color: red;
+    }
+}
+
+.noti__count {
+    top: -9px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    background-color: red;
+    font-size: 12px;
+}

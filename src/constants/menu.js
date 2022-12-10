@@ -338,3 +338,10 @@ export const reportReasonList = [
         label: "Bất động sản đã bán",
     },
 ];
+
+export const notiList = [
+    { title: "Mở thông báo để nhận tài liệu mới nhất về Digital Marketing bất động sản", date: "1/12/2022", is_read: false },
+    { title: 'Trở thành "chuyên gia" trong lĩnh vực thổ cư với Podcast #29', date: "2/12/2022", is_read: false },
+    { title: "Ebook miễn phí - Những Điều Cần Biết Về Hoa Hồng Dành Cho Môi Giới BĐS", date: "3/12/2022", is_read: false },
+    { title: "VRES 2022 - Cơ hội kết nối & giao lưu dành riêng cho các lãnh đạo, quản lý doanh n", date: "5/12/2022", is_read: false },
+];
