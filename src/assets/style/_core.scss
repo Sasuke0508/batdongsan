@@ -5,11 +5,13 @@
         color: #fff;
     }
     .card-list__container {
+        &::-webkit-scrollbar {
+            display: none;
+        }
         .card__item {
-            cursor: grab;
             @include box-shadow-element;
-            .card__title{
-                color: #004E7F;
+            .card__title {
+                color: #004e7f;
             }
         }
         &.card-list__container--row {
@@ -25,8 +27,20 @@
     }
 }
 
+.scroll-smooth {
+    scroll-behavior: smooth;
+}
+
 .card {
     background-color: #fff;
     border-radius: 4px;
     @include box-shadow-element;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.bg-gray {
+    background-color: #f2f2f2;
 }

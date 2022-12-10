@@ -83,7 +83,7 @@ function RecommendedByLocation(props) {
                         {data.map(
                             (item, index) =>
                                 index > 0 && (
-                                    <Col md={6}>
+                                    <Col md={6} key={index}>
                                         <div
                                             className="mt-3 position-relative"
                                             onClick={() =>
