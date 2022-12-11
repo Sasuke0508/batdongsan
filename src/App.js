@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Spinner } from "reactstrap";
 import "./assets/style/global.scss";
+import ToastMessage from "./components/core/ToastMessage";
+import Footer from "./components/Footer";
 import Header from "./components/Header.js";
 import Pages from "./pages/index.js";
-import Footer from "./components/Footer";
-import ToastMessage from "./components/core/ToastMessage";
 function App() {
     const [loading, setLoading] = useState(false);
     return (

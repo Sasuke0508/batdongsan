@@ -4,6 +4,10 @@ import { notiList } from "../../constants";
 
 function Notification({ open, setOpen }) {
 
+    const handleClickViewMore = () => {
+        setOpen(false)
+    }
+
     return (
         open && (
             <div className="notification p-2 bg-white position-absolute">
@@ -19,7 +23,7 @@ function Notification({ open, setOpen }) {
                         </div>
                     ))}
                 </div>
-                <div className="mt-2 text-center noti__view-more">
+                <div className="mt-2 text-center noti__view-more p-2" onClick={handleClickViewMore}>
                     Xem tất cả <ArrowRight />
                 </div>
             </div>

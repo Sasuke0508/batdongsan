@@ -27,22 +27,11 @@
     }
 }
 
-.scroll-smooth {
-    scroll-behavior: smooth;
-}
 
 .card {
     background-color: #fff;
     border-radius: 4px;
     @include box-shadow-element;
-}
-
-.bg-white {
-    background-color: #fff;
-}
-
-.bg-gray {
-    background-color: #f2f2f2;
 }
 
 .notification {
