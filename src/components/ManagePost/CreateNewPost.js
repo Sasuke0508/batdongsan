@@ -7,15 +7,18 @@ import {
     Dash,
     Fonts,
     InfoCircle,
-    List, Plus,
+    List,
+    Plus,
     QuestionCircleFill,
     X,
-    Youtube
+    Youtube,
 } from "react-bootstrap-icons";
 import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row, Tooltip } from "reactstrap";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
+import getAddress from "../core/getAddress";
 import Select from "../core/Select";
+import SelectAddress from "../core/SelectAddress";
 
 function CreateNewPost(props) {
     // thong tin co ban
@@ -29,8 +32,13 @@ function CreateNewPost(props) {
         setSellType(event.target.value);
     };
 
-    const [address, setAddress] = useState("");
-
+    const [address, setAddress] = useState({
+        city: "",
+        district: "",
+        ward: "",
+        number: "",
+    });
+    console.log(address)
     // thong tin bai dang
 
     const [title, setTitle] = useState("");
@@ -178,47 +186,7 @@ function CreateNewPost(props) {
                         </h6>
                         <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                     </div>
-                    <div className="mt-4">
-                        <h6>
-                            Tỉnh, thành phố
-                            <RequiredMark />
-                        </h6>
-                        <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
-                    </div>
-                    <div className="mt-4">
-                        <h6>
-                            Quận, huyện
-                            <RequiredMark />
-                        </h6>
-                        <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
-                    </div>
-                    <div className="mt-4">
-                        <h6>
-                            Phường, xã
-                            <RequiredMark />
-                        </h6>
-                        <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
-                    </div>
-                    <div className="mt-4">
-                        <h6>
-                            Đường, phố
-                            <RequiredMark />
-                        </h6>
-                        <Select fullWidth value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
-                    </div>
-                    <div className="mt-4">
-                        <h6>
-                            Địa chỉ hiển thị trên tin đăng
-                            <RequiredMark />
-                        </h6>
-                        <Input
-                            fullWidth
-                            value={address}
-                            placeholder="Bạn có thể bổ sung hẻm, ngách, ngõ,.."
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                        />
-                    </div>
+                    <SelectAddress address={address} setAddress={setAddress} />
                 </div>
             </Card>
             <Card className="mt-3 p-4">

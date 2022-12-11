@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Row } from 'reactstrap';
+import ForgotPasswordView from './ForgotPasswordView';
 import LoginView from './LoginView';
 import SignupView from './SignupView';
 
@@ -16,6 +17,8 @@ function Login({initMode}) {
                         <LoginView setViewMode={setViewMode} />}
                     {viewMode === 'signup' &&
                         <SignupView setViewMode={setViewMode} />}
+                    {viewMode === 'forgot' &&
+                        <ForgotPasswordView setViewMode={setViewMode} />}
                 </Col>
             </Row>
         </div>

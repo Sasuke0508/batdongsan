@@ -52,12 +52,12 @@
             width: 14px;
         }
         .recommended__tags {
-            overflow-x: auto;
             .tags__item {
                 background-color: #f2f2f2;
                 width: fit-content;
                 white-space: nowrap;
                 border-radius: 14px;
+                @include box-shadow-element;
             }
         }
     }

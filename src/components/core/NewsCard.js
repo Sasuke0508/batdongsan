@@ -12,37 +12,12 @@ function NewsCard(props) {
     };
     const containerRef = useRef();
 
-    const handleClickNavButton = (type) => {
-        const itemWidth = document.querySelector(".card__item-wrapper")?.clientWidth;
-        if (type === "next") {
-            containerRef.current.scrollLeft += itemWidth || 0;
-        } else {
-            containerRef.current.scrollLeft -= itemWidth || 0;
-        }
-    };
-
+ 
     return (
         <div>
-            <div className="mt-5 d-flex align-items-center justify-content-between">
-                {!!title && <h5>{title}</h5>}
-                {wrapItem && (
-                    <div className="d-flex">
-                        <div>
-                            <ButtonGroup>
-                                <Button outline onClick={() => handleClickNavButton("prev")}>
-                                    <ArrowLeft />
-                                </Button>
-                                <Button outline onClick={() => handleClickNavButton("next")}>
-                                    <ArrowRight />
-                                </Button>
-                            </ButtonGroup>
-                        </div>
-                    </div>
-                )}
-            </div>
             <div className="news-card">
                 <div className={`card-list__container ${wrapItem ? "card-list__container--row" : ""}`} ref={containerRef}>
-                    <DragToScroll containerRef={containerRef.current} childrenClassName={"card__item-wrapper"}>
+                    <DragToScroll active={wrapItem} enableNav={wrapItem} title={title} childrenClassName={"card__item-wrapper"}>
                     <Row>
                         {data.map((item, index) => (
                             <Col md={3} key={index} className="mt-4 card__item-wrapper" >

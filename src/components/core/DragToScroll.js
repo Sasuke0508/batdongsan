@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
+import { Button, ButtonGroup } from "reactstrap";
 
 function DragToScroll(props) {
-    const { children, containerRef, childrenClassName } = props;
+    const { active, enableNav, children, childrenClassName, title } = props;
+    const containerRefWrapper = useRef();
     useEffect(() => {
+        const containerRef = containerRefWrapper.current;
         const preventClick = (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
@@ -11,7 +15,12 @@ function DragToScroll(props) {
         let isDragged = false;
         let startX;
         let scrollLeft;
-        if (containerRef) {
+        if (containerRef && active) {
+            containerRef.addEventListener("mousewheel", (e) => {
+                containerRef.classList.add("scroll-smooth");
+                containerRef.scrollLeft -= e.deltaY * 3;
+                e.preventDefault();
+            });
             containerRef.addEventListener("mousedown", (e) => {
                 isDown = true;
                 containerRef.classList.remove("scroll-smooth");
@@ -46,8 +55,40 @@ function DragToScroll(props) {
                 containerRef.scrollLeft = scrollLeft - walk;
             });
         }
-    }, [containerRef, childrenClassName]);
-    return <div>{children}</div>;
+    }, [childrenClassName, containerRefWrapper.current]);
+    const handleClickNavButton = (type) => {
+        const itemWidth = document.querySelector(".card__item-wrapper")?.clientWidth;
+        if (type === "next") {
+            containerRefWrapper.current.scrollLeft += itemWidth || 0;
+        } else {
+            containerRefWrapper.current.scrollLeft -= itemWidth || 0;
+        }
+    };
+
+    return (
+        <div>
+            <div className="d-flex align-items-center justify-content-between">
+                {!!title && <h5>{title}</h5>}
+                {enableNav && (
+                    <div className="d-flex">
+                        <div>
+                            <ButtonGroup>
+                                <Button outline onClick={() => handleClickNavButton("prev")}>
+                                    <ArrowLeft />
+                                </Button>
+                                <Button outline onClick={() => handleClickNavButton("next")}>
+                                    <ArrowRight />
+                                </Button>
+                            </ButtonGroup>
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div className={`${active ? "overflow-x-scroll" : ""}`} ref={containerRefWrapper}>
+                {children}
+            </div>
+        </div>
+    );
 }
 
 export default DragToScroll;

@@ -12,7 +12,7 @@ function SignupView({ setViewMode }) {
                 <Button disabled>
                     <Phone />
                 </Button>
-                <Input type="number" placeholder="Nhập số điện thoại" />
+                <Input placeholder="Nhập số điện thoại" />
             </div>
             <Input className="mt-3" type="password" placeholder="Nhập mật khẩu" />
             <Input className="mt-3" type="password" placeholder="Nhập lại mật khẩu" />

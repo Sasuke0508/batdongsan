@@ -14,10 +14,18 @@
             color: #fff;
         }
     }
+    button {
+        border: 1px solid #fff;
+        background-color: transparent;
+    }
+    .btn.btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
 }
-.search-bar{
+.search-bar {
     @include box-shadow-element;
-    .search-bar__item{
+    .search-bar__item {
         min-width: 12%;
     }
 }

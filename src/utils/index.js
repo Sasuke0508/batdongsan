@@ -60,3 +60,5 @@ export const countUnreadNoti = (list) => {
     const length = list.filter(item => !item.is_read).length 
     return length > 9 ? '9+' : length
 } 
+
+export const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
