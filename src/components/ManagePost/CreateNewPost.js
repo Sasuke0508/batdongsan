@@ -13,9 +13,10 @@ import {
     X,
     Youtube,
 } from "react-bootstrap-icons";
-import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Row, Tooltip } from "reactstrap";
+import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Progress, Row, Tooltip } from "reactstrap";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
+import { uploadImage } from "../core/firebase";
 import getAddress from "../core/getAddress";
 import Select from "../core/Select";
 import SelectAddress from "../core/SelectAddress";
@@ -38,7 +39,6 @@ function CreateNewPost(props) {
         ward: "",
         number: "",
     });
-    console.log(address)
     // thong tin bai dang
 
     const [title, setTitle] = useState("");
@@ -109,11 +109,23 @@ function CreateNewPost(props) {
 
     // file upload
     const [fileUpload, setFileUpload] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
+    const [loadingUploadImage, setLoadingUploadImage] = useState({
+        status: false,
+        value : 0,
+    })
 
-    const selectedFile = useMemo(() => {
-        const array = Object.keys(fileUpload);
-        return array.map((item) => URL.createObjectURL(fileUpload[item]));
-    }, [fileUpload]);
+    const handleUploadFiles = async (files) => {
+        setLoadingUploadImage({status : true, value : 10})
+        const arrayImage = Object.values(files);
+        const result = await Promise.all(arrayImage.map((item) => uploadImage(item)));
+        setFileUpload(files)
+        setImageUrls(result)
+        setLoadingUploadImage({status : true, value : 100})
+        setTimeout(() => {
+            setLoadingUploadImage({status : false, value : 10})
+        }, 500)
+    };
 
     const handleClickCancelFile = () => {
         setFileUpload({});
@@ -121,7 +133,7 @@ function CreateNewPost(props) {
     const FileLabel = () => {
         return (
             <div className="d-flex flex-wrap align-items-center">
-                {selectedFile.map((item, index) => (
+                {imageUrls.map((item, index) => (
                     <div className="m-2" key={index}>
                         <img style={{ height: "100px", weight: "100%" }} alt="upload" src={item} />
                     </div>
@@ -384,9 +396,10 @@ function CreateNewPost(props) {
                     type="file"
                     accept="image/*"
                     multiple
-                    onChange={(e) => setFileUpload(e.target.files)}
+                    onChange={(e) => handleUploadFiles(e.target.files)}
                 />
-                {!!selectedFile.length && <FileLabel />}
+                {!!imageUrls.length && !loadingUploadImage.status && <FileLabel />}
+                {loadingUploadImage.status && <Progress value={loadingUploadImage.value} />}
                 <div className="mt-4">
                     <div className="d-flex align-items-center">
                         <Youtube className="me-2" /> Thêm video từ Youtube
