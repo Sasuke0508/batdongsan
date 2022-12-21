@@ -13,6 +13,9 @@ function Header(props) {
     const [openModalLogin, setOpenModalLogin] = useState(false);
     const [initMode, setInitMode] = useState("login");
     const [openNoti, setOpenNoti] = useState(false);
+    const handleClickMenu = (path) => {
+        navigate(path)
+    }
     return (
         <div className="header">
             <LoginModal open={openModalLogin} initMode={initMode} onToggle={() => setOpenModalLogin(!openModalLogin)} />
@@ -23,14 +26,14 @@ function Header(props) {
                     </div>
                     {listMenuItem.map((menuItem, indexMenu) => (
                         <div className="menu__item mx-2 position-relative d-flex align-items-center" key={indexMenu}>
-                            <div>{menuItem.title}</div>
-                            <div className="sub-menu position-absolute py-2">
+                            <div onClick={() => handleClickMenu(menuItem.path)}>{menuItem.title}</div>
+                            {menuItem.subMenu && <div className="sub-menu position-absolute py-2">
                                 {menuItem.subMenu.map((subMenuItem, indexSubMenu) => (
-                                    <div className="sub-menu__item px-2 mx-2" key={indexSubMenu}>
+                                    <div className="sub-menu__item px-2 mx-2" onClick={() => handleClickMenu(subMenuItem.path)} key={indexSubMenu}>
                                         {subMenuItem.title}
                                     </div>
                                 ))}
-                            </div>
+                            </div>}
                         </div>
                     ))}
                 </div>
@@ -67,7 +70,7 @@ function Header(props) {
                         Đăng ký
                     </div>
                     <div className="menu-action__item mx-2">
-                        <Button onClick={() => navigate("/manager-post")}>Đăng tin</Button>
+                        <Button outline className="has-border" color="white" onClick={() => navigate("/manager-post")}>Đăng tin</Button>
                     </div>
                 </div>
             </div>

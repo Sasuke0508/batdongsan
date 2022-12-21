@@ -1,64 +1,98 @@
 import React, { useState } from "react";
 import { ArrowClockwise, Building, CaretDown, House, Search } from "react-bootstrap-icons";
 import { Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
+import { getAddressLabelText } from "./getAddress";
+import SelectAddress from "./SelectAddress";
+import SelectAreaSize from "./SelectAreaSize";
+import SelectMore from "./SelectMore";
+import SelectPrice from "./SelectPrice";
 
 function SearchBar(props) {
     const defaultSearch = {
         sellType: 0,
         houseType: 0,
         searchText: "",
-        location: "all",
+        address: {
+            city: "",
+            district: "",
+            ward: "",
+            number: "",
+        },
         price: {
             from: 0,
             to: 0,
         },
-        status: "all",
+        filterMore: {
+            utility: [],
+            bedroom: [],
+            media: [],
+        },
         areaSize: {
             from: 0,
             to: 0,
         },
     };
-    const [isSell, setIsSell] = useState(true);
-    const [sellType, setSellType] = useState(defaultSearch.sellType);
-    const [houseType, setHouseType] = useState(defaultSearch.houseType);
     const [searchText, setSearchText] = useState(defaultSearch.searchText);
-    const [location, setLocation] = useState(defaultSearch.location);
+    const [address, setAddress] = useState(defaultSearch.address);
+    const [filterMore, setFilterMore] = useState(defaultSearch.filterMore);
     const [price, setPrice] = useState(defaultSearch.price);
-    const [status, setStatus] = useState(defaultSearch.status);
     const [areaSize, setAreaSize] = useState(defaultSearch.areaSize);
+
     const [dropdownOpen, setDropdownOpen] = useState({
         houseType: false,
         location: false,
         price: false,
         areaSize: false,
-        status: false,
+        filterMore: false,
     });
 
-    const toggle = (type) =>
+    const toggle = (type) => {
         setDropdownOpen((prevState) => ({
             ...prevState,
             [type]: !prevState[type],
         }));
+    };
 
-    const handleClickSellType = (type) => {
-        setIsSell(type);
+    const handleChangePrice = (type, value) => {
+        setPrice((prev) => ({
+            ...prev,
+            [type]: value,
+        }));
+        toggle("price");
+    };
+    const handleChangeAreaSize = (type, value) => {
+        setAreaSize((prev) => ({
+            ...prev,
+            [type]: value,
+        }));
+        toggle("areaSize");
+    };
+
+    const handleChangeFilterMore = (type, value) => {
+        setFilterMore((prev) => ({
+            ...prev,
+            [type]: value,
+        }));
+        // toggle("filterMore");
+    };
+
+    const handleResetSearch = () => {
+        setSearchText(defaultSearch.searchText);
+        setAddress(defaultSearch.address);
+        setFilterMore(defaultSearch.filterMore);
+        setPrice(defaultSearch.price);
+        setAreaSize(defaultSearch.areaSize);
     };
 
     return (
         <div className="search-bar">
             <div className="d-flex align-items-center p-3">
-                <ButtonGroup className="mx-2 w-50">
-                    <Button size="sm" outline active={isSell} onClick={() => handleClickSellType(true)}>
-                        Bán
+                <div className="d-flex align-items-center" style={{flex : '1'}}>
+                    <Button outline>
+                        <Search />
                     </Button>
-                    <Button size="sm" outline active={!isSell} onClick={() => handleClickSellType(false)}>
-                        Cho thuê
-                    </Button>
-                </ButtonGroup>
-                <Button outline>
-                    <Search />
-                </Button>
-                <Input placeholder="Tìm kiếm" className="flex-1" />
+                    <Input value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Tìm kiếm" />
+                </div>
                 <div className="search-bar__item">
                     <Dropdown isOpen={dropdownOpen.houseType} toggle={() => toggle("houseType")} direction={"down"}>
                         <DropdownToggle outline className="w-100">
@@ -110,69 +144,31 @@ function SearchBar(props) {
                     </Dropdown>
                 </div>
                 <div className="search-bar__item">
-                    <Dropdown isOpen={dropdownOpen.location} toggle={() => toggle("location")} direction={"down"}>
+                    <Dropdown className="search__address" isOpen={dropdownOpen.location} toggle={() => toggle("location")} direction={"down"}>
                         <DropdownToggle outline className="w-100">
                             <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                <span>Trên toàn quốc</span>
+                                <span className="text-overflow-dots">{getAddressLabelText(address)}</span>
                                 <CaretDown className="ms-1" />
                             </div>
                         </DropdownToggle>
                         <DropdownMenu>
                             <div className="mx-2">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label>Tất cả nhà đất</label>
+                                <SelectAddress size="menu" address={address} setAddress={setAddress} />
                             </div>
                         </DropdownMenu>
                     </Dropdown>
                 </div>
                 <div className="search-bar__item">
-                    <Dropdown isOpen={dropdownOpen.price} toggle={() => toggle("price")} direction={"down"}>
-                        <DropdownToggle outline className="w-100">
-                            <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                <span>Mức giá</span>
-                                <CaretDown className="ms-1" />
-                            </div>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <div className="mx-2">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label>Tất cả nhà đất</label>
-                            </div>
-                        </DropdownMenu>
-                    </Dropdown>
+                    <SelectPrice open={dropdownOpen.price} toggle={toggle} value={price} onChange={handleChangePrice} />
                 </div>
                 <div className="search-bar__item">
-                    <Dropdown isOpen={dropdownOpen.areaSize} toggle={() => toggle("areaSize")} direction={"down"}>
-                        <DropdownToggle outline className="w-100">
-                            <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                <span>Diện tích</span>
-                                <CaretDown className="ms-1" />
-                            </div>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <div className="mx-2">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label>Tất cả nhà đất</label>
-                            </div>
-                        </DropdownMenu>
-                    </Dropdown>
+                    <SelectAreaSize open={dropdownOpen.areaSize} toggle={toggle} value={areaSize} onChange={handleChangeAreaSize} />
                 </div>
-                <div className="search-bar__item d-flex">
-                    <Dropdown isOpen={dropdownOpen.status} toggle={() => toggle("status")} direction={"down"}>
-                        <DropdownToggle outline className="w-100">
-                            <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                <span>Lọc thêm</span>
-                                <CaretDown className="ms-1" />
-                            </div>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <div className="mx-2">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label>Tất cả nhà đất</label>
-                            </div>
-                        </DropdownMenu>
-                    </Dropdown>
-                    <Button outline>
+                <div className="search-bar__item">
+                    <SelectMore open={dropdownOpen.filterMore} toggle={toggle} value={filterMore} onChange={handleChangeFilterMore} />
+                </div>
+                <div className="d-flex">
+                    <Button outline onClick={handleResetSearch}>
                         <ArrowClockwise />
                     </Button>
                 </div>

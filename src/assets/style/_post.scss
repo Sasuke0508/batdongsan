@@ -24,3 +24,14 @@
         }
     }
 }
+
+.post-list {
+    .list-post__container {
+        .list-post__item{
+            .item__image{
+                width: 240px;
+                object-fit: cover;
+            }
+        }
+    }
+}
