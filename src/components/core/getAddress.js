@@ -38,3 +38,9 @@ export const getAddressLabel = (address) => {
     };
     return result;
 };
+
+export const getAddressLabelText = (address) => {
+    const addressLabelObject = getAddressLabel(address)
+    const array = Object.values(addressLabelObject)
+    return array.filter(item => item !== '').reverse().join(', ') || 'Trên toàn quốc'
+}

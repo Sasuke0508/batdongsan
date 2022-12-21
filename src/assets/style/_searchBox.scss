@@ -17,15 +17,40 @@
     button {
         border: 1px solid #fff;
         background-color: transparent;
+        color: #fff;
     }
     .btn.btn-danger {
         background-color: #dc3545;
         border: none;
     }
+    .search__address {
+        .dropdown-menu.show {
+            width: 280px;
+        }
+    }
+    .search__price {
+        .dropdown-menu.show {
+            width: 280px;
+        }
+    }
 }
 .search-bar {
     @include box-shadow-element;
     .search-bar__item {
-        min-width: 12%;
+        min-width: 14.5%;
+    }
+}
+
+.search__more {
+    .dropdown-menu.show {
+        min-width: 320px;
+    }
+    .bedroom__item {
+        background-color: #f6f6f6;
+        border-radius: 30px;
+        min-width: 36px;
+        &.bedroom__item--active {
+            background-color: #ffeceb;
+        }
     }
 }

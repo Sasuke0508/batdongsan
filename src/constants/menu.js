@@ -1,29 +1,6 @@
 export const listMenuItem = [
     {
         id: 1,
-        title: "Nhà đất bán",
-        path: "",
-        subMenu: [
-            {
-                title: "Bán căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Bán nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Bán nhà mặt phố",
-                path: "",
-            },
-        ],
-    },
-    {
-        id: 2,
         title: "Nhà đất cho thuê",
         path: "",
         subMenu: [
@@ -46,30 +23,7 @@ export const listMenuItem = [
         ],
     },
     {
-        id: 3,
-        title: "Dự án",
-        path: "",
-        subMenu: [
-            {
-                title: "Thuê căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà mặt phố",
-                path: "",
-            },
-        ],
-    },
-    {
-        id: 4,
+        id: 2,
         title: "Tin tức",
         path: "",
         subMenu: [
@@ -92,96 +46,9 @@ export const listMenuItem = [
         ],
     },
     {
-        id: 5,
-        title: "Wiki BĐS",
-        path: "",
-        subMenu: [
-            {
-                title: "Thuê căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà mặt phố",
-                path: "",
-            },
-        ],
-    },
-    {
-        id: 6,
-        title: "Phong thuỷ",
-        path: "",
-        subMenu: [
-            {
-                title: "Thuê căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà mặt phố",
-                path: "",
-            },
-        ],
-    },
-    {
-        id: 7,
-        title: "Nội - Ngoại thất",
-        path: "",
-        subMenu: [
-            {
-                title: "Thuê căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà mặt phố",
-                path: "",
-            },
-        ],
-    },
-    {
-        id: 8,
-        title: "Danh bạ",
-        path: "",
-        subMenu: [
-            {
-                title: "Thuê căn hộ chung cư",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà riêng",
-                path: "",
-            },
-            {
-                title: "Biệt thự liền kề",
-                path: "",
-            },
-            {
-                title: "Cho thuê nhà mặt phố",
-                path: "",
-            },
-        ],
+        id: 3,
+        title: "Bảng giá",
+        path: "/pricing-plan",
     },
 ];
 
@@ -344,4 +211,186 @@ export const notiList = [
     { title: 'Trở thành "chuyên gia" trong lĩnh vực thổ cư với Podcast #29', date: "2/12/2022", is_read: false },
     { title: "Ebook miễn phí - Những Điều Cần Biết Về Hoa Hồng Dành Cho Môi Giới BĐS", date: "3/12/2022", is_read: false },
     { title: "VRES 2022 - Cơ hội kết nối & giao lưu dành riêng cho các lãnh đạo, quản lý doanh n", date: "5/12/2022", is_read: false },
+];
+
+export const priceOptions = [
+    { label: "Tất cả các mức giá", from: 0, to: 0 },
+    { label: "Dưới 500 triệu", from: 0, to: 500 },
+    {
+        label: "500 - 800 triệu",
+        from: 500,
+        to: 800,
+    },
+    {
+        label: "800 triệu - 1 tỷ",
+        from: 800,
+        to: 1000,
+    },
+];
+export const areaSizeOptions = [
+    { label: "Dưới 30m2", from: 0, to: 30 },
+    { label: "30 - 50m2", from: 30, to: 50 },
+    {
+        label: "50 - 80m2",
+        from: 50,
+        to: 80,
+    },
+    {
+        label: "80 - 100m2",
+        from: 80,
+        to: 100,
+    },
+    {
+        label: "100 - 150m2",
+        from: 100,
+        to: 150,
+    },
+    {
+        label: "150 - 200m2",
+        from: 150,
+        to: 200,
+    },
+    {
+        label: "Trên 500m2",
+        from: "",
+        to: 500,
+    },
+];
+
+export const bedRoomOptions = [
+    {
+        label: 1,
+        value: 1,
+    },
+    {
+        label: 2,
+        value: 2,
+    },
+    {
+        label: 3,
+        value: 3,
+    },
+    {
+        label: 3,
+        value: 1,
+    },
+    {
+        label: 4,
+        value: 4,
+    },
+    {
+        label: "5+",
+        value: "5",
+    },
+];
+
+export const utilityOptions = [
+    {
+        value: "binh_nuoc_nong",
+        label: "Bình nước nóng",
+    },
+    {
+        value: "dieu_hoa",
+        label: "Điều hoà",
+    },
+];
+export const mediaOptions = [
+    {
+        value: "picture",
+        label: "Hình ảnh",
+    },
+    {
+        value: "video",
+        label: "Video",
+    },
+];
+
+export const sortOptions = [
+    {
+        label: "Thông thường",
+        value: "default",
+    },
+    {
+        label: "Tin mới nhất",
+        value: "newest",
+    },
+    {
+        label: "Giá từ thấp đến cao",
+        value: "price_asc",
+    },
+    {
+        label: "Giá từ cao đến thấp",
+        value: "price_desc",
+    },
+    {
+        label: "Diện tích từ bé đến lớn",
+        value: "area_asc",
+    },
+    {
+        label: "Diện tích từ lớn đến bé",
+        value: "area_desc",
+    },
+];
+
+export const listPost = [
+    {
+        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
+        price: "75 nghìn/tháng",
+        areaSize: "2055m2",
+        address: "Chương Mỹ - Hà Nội",
+        description:
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+        updatedAt: "1 tuần trước",
+        isLiked: false,
+        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageCount: 5,
+    },
+    {
+        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
+        price: "75 nghìn/tháng",
+        areaSize: "2055m2",
+        address: "Chương Mỹ - Hà Nội",
+        description:
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+        updatedAt: "1 tuần trước",
+        isLiked: true,
+        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/20/20221220170635-9dbc_wm.jpg",
+        imageCount: 9,
+    },
+    {
+        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
+        price: "75 nghìn/tháng",
+        areaSize: "2055m2",
+        address: "Chương Mỹ - Hà Nội",
+        description:
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+        updatedAt: "1 tuần trước",
+        isLiked: false,
+        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageCount: 5,
+    },
+    {
+        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
+        price: "75 nghìn/tháng",
+        areaSize: "2055m2",
+        address: "Chương Mỹ - Hà Nội",
+        description:
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+        updatedAt: "1 tuần trước",
+        isLiked: false,
+        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageCount: 5,
+    },
+    {
+        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
+        price: "75 nghìn/tháng",
+        areaSize: "2055m2",
+        address: "Chương Mỹ - Hà Nội",
+        description:
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+        updatedAt: "1 tuần trước",
+        isLiked: false,
+        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageCount: 5,
+    },
 ];

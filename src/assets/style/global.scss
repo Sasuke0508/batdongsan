@@ -104,6 +104,16 @@ $gray_color: #f2f2f2;
     scroll-behavior: smooth;
 }
 
+.hover-bg {
+    &:hover {
+        background-color: #f2f2f2;
+    }
+}
+
+.has-border {
+    border: 1px solid #ccc;
+}
+
 html {
     font-size: 15px;
 }

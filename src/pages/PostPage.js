@@ -1,10 +1,10 @@
 import React from 'react';
-import Post from '../components/Post'
+import PostList from '../components/Post/PostList';
 
 function PostPage(props) {
     return (
         <div>
-            <Post />
+            <PostList />
         </div>
     );
 }

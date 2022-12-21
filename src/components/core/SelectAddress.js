@@ -4,7 +4,7 @@ import { RequiredMark } from "../../utils";
 import Select from "./Select";
 import getAddress from "./getAddress";
 
-function SelectAddress({ address, setAddress }) {
+function SelectAddress({ size, address, setAddress }) {
     const initCityOption = getAddress("city");
     const [options, setOptions] = useState({
         city: initCityOption,
@@ -13,27 +13,29 @@ function SelectAddress({ address, setAddress }) {
     });
     const handleChange = (type, value) => {
         if (type === "city") {
+            const newAddress = getAddress("district", value)
             setAddress({
                 ...address,
                 city: value,
-                district: "",
+                district: newAddress[0]?.value,
                 ward: "",
             });
             setOptions({
                 ...options,
-                district: getAddress("district", value),
+                district: newAddress,
                 ward: [],
             });
         }
         if (type === "district") {
+            const newAddress = getAddress("ward", address.city, value)
             setAddress({
                 ...address,
                 district: value,
-                ward: "",
+                ward: newAddress[0]?.value,
             });
             setOptions({
                 ...options,
-                ward: getAddress("ward", address.city, value),
+                ward: newAddress,
             });
         }
         if (type === "ward") {
@@ -50,15 +52,15 @@ function SelectAddress({ address, setAddress }) {
         }
     };
     return (
-        <div>
-            <div className="mt-4">
+        <div className={size === 'menu' ? 'p-2' : ''}>
+            <div className={ size === 'menu' ? 'mt-2' :'mt-4'}>
                 <h6>
                     Tỉnh, thành phố
                     <RequiredMark />
                 </h6>
                 <Select value={address.city} label="VD: Nhà riêng" onChange={(e) => handleChange("city", e.target.value)} options={options.city} />
             </div>
-            <div className="mt-4">
+            <div className={ size === 'menu' ? 'mt-2' :'mt-4'}>
                 <h6>
                     Quận, huyện
                     <RequiredMark />
@@ -70,13 +72,13 @@ function SelectAddress({ address, setAddress }) {
                     options={options.district}
                 />
             </div>
-            <div className="mt-4">
+            <div className={ size === 'menu' ? 'mt-2' :'mt-4'}>
                 <h6>
                     Phường, xã
                     <RequiredMark />
                 </h6>
                 <Select value={address.ward} label="VD: Nhà riêng" onChange={(e) => handleChange("ward", e.target.value)} options={options.ward} />
-                <div className="mt-4">
+                {size !== 'menu' && <div className={ size === 'menu' ? 'mt-2' :'mt-4'}>
                     <h6>
                         Số nhà cụ thể
                         <RequiredMark />
@@ -87,7 +89,7 @@ function SelectAddress({ address, setAddress }) {
                         placeholder="Bạn có thể bổ sung hẻm, ngách, ngõ,.."
                         onChange={(e) => handleChange("number", e.target.value)}
                     />
-                </div>
+                </div>}
             </div>
         </div>
     );

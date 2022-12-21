@@ -17,8 +17,8 @@ function Home(props) {
             <RecommendedByLocation />
             <HotNews />
             <Utility />
-            <TypicalEnterprise />
-            <Footer />
+            {/* <TypicalEnterprise /> */}
+            {/* <Footer /> */}
         </div>
     );
 }
