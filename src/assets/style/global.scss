@@ -81,8 +81,22 @@ $gray_color: #f2f2f2;
     overflow-y: scroll;
     @extend .hide-scroll-bar;
 }
+.cl-white {
+    color: #fff;
+}
+
+.cl-black {
+    color: #000;
+}
 .cl-red {
     color: $red_color;
+}
+.cl-title {
+    color: #C20000;
+}
+
+.cl-dark-gray {
+    color: #999;
 }
 
 .cl-gray {
@@ -97,7 +111,7 @@ $gray_color: #f2f2f2;
     background-color: $red_color;
 }
 .bg-gray {
-    background-color: $gray_color;
+    background-color: $gray_color !important;
 }
 
 .scroll-smooth {
@@ -107,6 +121,11 @@ $gray_color: #f2f2f2;
 .hover-bg {
     &:hover {
         background-color: #f2f2f2;
+    }
+}
+.hover-bg-white {
+    &:hover {
+        background-color: #fff;
     }
 }
 

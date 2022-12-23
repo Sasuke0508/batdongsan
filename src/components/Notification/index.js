@@ -1,11 +1,14 @@
 import React from "react";
 import { ArrowRight } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { notiList } from "../../constants";
 
 function Notification({ open, setOpen }) {
+    const navigate = useNavigate()
 
     const handleClickViewMore = () => {
         setOpen(false)
+        navigate('/post/saved')
     }
 
     return (
