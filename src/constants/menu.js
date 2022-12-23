@@ -1,8 +1,10 @@
+import { BoxArrowLeft, CreditCard, ListUl, Lock, Person } from "react-bootstrap-icons";
+
 export const listMenuItem = [
     {
         id: 1,
         title: "Nhà đất cho thuê",
-        path: "",
+        path: "/post",
         subMenu: [
             {
                 title: "Cho thuê căn hộ chung cư",
@@ -392,5 +394,94 @@ export const listPost = [
         isLiked: false,
         imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
         imageCount: 5,
+    },
+];
+
+export const locationSearchOptions = [
+    {
+        label: "Hồ chí minh",
+        count: 45720,
+        value: "01",
+    },
+    {
+        label: "Hà Nội",
+        count: 12473,
+        value: "02",
+    },
+    {
+        label: "Bình Dương",
+        count: 1306,
+        value: "03",
+    },
+    {
+        label: "Đà Nẵng",
+        count: 612,
+        value: "04",
+    },
+    {
+        label: "Đồng Nai",
+        count: 431,
+        value: "05",
+    },
+    {
+        label: "Hải Phòng",
+        count: 365,
+        value: "06",
+    },
+    {
+        label: "Long An",
+        count: 245,
+        value: "06",
+    },
+];
+
+export const utilityLinkOptions = [
+    {
+        label: "Tư vấn phong thủy",
+        path: "",
+    },
+    {
+        label: "Dự tính chi phí làm nhà",
+        path: "",
+    },
+    {
+        label: "Tính lãi suất",
+        path: "",
+    },
+    {
+        label: "Quy trình xây nhà",
+        path: "",
+    },
+    {
+        label: "Xem tuổi làm nhà",
+        path: "",
+    },
+];
+
+export const userSettingsOptions = [
+    {
+        title: "Quản lý tin đăng",
+        icon: <ListUl />,
+        path: "/manager-post",
+    },
+    {
+        title: "Thay đổi thông tin cá nhân",
+        icon: <Person />,
+        path: "/user-settings",
+    },
+    {
+        title: "Thay đổi mật khẩu",
+        icon: <Lock />,
+        path: "",
+    },
+    {
+        title: "Nạp tiền",
+        icon: <CreditCard />,
+        path: "",
+    },
+    {
+        title: "Đăng xuất",
+        icon: <BoxArrowLeft />,
+        path: "",
     },
 ];

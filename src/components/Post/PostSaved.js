@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Dot, Heart, HeartFill, Image } from "react-bootstrap-icons";
+import { Dot, HeartFill, Image } from "react-bootstrap-icons";
 import { Button, Card, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
-import { areaSizeOptions, listPost, locationSearchOptions, priceOptions, sortOptions, utilityLinkOptions } from "../../constants";
+import { listPost, sortOptions, utilityLinkOptions } from "../../constants";
 import SearchBar from "../core/SearchBar";
 import Select from "../core/Select";
 
-function PostList(props) {
+function PostSaved(props) {
     const [sortType, setSortType] = useState("default");
     const handleChangeSort = (e) => {
         setSortType(e.target.value);
@@ -16,10 +16,9 @@ function PostList(props) {
             <div className="container-sm mt-3">
                 <Row>
                     <Col md={9}>
-                        <div>Cho thuê/Tất cả BĐS trên toàn quốc</div>
-                        <h4 className="mt-2">Cho thuê nhà đất trên toàn quốc</h4>
+                        <h4 className="mt-2">Tin đăng đã lưu</h4>
                         <div className="d-flex justify-content-between align-items-center">
-                            <div>Hiện có 63,746 bất động sản.</div>
+                            <div>Tổng số 1 tin đăng</div>
                             <div className="w-25">
                                 <Select options={sortOptions} value={sortType} onChange={handleChangeSort} />
                             </div>
@@ -56,7 +55,9 @@ function PostList(props) {
                                                 <div className="mt-2">{post.description}</div>
                                                 <div className="d-flex justify-content-between">
                                                     <div className="mt-2 cl-dark-gray">{post.updatedAt}</div>
-                                                    <Button outline>{post.isLiked ? <HeartFill /> : <Heart />}</Button>
+                                                    <Button outline>
+                                                        <HeartFill />
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,34 +99,12 @@ function PostList(props) {
                     </Col>
                     <Col md={3}>
                         <Card className="p-3 mt-4">
-                            <h6>Lọc theo khoảng giá</h6>
-                            <div className="price__filter">
-                                {priceOptions.map((item, index) => (
-                                    <div className="my-1 p-1 hover-bg cursor-pointer" key={index}>{item.label}</div>
-                                ))}
-                            </div>
-                        </Card>
-                        <Card className="p-3 mt-4">
-                            <h6>Lọc theo diện tích</h6>
-                            <div className="price__filter">
-                                {areaSizeOptions.map((item, index) => (
-                                    <div className="my-1 p-1 hover-bg cursor-pointer" key={index}>{item.label}</div>
-                                ))}
-                            </div>
-                        </Card>
-                        <Card className="p-3 mt-4 bg-gray">
-                            <h6>Nhà đất cho thuê</h6>
-                            <div className="price__filter">
-                                {locationSearchOptions.map((item, index) => (
-                                    <div className="my-1 p-1 hover-bg-white cursor-pointer" key={index}>{item.label} ({item.count})</div>
-                                ))}
-                            </div>
-                        </Card>
-                        <Card className="p-3 mt-4 bg-gray">
                             <h6>Hỗ trợ tiện ích</h6>
                             <div className="price__filter">
                                 {utilityLinkOptions.map((item, index) => (
-                                    <div className="my-1 p-1 hover-bg-white cursor-pointer" key={index}>{item.label}</div>
+                                    <div className="my-1 p-1 hover-bg-white cursor-pointer" key={index}>
+                                        {item.label}
+                                    </div>
                                 ))}
                             </div>
                         </Card>
@@ -136,4 +115,4 @@ function PostList(props) {
     );
 }
 
-export default PostList;
+export default PostSaved;

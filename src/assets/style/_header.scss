@@ -66,8 +66,13 @@
                 &:hover {
                     background-color: rgb(221, 221, 221);
                 }
-
             }
         }
+    }
+    .user__avatar {
+        background-color: #FFECEB;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
     }
 }

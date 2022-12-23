@@ -27,10 +27,19 @@
 
 .post-list {
     .list-post__container {
-        .list-post__item{
-            .item__image{
+        .list-post__item {
+            font-size: 14px;
+            .item__image {
                 width: 240px;
                 object-fit: cover;
+                height: 100%;
+            }
+            .image__count {
+                bottom: 10px;
+                right: 12px;
+            }
+            .post__title {
+                color: #C20000;
             }
         }
     }
