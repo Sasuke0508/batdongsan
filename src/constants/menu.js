@@ -485,3 +485,26 @@ export const userSettingsOptions = [
         path: "",
     },
 ];
+
+export const houseTypeOptions = [
+    {
+        label : 'Tất cả nhà đất',
+        value : 'all'
+    },
+    {
+        label : 'Căn hộ chung cư',
+        value : 'can_ho'
+    },
+    {
+        label : 'Nhà riêng',
+        value : 'nha_rieng'
+    },
+    {
+        label : 'Nhà biệt thự, liền kề',
+        value : 'nha_biet_thu'
+    },
+    {
+        label : 'Nhà mặt phố',
+        value : 'nha_mat_pho'
+    },
+]
