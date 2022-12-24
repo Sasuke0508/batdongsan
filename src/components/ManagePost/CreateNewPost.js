@@ -313,7 +313,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
-                                style={{ width: "60px" }}
+                                style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.bedRoom}
                                 onChange={(e) => handleChangeQuantityInfo(Number(e.target.value), "bedRoom")}
@@ -330,7 +330,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
-                                style={{ width: "60px" }}
+                                style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.bathRoom}
                                 onChange={(e) => handleChangeQuantityInfo(Number(e.target.value), "bathRoom")}
@@ -347,7 +347,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
-                                style={{ width: "60px" }}
+                                style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.floor}
                                 onChange={(e) => handleChangeQuantityInfo(Number(e.target.value), "floor")}

@@ -6,11 +6,12 @@ import SelectAddress from "./SelectAddress";
 import SelectAreaSize from "./SelectAreaSize";
 import SelectMore from "./SelectMore";
 import SelectPrice from "./SelectPrice";
+import SelectProductType from "./SelectProductType";
 
 function SearchBar(props) {
     const defaultSearch = {
         sellType: 0,
-        houseType: 0,
+        houseType: [],
         searchText: "",
         address: {
             city: "",
@@ -32,6 +33,7 @@ function SearchBar(props) {
             to: 0,
         },
     };
+    const [searchHouseType, setSearchHouseType] = useState(defaultSearch.houseType);
     const [searchText, setSearchText] = useState(defaultSearch.searchText);
     const [address, setAddress] = useState(defaultSearch.address);
     const [filterMore, setFilterMore] = useState(defaultSearch.filterMore);
@@ -51,6 +53,10 @@ function SearchBar(props) {
             ...prevState,
             [type]: !prevState[type],
         }));
+    };
+
+    const handleChangeHouseType = (value) => {
+        setSearchHouseType(value);
     };
 
     const handleChangePrice = (type, value) => {
@@ -77,6 +83,7 @@ function SearchBar(props) {
     };
 
     const handleResetSearch = () => {
+        setSearchHouseType(defaultSearch.houseType);
         setSearchText(defaultSearch.searchText);
         setAddress(defaultSearch.address);
         setFilterMore(defaultSearch.filterMore);
@@ -87,61 +94,14 @@ function SearchBar(props) {
     return (
         <div className="search-bar">
             <div className="d-flex align-items-center p-3">
-                <div className="d-flex align-items-center" style={{flex : '1'}}>
+                <div className="d-flex align-items-center" style={{ flex: "1" }}>
                     <Button outline>
                         <Search />
                     </Button>
                     <Input value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Tìm kiếm" />
                 </div>
                 <div className="search-bar__item">
-                    <Dropdown isOpen={dropdownOpen.houseType} toggle={() => toggle("houseType")} direction={"down"}>
-                        <DropdownToggle outline className="w-100">
-                            <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                <span>
-                                    <House className="me-1" />
-                                    <span>Loại nhà đất</span>
-                                </span>
-                                <CaretDown className="ms-1" />
-                            </div>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <div className="mx-2 d-flex">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label className="d-flex align-items-center">
-                                    <House />
-                                    <span>Tất cả nhà đất</span>
-                                </label>
-                            </div>
-                            <div className="mx-2 d-flex">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label className="d-flex align-items-center">
-                                    <Building />
-                                    <span>Căn hộ chung cư</span>
-                                </label>
-                            </div>
-                            <div className="mx-2 d-flex">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label className="d-flex align-items-center">
-                                    <Building />
-                                    <span>Nhà riêng</span>
-                                </label>
-                            </div>
-                            <div className="mx-2 d-flex">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label className="d-flex align-items-center">
-                                    <Building />
-                                    <span>Nhà biệt thự, liền kề</span>
-                                </label>
-                            </div>
-                            <div className="mx-2 d-flex">
-                                <input type="checkbox" checked={true} className="mx-1"></input>
-                                <label className="d-flex align-items-center">
-                                    <Building />
-                                    <span>Nhà mặt phố</span>
-                                </label>
-                            </div>
-                        </DropdownMenu>
-                    </Dropdown>
+                    <SelectProductType open={dropdownOpen.houseType} toggle={toggle} value={searchHouseType} onChange={handleChangeHouseType} />
                 </div>
                 <div className="search-bar__item">
                     <Dropdown className="search__address" isOpen={dropdownOpen.location} toggle={() => toggle("location")} direction={"down"}>

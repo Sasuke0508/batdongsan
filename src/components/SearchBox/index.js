@@ -6,11 +6,12 @@ import SelectAddress from "../core/SelectAddress";
 import SelectAreaSize from "../core/SelectAreaSize";
 import SelectMore from "../core/SelectMore";
 import SelectPrice from "../core/SelectPrice";
+import SelectProductType from "../core/SelectProductType";
 
 function SearchBox(props) {
     const defaultSearch = {
         sellType: 0,
-        houseType: 0,
+        houseType: [],
         searchText: "",
         address: {
             city: "",
@@ -32,6 +33,8 @@ function SearchBox(props) {
             to: 0,
         },
     };
+
+    const [houseType, setHouseType] = useState(defaultSearch.houseType);
     const [searchText, setSearchText] = useState(defaultSearch.searchText);
     const [address, setAddress] = useState(defaultSearch.address);
     const [filterMore, setFilterMore] = useState(defaultSearch.filterMore);
@@ -51,6 +54,12 @@ function SearchBox(props) {
             ...prevState,
             [type]: !prevState[type],
         }));
+    };
+
+    const handleChangeHouseType = (value) => {
+        console.log(value)
+        setHouseType(value);
+        // toggle("areaSize");
     };
 
     const handleChangePrice = (type, value) => {
@@ -90,54 +99,7 @@ function SearchBox(props) {
                 <TabPane>
                     <Row>
                         <Col md="3">
-                            <Dropdown isOpen={dropdownOpen.houseType} toggle={() => toggle("houseType")} direction={"down"}>
-                                <DropdownToggle className="w-100">
-                                    <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                        <div className="d-flex align-items-center">
-                                            <House className="me-2" />
-                                            <span className="text-overflow-dots">Loại nhà đất</span>
-                                        </div>
-                                        <CaretDown className="ms-1" />
-                                    </div>
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <div className="mx-3 d-flex my-2 justify-content-between">
-                                        <label className="d-flex align-items-center me-3">
-                                            <House className="me-2" />
-                                            <div>Tất cả nhà đất</div>
-                                        </label>
-                                        <input type="checkbox" checked={true} className="mx-1"></input>
-                                    </div>
-                                    <div className="mx-3 d-flex my-2 justify-content-between">
-                                        <label className="d-flex align-items-center me-3">
-                                            <Building className="me-2" />
-                                            <div>Căn hộ chung cư</div>
-                                        </label>
-                                        <input type="checkbox" checked={true} className="mx-1"></input>
-                                    </div>
-                                    <div className="mx-3 d-flex my-2 justify-content-between">
-                                        <label className="d-flex align-items-center me-3">
-                                            <Building className="me-2" />
-                                            <div>Nhà riêng</div>
-                                        </label>
-                                        <input type="checkbox" checked={true} className="mx-1"></input>
-                                    </div>
-                                    <div className="mx-3 d-flex my-2 justify-content-between">
-                                        <label className="d-flex align-items-center me-3">
-                                            <Building className="me-2" />
-                                            <div style={{ whiteSpace: "nowrap" }}>Nhà biệt thự, liền kề</div>
-                                        </label>
-                                        <input type="checkbox" checked={true} className="mx-1"></input>
-                                    </div>
-                                    <div className="mx-3 d-flex my-2 justify-content-between">
-                                        <label className="d-flex align-items-center me-3">
-                                            <Building className="me-2" />
-                                            <div>Nhà mặt phố</div>
-                                        </label>
-                                        <input type="checkbox" checked={true} className="mx-1"></input>
-                                    </div>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <SelectProductType open={dropdownOpen.houseType} toggle={toggle} value={houseType} onChange={handleChangeHouseType} />
                         </Col>
                         <Col md="7">
                             <div className="d-flex align-items-center">

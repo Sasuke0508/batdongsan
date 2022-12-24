@@ -41,6 +41,12 @@
     }
 }
 
+.search__house-type {
+    .dropdown-menu.show {
+        min-width: 280px;
+    }
+}
+
 .search__more {
     .dropdown-menu.show {
         min-width: 320px;

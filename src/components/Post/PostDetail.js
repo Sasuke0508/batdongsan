@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Dot, ExclamationTriangle, Facebook, Heart, Share } from "react-bootstrap-icons";
+import { Dot, ExclamationTriangle, Facebook, Heart, HeartFill, Share } from "react-bootstrap-icons";
 import ReactImageGallery from "react-image-gallery";
 import { useDispatch } from "react-redux";
 import { Button, CarouselCaption, CarouselItem, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
@@ -8,6 +8,7 @@ import { settingsDispatch } from "../../store/slices/settingsSlice";
 import NewsCard from "../core/NewsCard";
 import RequestModal from "../core/RequestModal";
 import SearchBar from "../core/SearchBar";
+import ToolTips from "../core/ToolTips";
 import useWindowHeight from "../core/useWindowHeight";
 
 function Post(props) {
@@ -205,9 +206,21 @@ function Post(props) {
                                 </div>
                             </div>
                             <div className="d-flex align-items-center">
-                                <Share className="mx-2 cursor-pointer" size={26} />
-                                <ExclamationTriangle onClick={() => setOpenModalReport(true)} className="mx-2 cursor-pointer" size={26} />
-                                <Heart className="mx-2 cursor-pointer" size={26} />
+                                <Share id="post__share-btn" className="mx-2 cursor-pointer" size={26} />
+                                <ToolTips target="post__share-btn">Chia sẻ tin</ToolTips>
+                                <ExclamationTriangle
+                                    id="post__report-btn"
+                                    onClick={() => setOpenModalReport(true)}
+                                    className="mx-2 cursor-pointer"
+                                    size={26}
+                                />
+                                <ToolTips target="post__report-btn">Báo cáo tin</ToolTips>
+                                <div id="post__like-btn">
+                                    {true ? 
+                                    <Heart className="mx-2 cursor-pointer" size={26} /> :
+                                    <HeartFill className="mx-2 cursor-pointer" size={26} />}
+                                </div>
+                                <ToolTips target="post__like-btn">Thêm vào tin yêu thích</ToolTips>
                                 <Modal isOpen={openModalReport} toggle={toggleModalReport}>
                                     <div className="p-3">
                                         <ModalHeader toggle={toggleModalReport}>Báo cáo tin rao có thông tin không đúng</ModalHeader>

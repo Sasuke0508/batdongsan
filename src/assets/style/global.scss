@@ -132,6 +132,11 @@ $gray_color: #f2f2f2;
 .has-border {
     border: 1px solid #ccc;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 html {
     font-size: 15px;
