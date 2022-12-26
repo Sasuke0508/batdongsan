@@ -183,15 +183,15 @@ function CreateNewPost(props) {
         <div className="page-container-md">
             <Card className="mt-3 p-4">
                 <h5>Thông tin cơ bản</h5>
-                <ButtonGroup className="mt-3">
+                {/* <ButtonGroup className="mt-3">
                     <Button size="sm" outline={!isSell} onClick={() => handleClickSaleType(true)}>
                         Bán
                     </Button>
                     <Button size="sm" outline={isSell} onClick={() => handleClickSaleType(false)}>
                         Cho thuê
                     </Button>
-                </ButtonGroup>
-                <div className="mt-4">
+                </ButtonGroup> */}
+                <div className="mt-2">
                     <div className="mt-2">
                         <h6>
                             Loại bất động sản <RequiredMark />

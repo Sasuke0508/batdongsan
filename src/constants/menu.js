@@ -472,7 +472,7 @@ export const userSettingsOptions = [
     {
         title: "Thay đổi mật khẩu",
         icon: <Lock />,
-        path: "",
+        path: "/login",
     },
     {
         title: "Nạp tiền",
