@@ -5,7 +5,7 @@ function RequestModal(props) {
     const { open, onToggle } = props;
     return (
         <div className="request-modal">
-            <Modal isOpen={open} toggle={onToggle}>
+            <Modal centered isOpen={open} toggle={onToggle}>
                 <div className="p-3">
                     <ModalHeader toggle={onToggle}>Yêu cầu liên hệ</ModalHeader>
                     <ModalBody>

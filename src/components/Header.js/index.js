@@ -8,14 +8,19 @@ import LoginModal from "../core/LoginModal";
 import Notification from "../Notification";
 
 function Header(props) {
+    const loggedIn = true;
     const navigate = useNavigate();
     const [openModalLogin, setOpenModalLogin] = useState(false);
     const [initMode, setInitMode] = useState("login");
     const [openNoti, setOpenNoti] = useState(false);
     const [openUserSettings, setOpenUserSettings] = useState(false);
     const handleClickMenu = (path) => {
+        setOpenUserSettings(false);
+        if (path === '/login') {
+            navigate('/login', { state: {initMode : 'changePassword'}})
+            return
+        }
         navigate(path);
-        setOpenUserSettings(false)
     };
     return (
         <div className="header">
@@ -45,61 +50,76 @@ function Header(props) {
                     ))}
                 </div>
                 <div className="menu-action d-flex align-items-center">
-                    <div className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2" onClick={() => handleClickMenu('/post/saved')}>
+                    <div
+                        className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2"
+                        onClick={() => handleClickMenu("/post/saved")}
+                    >
                         <Heart />
                         <div className="noti__count position-absolute">1</div>
                     </div>
 
-                    <div className="position-relative">
-                        <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
-                            <Bell />
+                    {loggedIn && (
+                        <div className="position-relative">
+                            <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
+                                <Bell />
+                            </div>
+                            <div className="noti__count position-absolute">{countUnreadNoti(notiList)}</div>
+                            <Notification open={openNoti} setOpen={setOpenNoti} />
                         </div>
-                        <div className="noti__count position-absolute">{countUnreadNoti(notiList)}</div>
-                        <Notification open={openNoti} setOpen={setOpenNoti} />
-                    </div>
-                    <div
-                        className="menu-action__item px-2 py-1 mx-2"
-                        onClick={() => {
-                            setInitMode("login");
-                            setOpenModalLogin(true);
-                        }}
-                    >
-                        Đăng nhập
-                    </div>
-                    <div
-                        className="menu-action__item px-2 py-1 mx-2"
-                        onClick={() => {
-                            setInitMode("signup");
-                            setOpenModalLogin(true);
-                        }}
-                    >
-                        Đăng ký
-                    </div>
-                    <div className="px-2 py-1 mx-2 d-flex align-items-center">
-                        <div className="user__avatar d-flex justify-content-center align-items-center">
-                            <strong>A</strong>
-                        </div>
-                        <div>
-                            <Dropdown isOpen={openUserSettings} toggle={() => setOpenUserSettings(!openUserSettings)} direction={"down"}>
-                                <DropdownToggle className="w-100" color="white">
-                                    <div className="d-flex flex-nowrap align-items-center justify-content-between">
-                                        <div className="d-flex align-items-center">Nguyen Tuan An</div>
-                                        <CaretDown className="ms-1" />
-                                    </div>
-                                </DropdownToggle>
-                                <DropdownMenu style={{ minWidth: "250px" }}>
-                                    {userSettingsOptions.map((item, index) => (
-                                        <div key={index} className="mx-3 d-flex my-2 align-items-center" onClick={() => handleClickMenu(item.path)}>
-                                            <div className="me-2">{item.icon}</div>
-                                            <label className="d-flex align-items-center me-3 cursor-pointer">
-                                                <div>{item.title}</div>
-                                            </label>
+                    )}
+                    {!loggedIn &&
+                        <>
+                            <div
+                                className="menu-action__item px-2 py-1 mx-2"
+                                onClick={() => {
+                                    setInitMode("login");
+                                    setOpenModalLogin(true);
+                                }}
+                            >
+                                Đăng nhập
+                            </div>
+                            <div
+                                className="menu-action__item px-2 py-1 mx-2"
+                                onClick={() => {
+                                    setInitMode("signup");
+                                    setOpenModalLogin(true);
+                                }}
+                            >
+                                Đăng ký
+                            </div>
+                        </>
+                    }
+                    {loggedIn && (
+                        <div className="px-2 py-1 mx-2 d-flex align-items-center">
+                            <div className="user__avatar d-flex justify-content-center align-items-center">
+                                <strong>A</strong>
+                            </div>
+                            <div>
+                                <Dropdown isOpen={openUserSettings} toggle={() => setOpenUserSettings(!openUserSettings)} direction={"down"}>
+                                    <DropdownToggle className="w-100" color="white">
+                                        <div className="d-flex flex-nowrap align-items-center justify-content-between">
+                                            <div className="d-flex align-items-center">Nguyen Tuan An</div>
+                                            <CaretDown className="ms-1" />
                                         </div>
-                                    ))}
-                                </DropdownMenu>
-                            </Dropdown>
+                                    </DropdownToggle>
+                                    <DropdownMenu style={{ minWidth: "250px" }}>
+                                        {userSettingsOptions.map((item, index) => (
+                                            <div
+                                                key={index}
+                                                className="mx-3 d-flex my-2 align-items-center"
+                                                onClick={() => handleClickMenu(item.path)}
+                                            >
+                                                <div className="me-2">{item.icon}</div>
+                                                <label className="d-flex align-items-center me-3 cursor-pointer">
+                                                    <div>{item.title}</div>
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div className="menu-action__item mx-2">
                         <Button outline className="has-border" color="white" onClick={() => navigate("/manager-post")}>
                             Đăng tin
