@@ -187,6 +187,7 @@ function CreateNewPost(props) {
     const toggle = (type) => setTooltipOpen({ ...tooltipOpen, [type]: !tooltipOpen[type] });
     return (
         <div className="page-container-md">
+            {dataEditPost.address && <h4 className="mt-2">Chỉnh sửa bài đăng</h4>}
             <Card className="mt-3 p-4">
                 <h5>Thông tin cơ bản</h5>
                 {/* <ButtonGroup className="mt-3">
