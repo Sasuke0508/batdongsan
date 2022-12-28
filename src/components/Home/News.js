@@ -15,16 +15,16 @@ function News(props) {
       content: [
         {
           id: 0,
-          title: "Có Nên Mua Chung Cư Quận Tân Bình Giá 1 Tỷ?",
+          title: "Có Nên Thuê Nhà Trọ Nguyên Căn Giá 10 triệu/tháng?",
           image_url:
             "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/PHJN6Zw0/20221124160930-e605.jpg",
           created_at: "1 ngày trước",
         },
         {
           id: 1,
-          title: 'Có Tiền Nên Gửi Ngân Hàng Hay Chờ "Bắt Đáy" Bất Động Sản?',
+          title: 'Tìm Phòng Trọ Giá Rẻ',
           image_url:
-            "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/wxbwknn6/20221124162951-ca79.jpg",
+            "https://file4.batdongsan.com.vn/crop/610x342/2022/12/20/JGcIp0rf/20221220143052-ebbd.jpg",
           created_at: "1 ngày trước",
         },
         {
@@ -50,16 +50,16 @@ function News(props) {
         {
           id: 0,
           title:
-            "Các Chủ Đầu Tư BĐS Ưu Tú Sẽ Tranh Tài Tại Giải Thưởng BĐS Châu Á - APA",
+            "Nhà Trọ Quanh Khu Vực Bách-Kinh-Xây",
           image_url:
-            "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/wxbwknn6/20221124103420-78d5.jpg",
+            "https://file4.batdongsan.com.vn/crop/610x342/2022/09/12/eCGLjNi5/20220912083354-b7e5.jpg",
           created_at: "1 ngày trước",
         },
         {
           id: 1,
           title: "Thuê Chung Cư Quận 10 Giá 5 Triệu Có Khả Thi Không?",
           image_url:
-            "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/wxbwknn6/20221124162951-ca79.jpg",
+            "https://file4.batdongsan.com.vn/crop/610x342/2022/12/20/JGcIp0rf/20221220143052-ebbd.jpg",
           created_at: "1 ngày trước",
         },
         {
@@ -71,7 +71,7 @@ function News(props) {
         },
         {
           id: 3,
-          title: 'Giang Ơi "Mách Nước" Người Trẻ Mua Nhà Và Đầu Tư BĐS',
+          title: 'Bên Trong Nhà Mẫu Sunrise City Có Gì?',
           image_url:
             "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/PHJN6Zw0/20221124160930-e605.jpg",
           created_at: "1 ngày trước",
@@ -80,20 +80,20 @@ function News(props) {
     },
     {
       id: 2,
-      title: "BĐS TPHCM",
+      title: "TPHCM",
       content: [
         {
           id: 0,
-          title: "Có Nên Mua Chung Cư Quận Tân Bình Giá 1 Tỷ?",
+          title: "Có Nên Thuê Nhà Trọ Nguyên Căn Giá 10 triệu/tháng?",
           image_url:
             "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/PHJN6Zw0/20221124160930-e605.jpg",
           created_at: "1 ngày trước",
         },
         {
           id: 1,
-          title: 'Có Tiền Nên Gửi Ngân Hàng Hay Chờ "Bắt Đáy" Bất Động Sản?',
+          title: 'Tìm Phòng Trọ Giá Rẻ',
           image_url:
-            "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/wxbwknn6/20221124162951-ca79.jpg",
+            "https://file4.batdongsan.com.vn/crop/610x342/2022/12/20/JGcIp0rf/20221220143052-ebbd.jpg",
           created_at: "1 ngày trước",
         },
         {
@@ -114,20 +114,20 @@ function News(props) {
     },
     {
       id: 3,
-      title: "BĐS Hà Nội",
+      title: "Hà Nội",
       content: [
         {
           id: 0,
-          title: "Có Nên Mua Chung Cư Quận Tân Bình Giá 1 Tỷ?",
+          title: "Có Nên Thuê Nhà Trọ Nguyên Căn Giá 10 triệu/tháng?",
           image_url:
             "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/PHJN6Zw0/20221124160930-e605.jpg",
           created_at: "1 ngày trước",
         },
         {
           id: 1,
-          title: 'Có Tiền Nên Gửi Ngân Hàng Hay Chờ "Bắt Đáy" Bất Động Sản?',
+          title: 'Tìm Phòng Trọ Giá Rẻ',
           image_url:
-            "https://file4.batdongsan.com.vn/crop/610x342/2022/11/24/wxbwknn6/20221124162951-ca79.jpg",
+            "https://file4.batdongsan.com.vn/crop/610x342/2022/12/20/JGcIp0rf/20221220143052-ebbd.jpg",
           created_at: "1 ngày trước",
         },
         {
@@ -190,7 +190,7 @@ function News(props) {
                 alt="product-demo"
                 src={tabs[selectedTab].content[selectedContent].image_url}
               />
-              <h5 className="mt-3">
+              <h5 className="mt-3" style={{minHeight : '50px'}}>
                 {tabs[selectedTab].content[selectedContent].title}
               </h5>
               <div>

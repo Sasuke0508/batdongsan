@@ -56,43 +56,43 @@ export const listMenuItem = [
 
 export const sellTypes = [
     {
-        label: "Bán căn hộ, chung cư",
+        label: "Cho thuê căn hộ, chung cư",
         value: 1,
     },
     {
-        label: "Bán nhà riêng",
+        label: "Cho thuê nhà riêng",
         value: 2,
     },
     {
-        label: "Bán nhà biệt thự, liền kề",
+        label: "Cho thuê nhà biệt thự, liền kề",
         value: 3,
     },
     {
-        label: "Bán nhà mặt phố",
+        label: "Cho thuê nhà mặt phố",
         value: 4,
     },
     {
-        label: "Bán shophouse, nhà phố thương mại",
+        label: "Cho thuê shophouse, nhà phố thương mại",
         value: 5,
     },
     {
-        label: "Bán đất nền dự án",
+        label: "Cho thuê đất nền dự án",
         value: 6,
     },
     {
-        label: "Bán đất",
+        label: "Cho thuê đất",
         value: 7,
     },
     {
-        label: "Bán trang trại, khu nghỉ dưỡng",
+        label: "Cho thuê trang trại, khu nghỉ dưỡng",
         value: 8,
     },
     {
-        label: "Bán condotel",
+        label: "Cho thuê condotel",
         value: 9,
     },
     {
-        label: "Bán loại bất động sản khác",
+        label: "Cho thuê loại bất động sản khác",
         value: 10,
     },
 ];
@@ -204,7 +204,7 @@ export const reportReasonList = [
     },
     {
         value: "da_ban",
-        label: "Bất động sản đã bán",
+        label: "Bất động sản đã Cho thuê",
     },
 ];
 
@@ -336,63 +336,63 @@ export const sortOptions = [
 
 export const listPost = [
     {
-        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
-        price: "75 nghìn/tháng",
-        areaSize: "2055m2",
-        address: "Chương Mỹ - Hà Nội",
+        title: "Cho thuê Nhà nguyên căn đa dạng diện tích 80m2, 150m2",
+        price: "6-15 triệu/tháng",
+        areaSize: "80-150m2",
+        address: "Tây Mỗ - Hà Nội",
         description:
-            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà nguyên căn mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà nguyên căn tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
         updatedAt: "1 tuần trước",
         isLiked: false,
-        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageUrl: "https://file4.batdongsan.com.vn/2021/10/09/20211009103745-e620_wm.jpg",
         imageCount: 5,
     },
     {
-        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
-        price: "75 nghìn/tháng",
-        areaSize: "2055m2",
-        address: "Chương Mỹ - Hà Nội",
+        title: "Cho thuê Nhà nguyên căn đa dạng diện tích 80m2, 150m2",
+        price: "6-15 triệu/tháng",
+        areaSize: "80-150m2",
+        address: "Tây Mỗ - Hà Nội",
         description:
-            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà nguyên căn mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà nguyên căn tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
         updatedAt: "1 tuần trước",
         isLiked: true,
         imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/20/20221220170635-9dbc_wm.jpg",
         imageCount: 9,
     },
     {
-        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
-        price: "75 nghìn/tháng",
-        areaSize: "2055m2",
-        address: "Chương Mỹ - Hà Nội",
+        title: "Cho thuê Nhà nguyên căn đa dạng diện tích 80m2, 150m2",
+        price: "6-15 triệu/tháng",
+        areaSize: "80-150m2",
+        address: "Tây Mỗ - Hà Nội",
         description:
-            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà nguyên căn mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà nguyên căn tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
         updatedAt: "1 tuần trước",
         isLiked: false,
-        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageUrl: "https://file4.batdongsan.com.vn/2021/10/09/20211009104140-ac50_wm.jpg",
         imageCount: 5,
     },
     {
-        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
-        price: "75 nghìn/tháng",
-        areaSize: "2055m2",
-        address: "Chương Mỹ - Hà Nội",
+        title: "Cho thuê Nhà nguyên căn đa dạng diện tích 80m2, 150m2",
+        price: "6-15 triệu/tháng",
+        areaSize: "80-150m2",
+        address: "Tây Mỗ - Hà Nội",
         description:
-            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà nguyên căn mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà nguyên căn tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
         updatedAt: "1 tuần trước",
         isLiked: false,
-        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageUrl: "https://file4.batdongsan.com.vn/2021/10/09/20211009103746-2cc8_wm.jpg",
         imageCount: 5,
     },
     {
-        title: "Chủ đầu tư cho thuê xưởng KCN Phú Nghĩa đa dạng diện tích 1000m2, 1500m2",
-        price: "75 nghìn/tháng",
-        areaSize: "2055m2",
-        address: "Chương Mỹ - Hà Nội",
+        title: "Cho thuê Nhà nguyên căn đa dạng diện tích 80m2, 150m2",
+        price: "6-15 triệu/tháng",
+        areaSize: "80-150m2",
+        address: "Tây Mỗ - Hà Nội",
         description:
-            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà xưởng mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà xưởng tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
+            "Pháp lý: Bảo đảm, thông tin minh bạch, làm việc trực tiếp, giá thỏa thuận. Cho thuê xưởng 1 và 2. * Tiêu chuẩn: + Nhà nguyên căn mới dựng khung thép tiền chế Zamil tiêu chuẩn, cao thoáng từ sàn nhà lên trần 7 - 9m, có mái tôn chống nóng, cách nhiệt, cách âm. + Sàn nhà nguyên căn tiêu chuẩn, nền bê tông chịu lực. + Hạ tầng giao thông, cấp thoát nước trạm điện, bảo vệ đầy...",
         updatedAt: "1 tuần trước",
         isLiked: false,
-        imageUrl: "https://file4.batdongsan.com.vn/crop/350x232/2022/12/14/20221214100503-37ef_wm.jpg",
+        imageUrl: "https://file4.batdongsan.com.vn/2021/10/09/20211009103745-4969_wm.jpg",
         imageCount: 5,
     },
 ];
@@ -462,7 +462,7 @@ export const userSettingsOptions = [
     {
         title: "Quản lý tin đăng",
         icon: <ListUl />,
-        path: "/manager-post",
+        path: "/manager-post/list-post",
     },
     {
         title: "Thay đổi thông tin cá nhân",
@@ -482,7 +482,7 @@ export const userSettingsOptions = [
     {
         title: "Đăng xuất",
         icon: <BoxArrowLeft />,
-        path: "",
+        path: "/logout",
     },
 ];
 

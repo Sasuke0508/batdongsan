@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const removeAccents = (str) => {
     var AccentsMap = [
         "aàảãáạăằẳẵắặâầẩẫấậ",
@@ -62,3 +64,8 @@ export const countUnreadNoti = (list) => {
 } 
 
 export const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
+
+export const msgPendingFeature = () => {
+    console.log(1)
+    Swal.fire('', 'Tính năng đang phát triển!')
+}

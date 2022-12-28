@@ -11,14 +11,7 @@ function SideMenu(props) {
             children: [
                 { title: "Đăng mới", path: "create-new-post" },
                 { title: "Danh sách tin", path: "list-post" },
-                { title: "Tin nháp", path: "draft-post" },
-                { title: "Quản lý tin tài trợ" },
             ],
-        },
-        {
-            title: "Tài khoản Pro",
-            icon: <BoxSeam size={22} />,
-            children: [{ title: "Đăng kí mua" }],
         },
         {
             title: "Quản lý tài chính",
@@ -30,11 +23,6 @@ function SideMenu(props) {
                 { title: "Nạp tiền vào tài khoản" },
                 { title: "Quản lý điểm tích luỹ" },
             ],
-        },
-        {
-            title: "Quản lý TK Doanh nghiệp",
-            icon: <Buildings size={22} />,
-            children: [{ title: "Đăng ký tài khoản Doanh nghiệp" }],
         },
         {
             title: "Báo giá &  Hướng dẫn",

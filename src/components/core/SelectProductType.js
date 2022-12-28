@@ -26,7 +26,7 @@ function SelectProductType({ value, onChange: handleChange, open, toggle }) {
                     <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
                             <House className="me-2" />
-                            <span className="text-overflow-dots">Loại nhà đất</span>
+                            <span className="text-overflow-dots">Loại tin đăng</span>
                         </div>
                         <CaretDown className="ms-1" />
                     </div>

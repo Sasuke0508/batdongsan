@@ -1,0 +1,16 @@
+.user-settings {
+    .user__avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background-color: pink;
+        line-height: 140px;
+        font-size: 89px;
+        text-align: center;
+        @include box-shadow-element;
+        .avatar__icon {
+            bottom: -46px;
+            right: 8px;
+        }
+    }
+}
