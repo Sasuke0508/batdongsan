@@ -13,15 +13,17 @@ import {
     X,
     Youtube,
 } from "react-bootstrap-icons";
-import { Badge, Button, ButtonGroup, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Progress, Row, Tooltip } from "reactstrap";
+import { useLocation } from "react-router-dom";
+import { Badge, Button, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Progress, Row, Tooltip } from "reactstrap";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
 import { uploadImage } from "../core/firebase";
-import getAddress from "../core/getAddress";
 import Select from "../core/Select";
 import SelectAddress from "../core/SelectAddress";
 
 function CreateNewPost(props) {
+    const location = useLocation();
+    const dataEditPost = location?.state?.dataEditPost || {};
     // thong tin co ban
     const [isSell, setIsSell] = useState(true);
     const handleClickSaleType = (status) => {
@@ -33,22 +35,24 @@ function CreateNewPost(props) {
         setSellType(event.target.value);
     };
 
-    const [address, setAddress] = useState({
-        city: "",
-        district: "",
-        ward: "",
-        number: "",
-    });
+    const [address, setAddress] = useState(
+        dataEditPost.address || {
+            city: "",
+            district: "",
+            ward: "",
+            number: "",
+        }
+    );
     // thong tin bai dang
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState(dataEditPost.title || "");
+    const [description, setDescription] = useState(dataEditPost.description || "");
 
     // thong tin bat dong san
 
-    const [areaSize, setAreaSize] = useState("");
-    const [price, setPrice] = useState({ value: "", unit: sellUnits[0].value });
-    const [quantityInfo, setQuantityInfo] = useState({ bedRoom: 0, bathRoom: 0, floor: 0 });
+    const [areaSize, setAreaSize] = useState(dataEditPost.areaSize || "");
+    const [price, setPrice] = useState(dataEditPost.price || { value: "", unit: sellUnits[0].value });
+    const [quantityInfo, setQuantityInfo] = useState(dataEditPost.quantityInfo || { bedRoom: 0, bathRoom: 0, floor: 0 });
     const handleChangeQuantityInfo = (value, field) => {
         if (value >= 0) {
             setQuantityInfo({ ...quantityInfo, [field]: Number(value) });
@@ -90,17 +94,19 @@ function CreateNewPost(props) {
     };
 
     // Thong tin bo sung
-    const [entranceSize, setEntranceSize] = useState("");
-    const [frontSize, setFrontSize] = useState("");
+    const [entranceSize, setEntranceSize] = useState(dataEditPost.entranceSize || "");
+    const [frontSize, setFrontSize] = useState(dataEditPost.frontSize || "");
     const [youtubeLink, setYoutubeLink] = useState("");
 
     // Thong tin lien he
-    const [contactInfo, setContactInfo] = useState({
-        name: "",
-        phoneNumber: "",
-        address: "",
-        email: "",
-    });
+    const [contactInfo, setContactInfo] = useState(
+        dataEditPost.contactInfo || {
+            name: "",
+            phoneNumber: "",
+            address: "",
+            email: "",
+        }
+    );
 
     const handleChangeContactInfo = (value, field) => {
         const newValue = { ...contactInfo, [field]: value };
@@ -109,22 +115,22 @@ function CreateNewPost(props) {
 
     // file upload
     const [fileUpload, setFileUpload] = useState([]);
-    const [imageUrls, setImageUrls] = useState([]);
+    const [imageUrls, setImageUrls] = useState(dataEditPost.imageUrls || []);
     const [loadingUploadImage, setLoadingUploadImage] = useState({
         status: false,
-        value : 0,
-    })
+        value: 0,
+    });
 
     const handleUploadFiles = async (files) => {
-        setLoadingUploadImage({status : true, value : 10})
+        setLoadingUploadImage({ status: true, value: 10 });
         const arrayImage = Object.values(files);
         const result = await Promise.all(arrayImage.map((item) => uploadImage(item)));
-        setFileUpload(files)
-        setImageUrls(result)
-        setLoadingUploadImage({status : true, value : 100})
+        setFileUpload(files);
+        setImageUrls(result);
+        setLoadingUploadImage({ status: true, value: 100 });
         setTimeout(() => {
-            setLoadingUploadImage({status : false, value : 10})
-        }, 500)
+            setLoadingUploadImage({ status: false, value: 10 });
+        }, 500);
     };
 
     const handleClickCancelFile = () => {
@@ -152,7 +158,7 @@ function CreateNewPost(props) {
     const [viewMorePostType, setViewMorePostType] = useState(true);
     const [highlightPost, setHighlightPost] = useState(false);
     const [postDays, setPostDays] = useState(10);
-    const [postStartDate, setPostStartDate] = useState(moment(new Date()).format("YYYY-MM-DD"));
+    const [postStartDate, setPostStartDate] = useState(dataEditPost.postStartDate || moment(new Date()).format("YYYY-MM-DD"));
     const [postStartTime, setPostStartTime] = useState(moment(new Date()).format("HH:mm"));
     const [autoRePost, setAutoRePost] = useState(false);
 
@@ -194,7 +200,7 @@ function CreateNewPost(props) {
                 <div className="mt-2">
                     <div className="mt-2">
                         <h6>
-                            Loại bất động sản <RequiredMark />
+                            Loại phòng <RequiredMark />
                         </h6>
                         <Select value={sellType} label="VD: Nhà riêng" onChange={handleChangeSellType} options={sellTypes} />
                     </div>
@@ -211,7 +217,7 @@ function CreateNewPost(props) {
                     <Input
                         fullWidth
                         value={title}
-                        placeholder="VD: Bán nhà riêng 50m2 chính chủ tại Cầu Giấy"
+                        placeholder="VD: Cho thuê nhà riêng 50m2 chính chủ tại Cầu Giấy"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <Label className="opacity-75 mt-1">Tối thiểu 30 ký tự, tối đa 99 ký tự</Label>
@@ -233,7 +239,7 @@ function CreateNewPost(props) {
                 </div>
             </Card>
             <Card className="mt-3 p-4">
-                <h5>Thông tin bất động sản</h5>
+                <h5>Thông tin phòng trọ</h5>
                 <div className="mt-2">
                     <h6>
                         Diện tích

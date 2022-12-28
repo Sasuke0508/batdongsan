@@ -10,7 +10,8 @@ import Utility from "./Utility";
 
 function Home(props) {
     return (
-        <div className="home-page">
+        <div className="home-page position-relative">
+            <img id="home-page-background" src="https://danhkhoi.com.vn/static/upload/images/Du-An/Astral-City/Astral-City-5.jpg" alt="background" />
             <SearchBox />
             <News />
             <Recommended />

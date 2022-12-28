@@ -65,6 +65,14 @@ $gray_color: #f2f2f2;
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.text-overflow-dots-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+}
 
 .hide-scroll-bar {
     &::-webkit-scrollbar {
@@ -151,10 +159,15 @@ input[type="checkbox"] {
     accent-color: $red_color;
 }
 
+.image-gallery .image-gallery-content:not(.fullscreen) .image-gallery-slide .image-gallery-image {
+    max-height: calc(100vh - 380px);
+}
+
 @import "constants";
 @import "header";
 @import "searchBox";
 @import "homePage";
 @import "post";
 @import "createPost";
+@import "userSettings";
 @import "core";

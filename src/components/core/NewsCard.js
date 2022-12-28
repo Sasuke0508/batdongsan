@@ -28,7 +28,7 @@ function NewsCard(props) {
                                         <Image className="ms-1" color="#fff" />
                                     </div>
                                     <div className="p-3">
-                                        <h6 className="card__title cursor-pointer" onClick={handleClickCard}>
+                                        <h6 className="card__title cursor-pointer text-overflow-dots-2" onClick={handleClickCard}>
                                             {item.title}
                                         </h6>
                                         <div className="mt-1">

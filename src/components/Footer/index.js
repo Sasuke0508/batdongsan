@@ -25,10 +25,7 @@ function index(props) {
             <div className="page-container-xl">
                 <div className="d-flex justify-content-between">
                     <div>
-                        <img
-                            src="https://staticfile.batdongsan.com.vn/images/logo/standard/black/logo_gray-5.svg"
-                            alt="logo-app"
-                        />
+                    <img className="logo-app" style={{width: '100px'}} src={require('../../assets/img/logo_app.png')} alt="logo" />
                     </div>
                     <div className="d-flex justify-content-end">
                         <div className="d-flex align-items-center mx-2">
@@ -41,11 +38,11 @@ function index(props) {
                             </div>
                         </div>
                         <div className="d-flex align-items-center mx-2">
-                            <Person size={36} />
+                            <Person size={36} className="me-2" />
                             <div className="d-flex flex-column">
                                 <div>Hỗ trợ khách hàng</div>
                                 <div>
-                                    <b>trogiup.batdongsan.com.vn</b>
+                                    <b>trogiup@phongtrochothue.com</b>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +51,7 @@ function index(props) {
                             <div className="d-flex flex-column">
                                 <div>Chăm sóc khách hàng </div>
                                 <div>
-                                    <b>hotro@batdongsan.com.vn</b>
+                                    <b>hotro@phongtrochothue.com</b>
                                 </div>
                             </div>
                         </div>

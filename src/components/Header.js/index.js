@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Bell, CaretDown, Heart } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { listMenuItem, notiList, userSettingsOptions } from "../../constants";
-import { countUnreadNoti } from "../../utils";
+import { settingsDispatch } from "../../store/slices/settingsSlice";
+import { countUnreadNoti, msgPendingFeature } from "../../utils";
 import LoginModal from "../core/LoginModal";
 import Notification from "../Notification";
 
 function Header(props) {
-    const loggedIn = true;
+    const loginStatus = useSelector(state => state.settingsSlice.user.loginStatus)
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [openModalLogin, setOpenModalLogin] = useState(false);
     const [initMode, setInitMode] = useState("login");
     const [openNoti, setOpenNoti] = useState(false);
@@ -20,6 +23,15 @@ function Header(props) {
             navigate('/login', { state: {initMode : 'changePassword'}})
             return
         }
+        if (path === '/logout') {
+            dispatch(settingsDispatch.actSetLoginStatus(false))
+            navigate('/')
+            return
+        }
+        if (!path) {
+            msgPendingFeature()
+            return
+        }
         navigate(path);
     };
     return (
@@ -28,7 +40,7 @@ function Header(props) {
             <div className="d-flex header__container justify-content-between px-4">
                 <div className="d-flex">
                     <div onClick={() => navigate("/")}>
-                        <img className="logo-app" src="https://staticfile.batdongsan.com.vn/images/logo/standard/red/logo.svg" alt="logo" />
+                        <img className="logo-app" src={require('../../assets/img/logo_app.png')} alt="logo" />
                     </div>
                     {listMenuItem.map((menuItem, indexMenu) => (
                         <div className="menu__item mx-2 position-relative d-flex align-items-center" key={indexMenu}>
@@ -50,15 +62,16 @@ function Header(props) {
                     ))}
                 </div>
                 <div className="menu-action d-flex align-items-center">
-                    <div
+                    {loginStatus && <div
                         className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2"
                         onClick={() => handleClickMenu("/post/saved")}
                     >
                         <Heart />
                         <div className="noti__count position-absolute">1</div>
                     </div>
+                    }
 
-                    {loggedIn && (
+                    {loginStatus && (
                         <div className="position-relative">
                             <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
                                 <Bell />
@@ -67,7 +80,7 @@ function Header(props) {
                             <Notification open={openNoti} setOpen={setOpenNoti} />
                         </div>
                     )}
-                    {!loggedIn &&
+                    {!loginStatus &&
                         <>
                             <div
                                 className="menu-action__item px-2 py-1 mx-2"
@@ -89,7 +102,7 @@ function Header(props) {
                             </div>
                         </>
                     }
-                    {loggedIn && (
+                    {loginStatus && (
                         <div className="px-2 py-1 mx-2 d-flex align-items-center">
                             <div className="user__avatar d-flex justify-content-center align-items-center">
                                 <strong>A</strong>

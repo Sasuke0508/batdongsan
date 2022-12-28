@@ -3,6 +3,7 @@ import { Dot, ExclamationTriangle, Facebook, Heart, HeartFill, Share } from "rea
 import ReactImageGallery from "react-image-gallery";
 import { useDispatch } from "react-redux";
 import { Button, CarouselCaption, CarouselItem, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+import Swal from "sweetalert2";
 import { recommendedData, reportReasonList } from "../../constants";
 import { settingsDispatch } from "../../store/slices/settingsSlice";
 import NewsCard from "../core/NewsCard";
@@ -10,28 +11,47 @@ import RequestModal from "../core/RequestModal";
 import SearchBar from "../core/SearchBar";
 import ToolTips from "../core/ToolTips";
 import useWindowHeight from "../core/useWindowHeight";
+import nha_cho_thue_1 from "../../assets/img/post/nha_cho_thue_1.jpg"
+import nha_cho_thue_2 from "../../assets/img/post/nha_cho_thue_2.jpg"
+import nha_cho_thue_3 from "../../assets/img/post/nha_cho_thue_3.jpg"
+import nha_cho_thue_4 from "../../assets/img/post/nha_cho_thue_4.jpg"
+import nha_cho_thue_5 from "../../assets/img/post/nha_cho_thue_5.jpg"
 
 function Post(props) {
     const slideItems = [
         {
-            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-c46d_wm.jpg",
-            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-c46d_wm.jpg",
+            original: nha_cho_thue_1,
+            thumbnail: nha_cho_thue_1,
             altText: "Slide 1",
             caption: "Slide 1",
             key: 1,
         },
         {
-            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-0f54_wm.jpg",
-            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115039-0f54_wm.jpg",
+            original: nha_cho_thue_2,
+            thumbnail: nha_cho_thue_2,
             altText: "Slide 2",
             caption: "Slide 2",
             key: 2,
         },
         {
-            original: "https://file4.batdongsan.com.vn/2022/11/15/20221115115040-11af_wm.jpg",
-            thumbnail: "https://file4.batdongsan.com.vn/2022/11/15/20221115115040-11af_wm.jpg",
+            original: nha_cho_thue_3,
+            thumbnail: nha_cho_thue_3,
             altText: "Slide 3",
             caption: "Slide 3",
+            key: 3,
+        },
+        {
+            original: nha_cho_thue_4,
+            thumbnail: nha_cho_thue_4,
+            altText: "Slide 4",
+            caption: "Slide 4",
+            key: 3,
+        },
+        {
+            original: nha_cho_thue_5,
+            thumbnail: nha_cho_thue_5,
+            altText: "Slide 5",
+            caption: "Slide 5",
             key: 3,
         },
     ];
@@ -129,13 +149,7 @@ function Post(props) {
     function copyToClipboard(e) {
         const copyText = e.target.innerText;
         navigator.clipboard.writeText(copyText);
-        dispatch(
-            settingsDispatch.actSetToastMessage({
-                open: true,
-                content: "Copied!",
-                error: false,
-            })
-        );
+        Swal.fire('', 'Đã sao chép số điện thoại!')
     }
     return (
         <div className="posts">
@@ -147,22 +161,22 @@ function Post(props) {
                         <div>
                             <div className="d-flex">
                                 <span>
-                                    <h5>110 tỷ</h5>
+                                    <h5>6 triệu/tháng</h5>
                                 </span>
                                 <span className="mx-1">
                                     <Dot />
                                 </span>
                                 <span>
-                                    <h5>189 m²</h5>
+                                    <h5>47 m²</h5>
                                 </span>
                                 <span className="mx-1">
                                     <Dot />
                                 </span>
                                 <span>
-                                    <h5>1 PN</h5>
+                                    <h5>2 PN</h5>
                                 </span>
                             </div>
-                            <div>Đường Nguyễn Đình Chiểu, Phường Đa Kao, Quận 1, Hồ Chí Minh</div>
+                            <div>số 4 ngách 64 ngõ 105 Phố Doãn Kế Thiện, Phường Mai Dịch, Cầu Giấy, Hà Nội</div>
                         </div>
                         <div className="d-flex align-items-center">
                             <img
@@ -176,7 +190,7 @@ function Post(props) {
                             <Button outline className="me-1" onClick={() => setOpenRequestModal(true)}>
                                 Yêu cầu liên hệ lại
                             </Button>
-                            <Button color="info">0832 025 *** · Hiện số</Button>
+                            <Button color="info" onClick={(e) => copyToClipboard(e)}>0832 025 *** · Hiện số</Button>
                         </div>
                     </div>
                 </div>
@@ -185,16 +199,16 @@ function Post(props) {
                 <Row>
                     <Col md={9}>
                         <ReactImageGallery items={slideItems} showPlayButton={false} autoPlay={true} />
-                        <p className="mt-3">Bán/Hồ Chí Minh/Quận 9/Căn hộ chung cư tại Vinhomes Grand Park</p>
-                        <h5>SANG NHƯỢNG VINHOMES GRAND PARK QUẬN 9 STUDIO 1.2 TỶ, 1PN 1.7 TỶ, 2PN 2 TỶ, LH 0832 025 ***</h5>
-                        <p className="mt-1">Dự án Vinhomes Grand Park, Quận 9, Hồ Chí Minh</p>
+                        <p className="mt-3">Cho thuê/Hà Nội/Cầu Giấy/Nhà trọ, phòng trọ tại phố Doãn Kế Thiện</p>
+                        <h5>CHO THUÊ CĂN HỘ FULL NỘI THẤT 1K1N 35 - 45M2 PHỐ DOÃN KẾ THIỆN - CẦU GIẤY</h5>
+                        <p className="mt-1">số 4 ngách 64 ngõ 105 Phố Doãn Kế Thiện, Phường Mai Dịch, Cầu Giấy, Hà Nội</p>
                         <hr />
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="d-flex align-items-start">
                                 <div className="py-2 me-4">
                                     <div>Mức giá</div>
-                                    <h5>1.7 tỷ</h5>
-                                    <div>~36.17 triệu/m²</div>
+                                    <h5>6 triệu/tháng</h5>
+                                    <div>60 triệu/năm</div>
                                 </div>
                                 <div className="py-2 mx-4">
                                     <div>Diện tích</div>
@@ -202,7 +216,7 @@ function Post(props) {
                                 </div>
                                 <div className="py-2 mx-4">
                                     <div>Phòng ngủ</div>
-                                    <h5>1 PN</h5>
+                                    <h5>2 PN</h5>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center">
@@ -275,24 +289,17 @@ function Post(props) {
                         <hr />
                         <h5 className="mt-4">Thông tin mô tả</h5>
                         <p className="mt-3">
-                            Mở bán chính thức đại đô thị thông minh chuẩn Singapore - Vinhomes Grand Park. Tổng quan dự án: - Tên dự án: Vinhomes
-                            Grand Park Quận 9. - Vị trí: Đường Nguyễn Xiển và Phước Thiện, phường Long Bình, Quận 9, TP. Hồ Chí Minh. - Đầu tư dự án:
-                            Tập đoàn Vingroup. Nhà thầu xây dựng chính: Coteccons. - Tổng diện tích của dự án: 271ha. - Mật độ xây dựng: 40%. - Các
-                            loại hình xây dựng: Căn hộ - nhà phố - Shophouse - Biệt thự và dinh thự. - Quy mô dự án căn hộ Vinhomes Quận 9: Cao 26 -
-                            35 tầng. - Số lượng khoảng hơn 44.000 căn hộ với diện tích dự kiến vào khoảng 35m² đến 139m². - Nhà phố, shophouse, biệt
-                            thự diện tích từ 84m² đến 500m². - Tiện ích nổi bật: Trung tâm thương mại Vincom, bệnh viện Quốc tế Vinmec, trường học
-                            Quốc tế Vinschool, siêu thị Vinmart, Tuyến xe Vinbus. Thương mại dịch vụ hồ bơi, khu vui chơi, công viên ánh sáng lớn nhất
-                            Đông Nam Á... Phân khu Rainbow: - Studio (diện tích 30 - 35m) Giá bán hiện tại: 1.25 tỷ - 1.4 tỷ. - Căn hộ 1PN + 1 (diện
-                            tích 46.5 - 51.5 m²) Giá bán hiện tại: 1.7 tỷ - 1.9 tỷ. - Căn hộ 2PN 1WC (diện tích: 59m²) Giá bán hiện tại: 2 tỷ - 2.3
-                            tỷ. - Căn hộ 2PN + 1 (2WC) diện tích 69m² căn góc. Giá bán hiện tại: 2.5 - 2.8 tỷ. - Căn hộ 3PN 81.7m² giá bán hiện tại:
-                            2.8 tỷ - 3 tỷ. Ngân hàng hỗ trợ 70%. Chỉ cần trả trước 30% giá gốc. Lưu ý: Giá căn hộ có thể phụ thuộc vào tầng view và
-                            chủ nhà. Liên hệ: 0832 025 *** PKD. Và còn thêm nhiều phân khu bán mới như Origami, Solari, The Beverly, Lumier nhiều
-                            chính sách ưu đãi. Chuyển nhượng nhà phố The Mahattan giá tốt nhất thị trường. PKD có 5 năm kinh nghiệm về bất động sản.
-                            Có xe đưa đón xem dự án tận nơi. Công ty nằm trong dự án xem nhà 24/24. Liên hệ ngay: 0832 025 *** PKD.
+                        <p>1 - Cho thu&ecirc; c&#259;n h&#7897; full n&#7897;i th&#7845;t 1K1N ph&#7889; Do&atilde;n K&#7871; Thi&#7879;n, C&#7847;u Gi&#7845;y.</p>
+
+<p>- T&ograve;a nh&agrave; 8 t&#7847;ng t&#7841;i ph&#7889; Do&atilde;n K&#7871; Thi&#7879;n m&#7899;i ho&agrave;n thi&#7879;n v&agrave;o &#7903; lu&ocirc;n. T&ograve;a nh&agrave; v&#7899;i c&aacute;c trang thi&#7871;t b&#7883; hi&#7879;n &#273;&#7841;i, &#273;&#7847;y &#273;&#7911; ti&#7879;n &iacute;ch, s&agrave;n g&#7895; v&#7899;i c&aacute;c c&#259;n h&#7897; mini chia 1 kh&aacute;ch v&agrave; 1 ng&#7911; DT 45m&sup2;. + Gi&aacute; t&#7915; 6.500.000&#273; - 7.000.000 &#273;/th&aacute;ng. + Ph&ograve;ng ng&#7911; + ph&ograve;ng kh&aacute;ch v&agrave; khu b&#7871;p ri&ecirc;ng bi&#7879;t. + Ph&ograve;ng ng&#7911; &#273;&#432;&#7907;c trang b&#7883; &#273;i&#7873;u h&ograve;a 2 chi&#7873;u, gi&#432;&#7901;ng, &#273;&#7879;m, t&#7911; qu&#7847;n &aacute;o, b&agrave;n l&agrave;m vi&#7879;c... + Ph&ograve;ng kh&aacute;ch c&#361;ng c&oacute; th&#7875; l&agrave;m ph&ograve;ng ng&#7911; n&#7871;u nh&agrave; &#272;&ocirc;ng ng&#432;&#7901;i. + Ph&ograve;ng b&#7871;p &#273;&#432;&#7907;c trang b&#7883; sofa b&agrave;n tr&agrave;, b&agrave;n b&#7871;p, b&#7871;p t&#7915;, t&#7911; b&#7871;p, t&#7911; l&#7841;nh, ch&#7853;u r&#7917;a b&aacute;t, h&uacute;t m&ugrave;i,... + Khu v&#7921;c nh&agrave; v&#7879; sinh &#273;&#432;&#7907;c l&#7855;p &#273;&#7847;y &#273;&#7911; thi&#7871;t b&#7883; hi&#7879;n &#273;&#7841;i nh&#432; ch&#7853;u r&#7917;a m&#7863;t, b&#7879;t Inax, v&ograve;i sen, b&igrave;nh n&oacute;ng l&#7841;nh,... - T&ograve;a nh&agrave; c&oacute; b&#7843;o v&#7879; 24/24, kh&oacute;a c&#7917;a v&acirc;n tay, &#273;&#7843;m b&#7843;o an ninh tuy&#7879;t &#273;&#7889;i, gi&#7901; gi&#7845;c ra v&agrave;o tho&#7843;i m&aacute;i. - Khu v&#7921;c ban c&ocirc;ng ph&#417;i &#273;&#7891; ri&ecirc;ng bi&#7879;t c&#7911;a t&#7915;ng ph&ograve;ng. * T&ograve;a nh&agrave; n&#7857;m &#7903; v&#7883; tr&iacute; trung t&acirc;m, giao th&ocirc;ng thu&#7853;n ti&#7879;n, r&#7845;t thu&#7853;n ti&#7879;n cho vi&#7879;c mua s&#7855;m, &#273;i ch&#7907;, g&#7847;n l&agrave;ng tr&#7867; SOS, g&#7847;n c&aacute;c trung t&acirc;m th&#432;&#417;ng m&#7841;i, g&#7847;n c&aacute;c tr&#432;&#7901;ng &#272;H nh&#432; Qu&#7889;c Gia, Ngo&#7841;i Ng&#7919;, g&#7847;n b&#7871;n xe M&#7929; &#272;&igrave;nh,...</p>
+
+<p>&#272;&#7883;a ch&#7881;: S&#7889; 4 ng&aacute;ch 64 ng&otilde; 105 ho&#7863;c ng&otilde; 66 H&#7891; T&ugrave;ng M&#7853;u - P. Mai D&#7883;ch - C&#7847;u Gi&#7845;y. LH C H&#432;&#417;ng. 2 - T&ograve;a nh&agrave; 8 t&#7847;ng t&#7841;i ph&#7889; Do&atilde;n K&#7871; Thi&#7879;n m&#7899;i ho&agrave;n thi&#7879;n v&agrave;o &#7903; lu&ocirc;n. - C&#259;n Studio DT 23m&sup2;. + Gi&aacute; 3.500.000 &#273;/th&aacute;ng. - C&#259;n h&#7897; Chia 1 kh&aacute;ch v&agrave; ng&#7911; DT 38m&sup2;. + Gi&aacute; t&#7915; 5.800.000 &#273;/th&aacute;ng. + Ph&ograve;ng ng&#7911; + ph&ograve;ng kh&aacute;ch v&agrave; khu b&#7871;p ri&ecirc;ng bi&#7879;t. + Ph&ograve;ng ng&#7911; &#273;&#432;&#7907;c trang b&#7883; &#273;i&#7873;u h&ograve;a 2 chi&#7873;u, gi&#432;&#7901;ng, t&#7911; qu&#7847;n &aacute;o... + Ph&ograve;ng kh&aacute;ch c&#361;ng c&oacute; th&#7875; l&agrave;m ph&ograve;ng ng&#7911; n&#7871;u nh&agrave; &#272;&ocirc;ng ng&#432;&#7901;i. + Ph&ograve;ng b&#7871;p &#273;&#432;&#7907;c trang b&#7883; b&agrave;n &#259;n, b&agrave;n b&#7871;p, t&#7911; b&#7871;p, ch&#7853;u r&#7917;a b&aacute;t, h&uacute;t m&ugrave;i,... + Khu v&#7921;c nh&agrave; v&#7879; sinh &#273;&#432;&#7907;c l&#7855;p &#273;&#7847;y &#273;&#7911; thi&#7871;t b&#7883; hi&#7879;n &#273;&#7841;i nh&#432; ch&#7853;u r&#7917;a m&#7863;t, b&#7879;t Inax, v&ograve;i sen, b&igrave;nh n&oacute;ng l&#7841;nh,... - T&ograve;a nh&agrave; c&oacute; b&#7843;o v&#7879; 24/24, &#273;&#7843;m b&#7843;o an ninh tuy&#7879;t &#273;&#7889;i, gi&#7901; gi&#7845;c ra v&agrave;o tho&#7843;i m&aacute;i. - Khu v&#7921;c ban c&ocirc;ng ph&#417;i &#273;&#7891; ri&ecirc;ng bi&#7879;t c&#7911;a t&#7915;ng ph&ograve;ng. * T&ograve;a nh&agrave; n&#7857;m &#7903; v&#7883; tr&iacute; trung t&acirc;m, giao th&ocirc;ng thu&#7853;n ti&#7879;n, c&aacute;ch m&#7863;t &#273;&#432;&#7901;ng Do&atilde;n K&#7871; Thi&#7879;n 20m, &#273;&#7889;i di&#7879;n ch&#7907; &#272;&#7891;ng Xa n&ecirc;n r&#7845;t thu&#7853;n ti&#7879;n cho vi&#7879;c mua s&#7855;m, &#273;i ch&#7907;, n&#7857;m trong khu&ocirc;n vi&ecirc;n t&#7853;p qu&acirc;n &#273;&#7897;i n&ecirc;n an ninh r&#7845;t t&#7889;t, g&#7847;n c&aacute;c trung t&acirc;m th&#432;&#417;ng m&#7841;i, g&#7847;n c&aacute;c tr&#432;&#7901;ng &#272;H nh&#432; qu&#7889;c gia, ngo&#7841;i ng&#7919;, g&#7847;n b&#7871;n xe M&#7929; &#272;&igrave;nh,...</p>
+
+<p>&#272;&#7883;a ch&#7881;: S&#7889; 32C1 &#272;&#432;&#7901;ng Do&atilde;n K&#7871; Thi&#7879;n (&#272;&#7889;i di&#7879;n c&#7893;ng ch&#7907; &#273;&#7891;ng Xa) - P. Mai D&#7883;ch - C&#7847;u Gi&#7845;y. LH C H&#432;&#417;ng.</p>
                         </p>
                         <div className="mt-5">
                             <h5>Đặc điểm bất động sản</h5>
-                            <div>Loại tin đăng: Bán căn hộ chung cư</div>
+                            <div>Loại tin đăng: Cho thuê nhà trọ, phòng trọ</div>
                             <Row>
                                 <Col md={6}>
                                     <hr />
@@ -305,14 +312,14 @@ function Post(props) {
                                     <hr />
                                     <div className="d-flex align-items-center px-5">
                                         <h6 style={{ minWidth: "140px" }}>Mức giá</h6>
-                                        <div className="mb-2 ms-5">1.7 tỷ</div>
+                                        <div className="mb-2 ms-5">6 triệu/tháng</div>
                                     </div>
                                 </Col>
                                 <Col md={6}>
                                     <hr />
                                     <div className="d-flex align-items-center px-5">
                                         <h6 style={{ minWidth: "140px" }}>Số phòng ngủ</h6>
-                                        <div className="mb-2 ms-5">1 phòng</div>
+                                        <div className="mb-2 ms-5">2 phòng</div>
                                     </div>
                                 </Col>
                                 <Col md={6}>
@@ -384,16 +391,11 @@ function Post(props) {
                             </div>
                         </div>
 
-                        <NewsCard title="Bất động sản dành cho bạn" data={recommendedData} wrapItem={true} />
+                        <NewsCard title="Tin đăng dành cho bạn" data={recommendedData} wrapItem={true} />
                         <NewsCard title="Tin đăng đã xem" data={recommendedData} wrapItem={true} />
                         <hr />
                         <div className="my-4">
-                            Quý vị đang xem nội dung tin rao "Bán hàng hiếm góc 2 MT Nguyễn Đình Chiểu, P Đa Kao Q1 DT 8x24m CN 189m2 trệt 1L. Chỉ 110
-                            tỷ tl" - Mã tin 34845360. Mọi thông tin, nội dung liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách
-                            nhiệm. Batdongsan.com.vn luôn cố gắng để các thông tin được hữu ích nhất cho quý vị tuy nhiên Batdongsan.com.vn không đảm
-                            bảo và không chịu trách nhiệm về bất kỳ thông tin, nội dung nào liên quan tới tin rao này. Trường hợp phát hiện nội dung
-                            tin đăng không chính xác, Quý vị hãy thông báo và cung cấp thông tin cho Ban quản trị Batdongsan.com.vn theo Hotline
-                            19001881 để được hỗ trợ nhanh và kịp thời nhất.
+                        Quý vị đang xem nội dung tin rao "Chính chủ cho thuê căn hộ full nội thất 1K1N 35 - 45m2 phố Doãn Kế Thiện - Cầu Giấy" - Mã tin 36081052. Mọi thông tin, nội dung liên quan tới tin rao này là do người đăng tin đăng tải và chịu trách nhiệm. Batdongsan.com.vn luôn cố gắng để các thông tin được hữu ích nhất cho quý vị tuy nhiên Batdongsan.com.vn không đảm bảo và không chịu trách nhiệm về bất kỳ thông tin, nội dung nào liên quan tới tin rao này. Trường hợp phát hiện nội dung tin đăng không chính xác, Quý vị hãy thông báo và cung cấp thông tin cho Ban quản trị Batdongsan.com.vn theo Hotline 19001881 để được hỗ trợ nhanh và kịp thời nhất.
                         </div>
                     </Col>
                     <Col md={3}>

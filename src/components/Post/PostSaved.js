@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { Dot, HeartFill, Image } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 import { listPost, sortOptions, utilityLinkOptions } from "../../constants";
 import SearchBar from "../core/SearchBar";
 import Select from "../core/Select";
 
 function PostSaved(props) {
+    const navigate = useNavigate()
     const [sortType, setSortType] = useState("default");
     const handleChangeSort = (e) => {
         setSortType(e.target.value);
     };
+    const handleClickPost = () => {
+        navigate('/post/1')
+    }
     return (
         <div className="post-list">
             <SearchBar />
@@ -25,7 +30,7 @@ function PostSaved(props) {
                         </div>
                         <div className="list-post__container">
                             {listPost.map((post, indexPost) => (
-                                <div key={indexPost} className="list-post__item my-2">
+                                <div key={indexPost} className="list-post__item my-2 cursor-pointer" onClick={handleClickPost}>
                                     <Card>
                                         <div className="d-flex">
                                             <div className="position-relative">

@@ -6,35 +6,35 @@ function RecommendedByLocation(props) {
     const data = [
         {
             id: 0,
-            title: "Hà Nội",
+            title: "Cầu Giấy",
             post_count: 53915,
             url: "https://batdongsan.com.vn/nha-dat-ban-ha-noi",
             image_url: "https://file4.batdongsan.com.vn/images/newhome/cities1/HN-web-1.jpg",
         },
         {
             id: 1,
-            title: "TP. Hồ Chí Minh",
+            title: "Thanh Xuân",
             post_count: 55928,
             url: "https://batdongsan.com.vn/nha-dat-ban-tp-hcm",
             image_url: "https://file4.batdongsan.com.vn/images/newhome/cities1/HCM-web-1.jpg",
         },
         {
             id: 2,
-            title: "Đà Nẵng",
+            title: "Hai Bà Trưng",
             post_count: 4030,
             url: "https://batdongsan.com.vn/nha-dat-ban-da-nang",
             image_url: "https://file4.batdongsan.com.vn/images/newhome/cities1/DDN-web-1.jpg",
         },
         {
             id: 3,
-            title: "Bình Dương",
+            title: "Đống Đa",
             post_count: 5629,
             url: "https://batdongsan.com.vn/nha-dat-ban-binh-duong",
             image_url: "https://file4.batdongsan.com.vn/images/newhome/cities1/BD-web-1.jpg",
         },
         {
             id: 4,
-            title: "Đồng Nai",
+            title: "Bắc Từ Liêm",
             post_count: 3323,
             url: "https://batdongsan.com.vn/nha-dat-ban-dong-nai",
             image_url: "https://file4.batdongsan.com.vn/images/newhome/cities1/DNA-web-2.jpg",
@@ -58,7 +58,7 @@ function RecommendedByLocation(props) {
     const tagContainerRef = useRef();
     return (
         <div className="location-recommended my-4 mt-5 page-container-xl">
-            <h3>Bất động sản theo địa điểm</h3>
+            <h3>Tin đăng theo địa điểm</h3>
             <Row>
                 <Col md={6}>
                     <div className="mt-3 position-relative" onClick={() => handleClickCard(data[0].url)}>

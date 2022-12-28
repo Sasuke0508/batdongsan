@@ -93,7 +93,7 @@ function SearchBar(props) {
 
     return (
         <div className="search-bar">
-            <div className="d-flex align-items-center p-3">
+            <div className="d-flex align-items-center p-3" style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}>
                 <div className="d-flex align-items-center" style={{ flex: "1" }}>
                     <Button outline>
                         <Search />

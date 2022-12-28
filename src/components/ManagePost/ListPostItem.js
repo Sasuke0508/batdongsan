@@ -1,8 +1,46 @@
 import React from "react";
 import { BarChart, Dot, Pencil, ThreeDots, Upload } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { Button, Col, Input, Row } from "reactstrap";
+import { sellUnits } from "../../constants";
+import {msgPendingFeature} from "../../utils"
 
 function ListPostItem({ postList }) {
+    const navigate = useNavigate();
+    const handleClickEditPost = () => {
+        navigate("/manager-post/create-new-post", {
+            state: {
+                dataEditPost: {
+                    address: {
+                        city: "01",
+                        district: "005",
+                        ward: "00160",
+                        number: "số 40",
+                    },
+                    title: "Cho thuê phòng trọ tại số 30 Nghĩa Tân - Cầu Giấy thềm 30m",
+                    description: `Cam kết:
+                    - Giá thuê tốt nhất.
+                    - Xem căn hộ 24/7 không cần báo trước.
+                    - Hỗ trợ 24/7 trong suốt quá trình thuê.
+                    - Pháp lý minh bạch, kí HĐ trực tiếp với chủ sở hữu căn hộ.
+                    - Hỗ trợ, tư vấn nếu khách thuê có nhu cầu mua căn hộ.`,
+                    areaSize: "30m2",
+                    price: { value: "4triệu / tháng", unit: sellUnits[0].value },
+                    quantityInfo: { bedRoom: 2, bathRoom: 1, floor: 1 },
+                    entranceSize : '6m2',
+                    frontSize : '10m2',
+                    contactInfo : {
+                        name: "Nguyễn Tuấn An",
+                        phoneNumber: "01234568***",
+                        address: "Cầu Giấy - Hà Nội",
+                        email: "tuanan@phongtrochothue.com",
+                    },
+                    imageUrls : ['https://www.hancorp.com.vn/wp-content/uploads/2020/08/phong-tro-2.jpg'],
+                    postStartDate : '2022-12-10'
+                },
+            },
+        });
+    };
     return (
         <div>
             {postList.map((item, index) => (
@@ -11,7 +49,7 @@ function ListPostItem({ postList }) {
                         <Col md={9}>
                             <div className="d-flex">
                                 <div className="me-2">
-                                    <img src={item.image_url} className="w-100" alt="statistic" />
+                                    <img height={120} src={item.image_url} className="w-100" alt="statistic" />
                                 </div>
                                 <div>
                                     <h6>{item.title}</h6>
@@ -48,15 +86,15 @@ function ListPostItem({ postList }) {
                                     <label>#1</label>
                                 </div>
                                 <div className="d-flex align-items-center">
-                                    <Button outline className="me-2">
-                                        <BarChart className="me-2" />
+                                    <Button outline className="me-2" onClick={msgPendingFeature} >
+                                        <BarChart className="me-2"/>
                                         Chi tiết
                                     </Button>
-                                    <Button outline className="me-2">
+                                    <Button outline className="me-2" onClick={handleClickEditPost}>
                                         <Pencil className="me-2" />
                                         Sửa tin
                                     </Button>
-                                    <Button outline className="me-2">
+                                    <Button outline className="me-2" onClick={msgPendingFeature}>
                                         <ThreeDots className="me-2" />
                                         Thao tác
                                     </Button>

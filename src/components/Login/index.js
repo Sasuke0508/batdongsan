@@ -6,7 +6,7 @@ import ForgotPasswordView from './ForgotPasswordView';
 import LoginView from './LoginView';
 import SignupView from './SignupView';
 
-function Login({initMode, route}) {
+function Login({initMode, route, closeModal}) {
     const location = useLocation();
     const [viewMode, setViewMode] = useState( location?.state?.initMode || initMode || 'login')
     return (
@@ -17,9 +17,9 @@ function Login({initMode, route}) {
                 </Col>
                 <Col md={7}>
                     {viewMode === 'login' &&
-                        <LoginView setViewMode={setViewMode} />}
+                        <LoginView closeModal={closeModal} setViewMode={setViewMode} />}
                     {viewMode === 'signup' &&
-                        <SignupView setViewMode={setViewMode} />}
+                        <SignupView closeModal={closeModal} setViewMode={setViewMode} />}
                     {viewMode === 'forgot' &&
                         <ForgotPasswordView setViewMode={setViewMode} />}
                     {viewMode === 'changePassword' &&

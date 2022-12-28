@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BarChart, Calendar, Dot, Filter, Pencil, Search, Sliders, ThreeDots, Upload } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import { Button, Col, Input, Label, Row } from "reactstrap";
 import Select from "../core/Select";
 import ListPostItem from "./ListPostItem";
@@ -47,10 +48,10 @@ function ListPost(props) {
     const postList = [
         {
             id: 36089521,
-            image_url: "https://batdongsan.com.vn/sellernet/static/media/no-photo.2de8b38e.svg",
-            title: "Bán nhà khu vực cầu giấy thềm 30m",
-            type: "Bán nhà mặt phố",
-            address: "Ba Vì, Hà Nội",
+            image_url: "https://www.hancorp.com.vn/wp-content/uploads/2020/08/phong-tro-2.jpg",
+            title: "Cho thuê phòng trọ tại số 30 Nghĩa Tân - Cầu Giấy thềm 30m",
+            type: "Cho thuê",
+            address: "Cầu Giấy, Hà Nội",
             status: "Chờ duyệt",
             date: "10/12/2022",
             expired_date: "20/12/2022",
