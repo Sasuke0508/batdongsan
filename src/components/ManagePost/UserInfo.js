@@ -15,11 +15,11 @@ function UserInfo(props) {
     return (
         <div className="user-info px-2">
             <div className="d-flex align-items-center">
-                <img className="avatar me-2" alt="avatar" src="https://icons.getbootstrap.com/assets/img/icons-hero.png" />
+                <img className="avatar me-2" alt="avatar" src={require("../../assets/img/user/user_avatar.jpg")} />
                 <div>
-                    <h5>user2078504</h5>
+                    <h5>tuanan2078504</h5>
                     <div id="userPoint">
-                        0 điểm <QuestionCircleFill />
+                        22 điểm <QuestionCircleFill />
                     </div>
                     <Tooltip isOpen={tooltipOpen} target="userPoint" toggle={toggle}>
                         Điểm tích luỹ
@@ -30,7 +30,7 @@ function UserInfo(props) {
                 <h5>Số dư tài khoản</h5>
                 <div className="d-flex justify-content-between">
                     <div>TK tin đăng</div>
-                    <h6>0</h6>
+                    <h6>200.000đ</h6>
                 </div>
                 <div className="transfer-box p-3 d-flex justify-content-between align-items-center">
                     <div>

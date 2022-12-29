@@ -42,14 +42,14 @@ function RecommendedByLocation(props) {
     ];
 
     const dataTags = [
-        "Vinhomes Central Park",
-        "Vinhomes Grand Park",
-        "Vinhomes Smart City",
-        "Vinhomes Ocean Park",
-        "Vũng Tàu Pearl",
-        "Bcons Green View",
-        "Grandeur Palace",
-        "Diamond",
+        "Phòng trọ sinh viên",
+        "Trọ Bách Kinh Xây",
+        "Cho thuê nhà nguyên căn",
+        "Cho thuê chung cư",
+        "Trọ khu vực cầu giấy",
+        "Trọ 2-3 triệu",
+        "Phòng trọ Hà Đông",
+        "Cho thuê phòng trọ",
     ];
     const handleClickCard = (url) => {
         window.open(url, "_blank", "noopener,noreferrer");
