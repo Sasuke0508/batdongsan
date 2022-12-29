@@ -11,9 +11,11 @@ import Utility from "./Utility";
 function Home(props) {
     return (
         <div className="home-page position-relative">
-            <img id="home-page-background" src="https://danhkhoi.com.vn/static/upload/images/Du-An/Astral-City/Astral-City-5.jpg" alt="background" />
-            <SearchBox />
-            <News />
+            <img id="home-page-background" src={require("../../assets/img/home_background.webp")} alt="background" />
+            <div className="" style={{height : '670px'}}>
+                <SearchBox />
+            </div>
+            {/* <News /> */}
             <Recommended />
             <RecommendedByLocation />
             <HotNews />

@@ -94,7 +94,7 @@ function SearchBox(props) {
     };
 
     return (
-        <div className="search-box pt-5">
+        <div className="search-box">
             <TabContent className="pt-4 p-3 mt-n2">
                 <TabPane>
                     <Row>
