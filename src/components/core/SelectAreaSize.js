@@ -27,9 +27,9 @@ function SelectAreaSize({ value, onChange, open, toggle }) {
                 <DropdownMenu>
                     <div className="mx-2 p-2">
                         <div className="d-flex justify-content-center align-items-center">
-                            <Input placeholder="Từ" type="number" value={value.from} onChange={(e) => onChange("from", e.target.value)} />
+                            <Input placeholder="Từ" type="number" value={value.from || ""} onChange={(e) => onChange("from", e.target.value)} />
                             <ArrowRight className="mx-3" />
-                            <Input placeholder="Đến" type="number" value={value.to} onChange={(e) => onChange("to", e.target.value)} />
+                            <Input placeholder="Đến" type="number" value={value.to || ""} onChange={(e) => onChange("to", e.target.value)} />
                         </div>
                         <div className="search__price-select mt-2">
                             {areaSizeOptions.map((item, index) => (

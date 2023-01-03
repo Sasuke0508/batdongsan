@@ -124,8 +124,8 @@ export const postTypePlan = [
             label: "màu xanh",
         },
         position: "Hiện dưới cùng",
-        postDays: "Đăng tối thiểu 7 ngày",
-        price: 2727,
+        postDays: "Đăng tối đa 7 ngày",
+        price: 10000,
     },
     {
         id: 1,
@@ -136,8 +136,8 @@ export const postTypePlan = [
             label: "màu cam",
         },
         position: "Hiện dưới VIP 2",
-        postDays: "Đăng tối thiểu 7 ngày",
-        price: 50000,
+        postDays: "Đăng tối đa 14 ngày",
+        price: 15000,
     },
     {
         id: 2,
@@ -148,8 +148,8 @@ export const postTypePlan = [
             label: "MÀU CAM",
         },
         position: "Hiện dưới VIP 1",
-        postDays: "Đăng tối thiểu 7 ngày",
-        price: 63636,
+        postDays: "Đăng tối đa 21 ngày",
+        price: 25000,
     },
     {
         id: 3,
@@ -160,8 +160,8 @@ export const postTypePlan = [
             label: "MÀU ĐỎ",
         },
         position: "Hiện dưới VIP Đặc Biệt",
-        postDays: "Đăng tối thiểu 7 ngày",
-        price: 90909,
+        postDays: "Đăng tối đa 1 tháng",
+        price: 49000,
     },
     {
         id: 4,
@@ -172,8 +172,8 @@ export const postTypePlan = [
             label: "MÀU ĐỎ",
         },
         position: "Luôn hiện đầu danh sách tin",
-        postDays: "Đăng tối thiểu 10 ngày",
-        price: 200000,
+        postDays: "Đăng tối đa 3 tháng",
+        price: 100000,
     },
 ];
 
@@ -217,45 +217,45 @@ export const notiList = [
 
 export const priceOptions = [
     { label: "Tất cả các mức giá", from: 0, to: 0 },
-    { label: "Dưới 500 triệu", from: 0, to: 500 },
+    { label: "Dưới 2 triệu", from: 0, to: 2 },
     {
-        label: "500 - 800 triệu",
-        from: 500,
-        to: 800,
+        label: "2 - 5 triệu",
+        from: 2,
+        to: 5,
     },
     {
-        label: "800 triệu - 1 tỷ",
-        from: 800,
-        to: 1000,
+        label: "5 triệu - 15 triệu",
+        from: 5,
+        to: 15,
     },
 ];
 export const areaSizeOptions = [
-    { label: "Dưới 30m2", from: 0, to: 30 },
-    { label: "30 - 50m2", from: 30, to: 50 },
+    { label: "Dưới 20m2", from: 0, to: 20 },
+    { label: "20 - 30m2", from: 20, to: 30 },
     {
-        label: "50 - 80m2",
+        label: "30 - 40m2",
+        from: 30,
+        to: 40,
+    },
+    {
+        label: "40 - 50m2",
+        from: 40,
+        to: 50,
+    },
+    {
+        label: "50 - 60m2",
         from: 50,
-        to: 80,
+        to: 60,
     },
     {
-        label: "80 - 100m2",
-        from: 80,
-        to: 100,
+        label: "60 - 70m2",
+        from: 60,
+        to: 70,
     },
     {
-        label: "100 - 150m2",
-        from: 100,
-        to: 150,
-    },
-    {
-        label: "150 - 200m2",
-        from: 150,
-        to: 200,
-    },
-    {
-        label: "Trên 500m2",
+        label: "Trên 70m2",
         from: "",
-        to: 500,
+        to: 70,
     },
 ];
 
@@ -488,23 +488,19 @@ export const userSettingsOptions = [
 
 export const houseTypeOptions = [
     {
-        label : 'Tất cả nhà đất',
+        label : 'Tất cả loại phòng',
         value : 'all'
     },
     {
-        label : 'Căn hộ chung cư',
+        label : 'Phòng trọ',
         value : 'can_ho'
     },
     {
-        label : 'Nhà riêng',
+        label : 'Nhà nguyên căn',
         value : 'nha_rieng'
     },
     {
-        label : 'Nhà biệt thự, liền kề',
+        label : 'Căn hộ chung cư',
         value : 'nha_biet_thu'
-    },
-    {
-        label : 'Nhà mặt phố',
-        value : 'nha_mat_pho'
     },
 ]

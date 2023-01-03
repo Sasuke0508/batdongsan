@@ -59,13 +59,12 @@ export const formatCurrency = (curr) => {
 };
 
 export const countUnreadNoti = (list) => {
-    const length = list.filter(item => !item.is_read).length 
-    return length > 9 ? '9+' : length
-} 
+    const length = list.filter((item) => !item.is_read).length;
+    return length > 9 ? "9+" : length;
+};
 
 export const RequiredMark = () => <span style={{ color: "red" }}>*</span>;
 
 export const msgPendingFeature = () => {
-    console.log(1)
-    Swal.fire('', 'Tính năng đang phát triển!')
-}
+    Swal.fire("", "Tính năng đang phát triển!");
+};

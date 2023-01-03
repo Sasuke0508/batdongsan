@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowClockwise, ArrowRight, Building, CaretDown, House, Search } from "react-bootstrap-icons";
+import { ArrowClockwise, CaretDown, Search } from "react-bootstrap-icons";
 import { Button, Col, Dropdown, DropdownMenu, DropdownToggle, Input, Row, TabContent, TabPane } from "reactstrap";
 import { getAddressLabelText } from "../core/getAddress";
 import SelectAddress from "../core/SelectAddress";
@@ -11,10 +11,10 @@ import SelectProductType from "../core/SelectProductType";
 function SearchBox(props) {
     const defaultSearch = {
         sellType: 0,
-        houseType: [],
+        houseType: "",
         searchText: "",
         address: {
-            city: "",
+            city: "01",
             district: "",
             ward: "",
             number: "",
@@ -57,24 +57,33 @@ function SearchBox(props) {
     };
 
     const handleChangeHouseType = (value) => {
-        console.log(value)
         setHouseType(value);
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            houseType: false,
+        }));
         // toggle("areaSize");
     };
 
     const handleChangePrice = (type, value) => {
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            price: false,
+        }));
         setPrice((prev) => ({
             ...prev,
             [type]: value,
         }));
-        toggle("price");
     };
     const handleChangeAreaSize = (type, value) => {
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            areaSize: false,
+        }));
         setAreaSize((prev) => ({
             ...prev,
             [type]: value,
         }));
-        toggle("areaSize");
     };
 
     const handleChangeFilterMore = (type, value) => {

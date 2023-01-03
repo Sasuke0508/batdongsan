@@ -1,23 +1,26 @@
 import React, { useRef, useState } from "react";
 import { Dot, ExclamationTriangle, Facebook, Heart, HeartFill, Share } from "react-bootstrap-icons";
 import ReactImageGallery from "react-image-gallery";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Button, CarouselCaption, CarouselItem, Col, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import Swal from "sweetalert2";
+import nha_cho_thue_1 from "../../assets/img/post/nha_cho_thue_1.jpg";
+import nha_cho_thue_2 from "../../assets/img/post/nha_cho_thue_2.jpg";
+import nha_cho_thue_3 from "../../assets/img/post/nha_cho_thue_3.jpg";
+import nha_cho_thue_4 from "../../assets/img/post/nha_cho_thue_4.jpg";
+import nha_cho_thue_5 from "../../assets/img/post/nha_cho_thue_5.jpg";
 import { recommendedData, reportReasonList } from "../../constants";
-import { settingsDispatch } from "../../store/slices/settingsSlice";
 import NewsCard from "../core/NewsCard";
 import RequestModal from "../core/RequestModal";
 import SearchBar from "../core/SearchBar";
 import ToolTips from "../core/ToolTips";
 import useWindowHeight from "../core/useWindowHeight";
-import nha_cho_thue_1 from "../../assets/img/post/nha_cho_thue_1.jpg"
-import nha_cho_thue_2 from "../../assets/img/post/nha_cho_thue_2.jpg"
-import nha_cho_thue_3 from "../../assets/img/post/nha_cho_thue_3.jpg"
-import nha_cho_thue_4 from "../../assets/img/post/nha_cho_thue_4.jpg"
-import nha_cho_thue_5 from "../../assets/img/post/nha_cho_thue_5.jpg"
 
 function Post(props) {
+    const navigate = useNavigate()
+    const loginStatus = useSelector(state => state.settingsSlice.user.loginStatus)
+
     const slideItems = [
         {
             original: nha_cho_thue_1,
@@ -57,6 +60,8 @@ function Post(props) {
     ];
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
+
+    const [hidePhoneNumber, setHidePhoneNumber] = useState(true)
 
     const next = () => {
         if (animating) return;
@@ -147,9 +152,16 @@ function Post(props) {
 
     const dispatch = useDispatch();
     function copyToClipboard(e) {
-        const copyText = e.target.innerText;
-        navigator.clipboard.writeText(copyText);
-        Swal.fire('', 'Đã sao chép số điện thoại!')
+        if (loginStatus) {
+
+            setHidePhoneNumber(() => false)
+            const copyText = e.target.innerText;
+            navigator.clipboard.writeText(copyText);
+            Swal.fire('', 'Đã sao chép số điện thoại!')
+        }
+        else {
+            navigate('/login')
+        }
     }
     return (
         <div className="posts">
@@ -190,7 +202,7 @@ function Post(props) {
                             <Button outline className="me-1" onClick={() => setOpenRequestModal(true)}>
                                 Yêu cầu liên hệ lại
                             </Button>
-                            <Button color="info" onClick={(e) => copyToClipboard(e)}>0832 025 *** · Hiện số</Button>
+                            <Button color="info" onClick={(e) => copyToClipboard(e)}>{hidePhoneNumber ? '0832 025 *** · Hiện số' : "0832 025 312"}</Button>
                         </div>
                     </div>
                 </div>
@@ -232,7 +244,7 @@ function Post(props) {
                                 <div id="post__like-btn">
                                     {true ? 
                                     <Heart className="mx-2 cursor-pointer" size={26} /> :
-                                    <HeartFill className="mx-2 cursor-pointer" size={26} />}
+                                    <HeartFill color="red" className="mx-2 cursor-pointer" size={26} />}
                                 </div>
                                 <ToolTips target="post__like-btn">Thêm vào tin yêu thích</ToolTips>
                                 <Modal isOpen={openModalReport} toggle={toggleModalReport}>
@@ -412,7 +424,7 @@ function Post(props) {
                                 <h6>Lê Phi Long</h6>
                                 <div>Xem thêm 1 tin khác</div>
                                 <Button ref={numberPhoneRef} className="w-100 mt-2" color="info" onClick={(e) => copyToClipboard(e)}>
-                                    0832 025 *** · Hiện số
+                                    {hidePhoneNumber ? '0832 025 *** · Hiện số' : "0832 025 312"}
                                 </Button>
                                 <Button className="w-100 mt-2" outline>
                                     <Facebook /> Chat qua Facebook

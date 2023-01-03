@@ -20,7 +20,7 @@
                 width: 0;
                 background-color: $primary_color;
                 height: 2px;
-                transition: all .5s ease-in-out;
+                transition: all 0.5s ease-in-out;
                 top: 60px;
             }
 
@@ -40,7 +40,6 @@
 
                     &:hover {
                         background-color: rgb(218, 216, 216);
-
                     }
                 }
             }
@@ -70,7 +69,7 @@
         }
     }
     .user__avatar {
-        background-color: #FFECEB;
+        background-color: #ffeceb;
         border-radius: 50%;
         width: 40px;
         height: 40px;

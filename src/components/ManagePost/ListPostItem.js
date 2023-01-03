@@ -1,9 +1,9 @@
 import React from "react";
-import { BarChart, Dot, Pencil, ThreeDots, Upload } from "react-bootstrap-icons";
+import { BarChart, Dot, Pencil, ThreeDots } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Input, Row } from "reactstrap";
 import { sellUnits } from "../../constants";
-import {msgPendingFeature} from "../../utils"
+import { msgPendingFeature } from "../../utils";
 
 function ListPostItem({ postList }) {
     const navigate = useNavigate();
@@ -77,6 +77,20 @@ function ListPostItem({ postList }) {
                                             <div className="opacity-75">Ngày hết hạn</div>
                                             <div>{item.expired_date}</div>
                                         </div>
+                                        <div className="d-flex align-items-center">
+                                            <Button outline className="me-2" onClick={msgPendingFeature} >
+                                                <BarChart className="me-2"/>
+                                                Chi tiết
+                                            </Button>
+                                            <Button outline className="me-2" onClick={handleClickEditPost}>
+                                                <Pencil className="me-2" />
+                                                Sửa tin
+                                            </Button>
+                                            <Button outline className="me-2" onClick={msgPendingFeature}>
+                                                <ThreeDots className="me-2" />
+                                                Thao tác
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -85,23 +99,10 @@ function ListPostItem({ postList }) {
                                     <Input className="me-2" type="checkbox" />
                                     <label>#1</label>
                                 </div>
-                                <div className="d-flex align-items-center">
-                                    <Button outline className="me-2" onClick={msgPendingFeature} >
-                                        <BarChart className="me-2"/>
-                                        Chi tiết
-                                    </Button>
-                                    <Button outline className="me-2" onClick={handleClickEditPost}>
-                                        <Pencil className="me-2" />
-                                        Sửa tin
-                                    </Button>
-                                    <Button outline className="me-2" onClick={msgPendingFeature}>
-                                        <ThreeDots className="me-2" />
-                                        Thao tác
-                                    </Button>
-                                </div>
+                                
                             </div>
                         </Col>
-                        <Col md={3}>
+                        {/* <Col md={3}>
                             <div>
                                 <img
                                     src="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
@@ -114,7 +115,7 @@ function ListPostItem({ postList }) {
                                     Đẩy tin
                                 </Button>
                             </div>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </div>
             ))}

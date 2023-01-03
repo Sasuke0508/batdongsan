@@ -25,6 +25,7 @@ function Header(props) {
         }
         if (path === '/logout') {
             dispatch(settingsDispatch.actSetLoginStatus(false))
+            localStorage.setItem('find_room_login_status', false)
             navigate('/')
             return
         }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "reactstrap";
 import { RequiredMark } from "../../utils";
-import Select from "./Select";
 import getAddress from "./getAddress";
+import Select from "./Select";
 
 function SelectAddress({ size, address, setAddress }) {
     const initCityOption = getAddress("city");
@@ -27,7 +27,6 @@ function SelectAddress({ size, address, setAddress }) {
             }));
         }
         if (type === "district") {
-            console.log(value)
             const newAddress = getAddress("ward", address.city, value);
             setAddress(() => ({
                 ...address,
@@ -56,14 +55,12 @@ function SelectAddress({ size, address, setAddress }) {
         if (address.city) {
             handleChange("city", address.city);
         }
+
+    }, []);
+    useEffect(() => {
         if (address.district) {
-            handleChange("district", '005');
-        }
-        if (address.ward) {
-            handleChange("ward", address.ward);
-        }
-        if (address.number) {
-            handleChange("number", address.number);
+            handleChange("district", address.district);
+            console.log(1);
         }
     }, []);
     return (

@@ -40,7 +40,12 @@ export const getAddressLabel = (address) => {
 };
 
 export const getAddressLabelText = (address) => {
-    const addressLabelObject = getAddressLabel(address)
-    const array = Object.values(addressLabelObject)
-    return array.filter(item => item !== '').reverse().join(', ') || 'Trên toàn quốc'
-}
+    const addressLabelObject = getAddressLabel(address);
+    const array = Object.values(addressLabelObject);
+    return (
+        array
+            .filter((item) => item !== "")
+            .reverse()
+            .join(", ") || "Trên toàn quốc"
+    );
+};

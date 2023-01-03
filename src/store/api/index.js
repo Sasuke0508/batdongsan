@@ -1,5 +1,5 @@
-import axios from 'axios';
-import config from '../../config';
+import axios from "axios";
+import config from "../../config";
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
@@ -13,24 +13,22 @@ export default {
             });
     },
 
-    async post(data, enpoint = '') {
-        if (data.type === 'form') {
+    async post(data, enpoint = "") {
+        if (data.type === "form") {
             const formData = new FormData();
-            formData.append("data", JSON.stringify(data))
+            formData.append("data", JSON.stringify(data));
             return await axios
                 .post(`${config.rootLinkAPI}/${enpoint}`, formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                        "Content-Type": "multipart/form-data",
+                    },
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-        return await axios
-            .post(`${config.rootLinkAPI}/${enpoint}`, data)
-            .catch(function (error) {
-                console.log("Show Error: ", error);
-            });
-    }
-}
+        return await axios.post(`${config.rootLinkAPI}/${enpoint}`, data).catch(function (error) {
+            console.log("Show Error: ", error);
+        });
+    },
+};

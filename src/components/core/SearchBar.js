@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ArrowClockwise, Building, CaretDown, House, Search } from "react-bootstrap-icons";
-import { Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
+import { ArrowClockwise, CaretDown, Search } from "react-bootstrap-icons";
+import { Button, Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
 import { getAddressLabelText } from "./getAddress";
 import SelectAddress from "./SelectAddress";
 import SelectAreaSize from "./SelectAreaSize";
@@ -11,7 +11,7 @@ import SelectProductType from "./SelectProductType";
 function SearchBar(props) {
     const defaultSearch = {
         sellType: 0,
-        houseType: [],
+        houseType: "",
         searchText: "",
         address: {
             city: "",
@@ -57,6 +57,10 @@ function SearchBar(props) {
 
     const handleChangeHouseType = (value) => {
         setSearchHouseType(value);
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            houseType: false,
+        }));
     };
 
     const handleChangePrice = (type, value) => {
@@ -64,14 +68,20 @@ function SearchBar(props) {
             ...prev,
             [type]: value,
         }));
-        toggle("price");
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            price: false,
+        }));
     };
     const handleChangeAreaSize = (type, value) => {
         setAreaSize((prev) => ({
             ...prev,
             [type]: value,
         }));
-        toggle("areaSize");
+        setDropdownOpen((prevState) => ({
+            ...prevState,
+            areaSize: false,
+        }));
     };
 
     const handleChangeFilterMore = (type, value) => {

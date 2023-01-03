@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { BarChart, Calendar, Dot, Filter, Pencil, Search, Sliders, ThreeDots, Upload } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
-import { Button, Col, Input, Label, Row } from "reactstrap";
+import { Calendar, Filter, Search, Sliders } from "react-bootstrap-icons";
+import { Button, Input } from "reactstrap";
 import Select from "../core/Select";
 import ListPostItem from "./ListPostItem";
 

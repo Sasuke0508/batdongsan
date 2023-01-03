@@ -37,11 +37,9 @@ function PricingPlan(props) {
                         <div className="mt-3">{plan.postDays}</div>
                         <hr />
                         <div className="mt-3 pb-3">
-                            Từ{" "}
                             <b>
                                 {formatCurrency(plan.price)}đ <br />
                             </b>
-                            ngày
                         </div>
                     </div>
                 ))}
