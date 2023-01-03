@@ -13,7 +13,6 @@ function App() {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         const loginStatus = localStorage.getItem("find_room_login_status");
-        console.log(typeof loginStatus);
         dispatch(settingsDispatch.actSetLoginStatus(loginStatus == "true"));
     }, []);
     return (

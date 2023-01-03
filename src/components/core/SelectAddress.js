@@ -53,14 +53,16 @@ function SelectAddress({ size, address, setAddress }) {
     };
     useEffect(() => {
         if (address.city) {
-            handleChange("city", address.city);
+            setTimeout(() => {
+                handleChange("city", address.city);
+            }, 100);
         }
-
     }, []);
     useEffect(() => {
         if (address.district) {
-            handleChange("district", address.district);
-            console.log(1);
+            setTimeout(() => {
+                handleChange("district", address.district);
+            }, 200);
         }
     }, []);
     return (
