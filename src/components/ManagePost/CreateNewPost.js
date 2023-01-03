@@ -11,18 +11,20 @@ import {
     Plus,
     QuestionCircleFill,
     X,
-    Youtube,
+    Youtube
 } from "react-bootstrap-icons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Badge, Button, Card, Col, Input, Label, Modal, ModalBody, ModalHeader, Progress, Row, Tooltip } from "reactstrap";
+import Swal from "sweetalert2";
 import { postTypePlan, sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
-import { checkArrayHasItem, convertInputTextToObject, formatCurrency } from "../../utils";
+import { checkArrayHasItem, convertInputTextToObject, formatCurrency, msgPendingFeature } from "../../utils";
 import { uploadImage } from "../core/firebase";
 import Select from "../core/Select";
 import SelectAddress from "../core/SelectAddress";
 
 function CreateNewPost(props) {
     const location = useLocation();
+    const navigate = useNavigate()
     const dataEditPost = location?.state?.dataEditPost || {};
     // thong tin co ban
     const [isSell, setIsSell] = useState(true);
@@ -84,7 +86,6 @@ function CreateNewPost(props) {
     const handleClickUtility = (item) => {
         let newValue = [];
         const existed = checkArrayHasItem(item.value, selectedUtilities, "value");
-        console.log(existed);
         if (existed) {
             newValue = selectedUtilities.filter((util) => util.value !== item.value);
         } else {
@@ -126,7 +127,11 @@ function CreateNewPost(props) {
         const arrayImage = Object.values(files);
         const result = await Promise.all(arrayImage.map((item) => uploadImage(item)));
         setFileUpload(files);
-        setImageUrls(result);
+        if(result.length > 16) {
+            Swal.fire('', 'Tối đa 16 ảnh!')
+        } else {
+            setImageUrls(result);
+        }
         setLoadingUploadImage({ status: true, value: 100 });
         setTimeout(() => {
             setLoadingUploadImage({ status: false, value: 10 });
@@ -182,6 +187,14 @@ function CreateNewPost(props) {
 
     const handleClickSubmit = (e) => {
         e.preventDefault();
+        if (imageUrls >= 4 && imageUrls <= 16) {
+            Swal.fire('', 'Đăng tin thành công!')
+            setTimeout(() => {
+                navigate('/post')
+            }, 1000)
+        } else {
+            Swal.fire('', 'Số lượng ảnh cho mỗi tin đăng tối thiểu là 4 ảnh và tối đa là 16 ảnh!')
+        }
     };
 
     const toggle = (type) => setTooltipOpen({ ...tooltipOpen, [type]: !tooltipOpen[type] });
@@ -284,7 +297,7 @@ function CreateNewPost(props) {
                     <div className="d-flex flex-wrap">
                         {utilityList.map((item, index) => (
                             <Badge
-                                className={`utility__item mx-2 p-2 ${
+                                className={`utility__item cursor-pointer mx-2 p-2 ${
                                     checkArrayHasItem(item.value, selectedUtilities, "value") ? "utility__item--selected" : ""
                                 }`}
                                 color={checkArrayHasItem(item.value, selectedUtilities, "value") ? "danger" : ""}
@@ -294,9 +307,9 @@ function CreateNewPost(props) {
                                 {item.label}
                             </Badge>
                         ))}
-                        <Button size="sm" outline className="d-flex align-items-center" onClick={() => setOpenModalAddUtility(true)}>
+                        {/* <Button size="sm" outline className="d-flex align-items-center" onClick={() => setOpenModalAddUtility(true)}>
                             <Plus />
-                        </Button>
+                        </Button> */}
                         <Modal isOpen={openModalAddUtility} toggle={() => setOpenModalAddUtility(!openModalAddUtility)} centered>
                             <ModalHeader toggle={() => setOpenModalAddUtility(!openModalAddUtility)}>Thêm tiện ích</ModalHeader>
                             <ModalBody>
@@ -320,6 +333,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
+                                className="text-center"
                                 style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.bedRoom}
@@ -337,6 +351,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
+                                className="text-center"
                                 style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.bathRoom}
@@ -354,6 +369,7 @@ function CreateNewPost(props) {
                                 <Dash />
                             </Button>
                             <Input
+                                className="text-center"
                                 style={{ width: "50px" }}
                                 type="number"
                                 value={quantityInfo.floor}
@@ -365,7 +381,7 @@ function CreateNewPost(props) {
                         </div>
                     </div>
                 </div>
-                <hr />
+                {/* <hr />
                 <div className="mt-4">
                     <div className="">
                         <h6>Đường vào</h6>
@@ -375,7 +391,7 @@ function CreateNewPost(props) {
                         <h6>Mặt tiền</h6>
                         <Input value={frontSize} onChange={(e) => setFrontSize(e.target.value)} placeholder="Nhập số" />
                     </div>
-                </div>
+                </div> */}
             </Card>
             <Card className="mt-3 p-4">
                 <div className="d-flex justify-content-between align-items-center">
@@ -390,7 +406,7 @@ function CreateNewPost(props) {
                 <ul className="mt-2">
                     <li> Hãy dùng ảnh thật, không trùng, không chèn số điện thoại</li>
                     <li>Mỗi ảnh kích thước tối thiểu 100x100 px, tối đa 15 MB</li>
-                    <li>Số lượng ảnh tối đa tuỳ theo loại tin chọn ở bước tiếp theo</li>
+                    <li>Số lượng ảnh cho mỗi tin đăng tối thiểu là 4 ảnh và tối đa là 16 ảnh</li>
                 </ul>
                 <Label for="create-post-upload" className="create-post-upload__label d-flex flex-column align-items-center cursor-pointer p-4">
                     <CloudArrowUp size={50} />
@@ -496,17 +512,15 @@ function CreateNewPost(props) {
                             <div className="mt-3">{plan.postDays}</div>
                             <hr />
                             <div className="mt-3 pb-3">
-                                Từ{" "}
                                 <b>
                                     {formatCurrency(plan.price)}đ <br />
                                 </b>
-                                ngày
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="d-flex mt-3">
+                {/* <div className="d-flex mt-3">
                     <Input
                         className="me-1"
                         id="highlight-post"
@@ -525,8 +539,8 @@ function CreateNewPost(props) {
                         <br />• Nút bấm Hiện số điện thoại
                     </Tooltip>
                 </div>
-                <hr />
-                <Row>
+                <hr /> */}
+                {/* <Row>
                     <Col md={4}>
                         <div className="mt-2">
                             <h6>
@@ -558,7 +572,7 @@ function CreateNewPost(props) {
                             <Input disabled type="time" value={postStartTime} onChange={(e) => setPostStartTime(e.target.value)} />
                         </div>
                     </Col>
-                </Row>
+                </Row> */}
             </Card>
             <Card className="mt-3 p-4">
                 <h5>Tiện ích</h5>
@@ -617,7 +631,7 @@ function CreateNewPost(props) {
             </Card>
             <Card className="mt-3 p-4">
                 <div className="d-flex justify-content-between align-items-center">
-                    <Button outline>Xem trước giao diện</Button>
+                    <Button outline onClick={msgPendingFeature}>Xem trước giao diện</Button>
                     <div className="d-flex align-items-center">
                         <div className="me-2">
                             <div>Tổng tiền</div>

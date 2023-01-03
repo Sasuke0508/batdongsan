@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BoxSeam, Buildings, ChevronDown, ChevronUp, Gear, GraphUpArrow, ListUl, Paperclip } from "react-bootstrap-icons";
+import { ChevronDown, ChevronUp, Gear, GraphUpArrow, ListUl, Paperclip } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
 function SideMenu(props) {
@@ -19,7 +19,6 @@ function SideMenu(props) {
             children: [
                 { title: "Thông tin số dư" },
                 { title: "Lịch sử giao dịch" },
-                { title: "Nhóm khuyễn mãi" },
                 { title: "Nạp tiền vào tài khoản" },
                 { title: "Quản lý điểm tích luỹ" },
             ],

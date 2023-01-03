@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dot, HeartFill, Image } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
-import { listPost, sortOptions, utilityLinkOptions } from "../../constants";
+import { listPost, sortOptions } from "../../constants";
 import SearchBar from "../core/SearchBar";
 import Select from "../core/Select";
 
@@ -15,6 +15,7 @@ function PostSaved(props) {
     const handleClickPost = () => {
         navigate('/post/1')
     }
+    const paginationItem = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <div className="post-list">
             <SearchBar />
@@ -61,7 +62,7 @@ function PostSaved(props) {
                                                 <div className="d-flex justify-content-between">
                                                     <div className="mt-2 cl-dark-gray">{post.updatedAt}</div>
                                                     <Button outline>
-                                                        <HeartFill />
+                                                        <HeartFill color="red" />
                                                     </Button>
                                                 </div>
                                             </div>
@@ -78,21 +79,11 @@ function PostSaved(props) {
                                 <PaginationItem>
                                     <PaginationLink href="#" previous />
                                 </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">2</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">4</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">5</PaginationLink>
-                                </PaginationItem>
+                                {paginationItem.map((item, index) => (
+                                    <PaginationItem key={index}>
+                                        <PaginationLink href={`?page=${item}`}>{item}</PaginationLink>
+                                    </PaginationItem>
+                                ))}
                                 <PaginationItem>
                                     <PaginationLink href="#" next />
                                 </PaginationItem>
@@ -101,18 +92,6 @@ function PostSaved(props) {
                                 </PaginationItem>
                             </Pagination>
                         </div>
-                    </Col>
-                    <Col md={3}>
-                        <Card className="p-3 mt-4">
-                            <h6>Hỗ trợ tiện ích</h6>
-                            <div className="price__filter">
-                                {utilityLinkOptions.map((item, index) => (
-                                    <div className="my-1 p-1 hover-bg-white cursor-pointer" key={index}>
-                                        {item.label}
-                                    </div>
-                                ))}
-                            </div>
-                        </Card>
                     </Col>
                 </Row>
             </div>

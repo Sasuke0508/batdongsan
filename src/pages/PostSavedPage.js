@@ -1,5 +1,5 @@
-import React from 'react';
-import PostSaved from '../components/Post/PostSaved';
+import React from "react";
+import PostSaved from "../components/Post/PostSaved";
 
 function PostSavedPage(props) {
     return (

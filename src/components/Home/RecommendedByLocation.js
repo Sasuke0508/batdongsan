@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Col, Row } from "reactstrap";
 import DragToScroll from "../core/DragToScroll";
 

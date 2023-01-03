@@ -1,27 +1,16 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { CaretDown } from "react-bootstrap-icons";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { bedRoomOptions, mediaOptions, utilityOptions } from "../../constants";
 
 function SelectMore({ value, onChange: handleChange, open, toggle }) {
-    const label = useMemo(() => {
-        if (!value.from && !value.to) {
-            return "Mức giá";
-        } else if (!value.from) {
-            return `Dưới ${value.to} triệu`;
-        } else if (!value.to) {
-            return `Trên ${value.from} triệu`;
-        } else {
-            return `Từ ${value.from} đến ${value.to} triệu`;
-        }
-    }, [value]);
     const checkItemActive = (type, item) => {
         return value[type].indexOf(item) !== -1;
     };
 
     const handleClick = (type, item) => {
         const exist = checkItemActive(type, item);
-        let newValue = value[type]
+        let newValue = value[type];
         if (exist) {
             newValue = newValue.filter((old) => old !== item);
         } else {

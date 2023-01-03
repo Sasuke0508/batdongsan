@@ -23,7 +23,7 @@ function HotNews(props) {
         },
     ];
     return (
-        <div className="mt-3 hot-news page-container-xl">
+        <div className="my-3 hot-news page-container-xl">
             <h3>Tin tức tiêu điểm</h3>
             <Row>
                 {data.map((item, index) => (
