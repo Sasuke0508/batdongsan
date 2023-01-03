@@ -15,7 +15,7 @@ function SearchBox(props) {
         searchText: "",
         address: {
             city: "01",
-            district: "",
+            district: "001",
             ward: "",
             number: "",
         },
