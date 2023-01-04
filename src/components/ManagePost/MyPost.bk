@@ -1,0 +1,101 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import useSearchPost from "../../hooks/useSearchPost";
+import { postService } from "../../services";
+import { settingsDispatch } from "../../store/slices/settingsSlice";
+import PostList from "../core/PostList";
+
+function MyPost() {
+
+    const dispatch = useDispatch();
+    const search = useSearchPost('getMyPost');
+    const [tab, setTab] = useState('ACTIVE');
+    const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+    const [openPostTypeList, setOpenPostTypeList] = useState(false);
+
+    const handleOpenConfirmationModal = (e) => {
+        e.stopPropagation();
+        setOpenConfirmationModal(true);
+    }
+
+    const handleOpenPostTypeList = (e) => {
+        e.stopPropagation();
+        setOpenPostTypeList(true);
+    }
+
+    const handleChangeTab = (e) => {
+        const { value } = e.target;
+        setTab(value);
+        search.reSearch({status: value});
+    }
+
+    const handleHidePost = async (post) => {
+        try {
+            let statusForUpdate = 'INACTIVE';
+            if (post.status === 'HIDDEN') statusForUpdate = 'ACTIVE';
+            else if (post.status === 'ACTIVE') statusForUpdate = 'HIDDEN'
+            await postService.changeStatus(post.id, statusForUpdate);
+            dispatch(
+                settingsDispatch.actSetToastMessage({
+                    open: true,
+                    error: false,
+                    content: 'Thay đổi trạng thái thành công'
+                })
+            );
+            search.searchFunc?.();
+        } catch(err) {
+            dispatch(
+                settingsDispatch.actSetToastMessage({
+                    open: true,
+                    error: true,
+                    content: err.message
+                })
+            )
+        }
+    }
+
+    const handleExpiredPost = async (type, post) => {
+        try {
+            await postService.adjournPost(post.id, type.id);
+            search.searchFunc?.();
+            setOpenPostTypeList(false);
+            dispatch(
+                settingsDispatch.actSetToastMessage({
+                    open: true,
+                    error: false,
+                    content: 'Gia hạn thành công'
+                })
+            );
+        } catch(err) {
+            dispatch(
+                settingsDispatch.actSetToastMessage({
+                    open: true,
+                    error: true,
+                    content: err.message
+                })
+            )
+        }
+    }
+
+    return (
+        <PostList 
+            { ...search } 
+            title='Bài đăng của tôi' 
+            tab={tab} 
+            onChangeTab={handleChangeTab} 
+
+            handleHidePost={handleHidePost}
+            openConfirmationModal={openConfirmationModal}
+            handleOpenConfirmationModal={handleOpenConfirmationModal}
+
+            handleExpiredPost={handleExpiredPost}
+            openPostTypeList={openPostTypeList}
+            handleOpenPostTypeList={handleOpenPostTypeList}
+            handleTogglePostTypeList={() => setOpenPostTypeList(!openPostTypeList)}
+            
+            isMyPost
+        />
+    )
+}
+
+export default MyPost;

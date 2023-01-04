@@ -1,0 +1,78 @@
+.header {
+    .header__container {
+        background-color: #fff;
+        height: 100px;
+        @include box-shadow-element;
+
+        .logo-app {
+            width: 130px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .menu__item {
+            font-weight: 500;
+            cursor: pointer;
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                background-color: $primary_color;
+                height: 2px;
+                transition: all .5s ease-in-out;
+                top: 60px;
+            }
+
+            .sub-menu {
+                visibility: hidden;
+                top: 66px;
+                width: 200px;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0px 8px 20px rgb(182 182 182 / 30%);
+
+                .sub-menu__item {
+                    background-color: #fff;
+                    font-weight: normal;
+                    z-index: 100;
+                    position: relative;
+
+                    &:hover {
+                        background-color: rgb(218, 216, 216);
+
+                    }
+                }
+            }
+
+            &:hover {
+                .sub-menu {
+                    visibility: visible;
+                }
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+
+        .menu-action {
+            cursor: pointer;
+
+            .menu-action__item {
+                border-radius: 8px;
+                background-color: #fff;
+                @extend .transitionFade;
+                &:hover {
+                    background-color: rgb(221, 221, 221);
+                }
+            }
+        }
+    }
+    .user__avatar {
+        background-color: #FFECEB;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+}

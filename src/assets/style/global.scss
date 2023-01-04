@@ -1,0 +1,168 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+$red_color: #dc3545;
+$gray_color: #f2f2f2;
+
+.image-gallery-thumbnails-container {
+    display: flex;
+}
+.image-gallery-left-nav .image-gallery-svg,
+.image-gallery-right-nav .image-gallery-svg {
+    height: 60px;
+}
+
+.toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #ddede5;
+    z-index: 1051;
+    &.toast--error {
+        background-color: #fae1e3;
+    }
+}
+
+@keyframes fadeOpacity {
+    from {
+        opacity: 0;
+    }
+    from {
+        opacity: 1;
+    }
+}
+.transitionFade {
+    transition: all 0.2s ease-in-out;
+}
+
+.page-container-sm {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.page-container-md {
+    max-width: 768px;
+    margin: 0 auto;
+}
+.page-container-lg {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.page-container-xl {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.app-footer {
+    background-color: #f2f2f2;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-overflow-dots {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.hide-scroll-bar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll;
+    @extend .hide-scroll-bar;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+    @extend .hide-scroll-bar;
+}
+.cl-white {
+    color: #fff;
+}
+
+.cl-black {
+    color: #000;
+}
+.cl-red {
+    color: $red_color;
+}
+.cl-title {
+    color: #C20000;
+}
+
+.cl-dark-gray {
+    color: #999;
+}
+
+.cl-gray {
+    color: $gray_color;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.bg-red {
+    background-color: $red_color;
+}
+.bg-gray {
+    background-color: $gray_color !important;
+}
+
+.scroll-smooth {
+    scroll-behavior: smooth;
+}
+
+.hover-bg {
+    &:hover {
+        background-color: #f2f2f2;
+    }
+}
+.hover-bg-white {
+    &:hover {
+        background-color: #fff;
+    }
+}
+
+.has-border {
+    border: 1px solid #ccc;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html {
+    font-size: 15px;
+}
+
+@mixin box-shadow-element {
+    border-top: 1px solid #f2f2f2;
+    box-shadow: 0px 4px 10px rgb(182 182 182 / 18%) !important;
+}
+
+input[type="checkbox"] {
+    accent-color: $red_color;
+}
+
+.required {
+    
+    &::after {
+        content: ' *';
+        color: $red_color;
+    }
+}
+
+@import "constants";
+@import "header";
+@import "searchBox";
+@import "homePage";
+@import "post";
+@import "createPost";
+@import "core";
