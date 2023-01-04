@@ -15,7 +15,7 @@ function useClickOutside(callback) {
         return () => {
             document.removeEventListener("click", handleClick, true);
         };
-    }, [ref]);
+    }, [ref]); 
 
     return ref;
 }
