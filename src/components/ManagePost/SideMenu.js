@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BoxSeam, Buildings, ChevronDown, ChevronUp, Gear, GraphUpArrow, ListUl, Paperclip } from "react-bootstrap-icons";
+import { BoxSeam, ChevronDown, ChevronUp, Gear, GraphUpArrow, ListUl, Paperclip } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
 function SideMenu(props) {

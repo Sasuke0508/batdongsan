@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Row } from "reactstrap";
 import { postService } from "../../services";
 import { settingsDispatch } from "../../store/slices/settingsSlice";
+import { formatCurrency } from "../../utils";
 import DragToScroll from "./DragToScroll";
 
 function NewsCard(props) {
@@ -70,7 +71,7 @@ function NewsCard(props) {
                         {data?.map((item) => (
                             <Col md={3} key={item.id} className="mt-4 card__item-wrapper" >
                                 <Card className="position-relative card__item">
-                                    <img alt="recommended" src={item.images?.[0]?.link} />
+                                    <img alt="recommended" style={{height: 155}} src={item.images?.[0]?.link} />
                                     <div className="image-count position-absolute d-flex align-items-center">
                                         {item.images?.length ?? 0}
                                         <Image className="ms-1" color="#fff" />
@@ -80,9 +81,9 @@ function NewsCard(props) {
                                             {item.title}
                                         </h6>
                                         <div className="mt-1">
-                                            <b>{item.price}</b> - <b>{item.area}</b>
+                                            <b>{ formatCurrency(item.price) }</b> - <b>{item.area}</b>
                                         </div>
-                                        <div>{item.address.addressDetail}</div>
+                                        {/* <div>{item.address.addressDetail}</div> */}
                                         <div className="d-flex justify-content-between align-items-center mt-3">
                                             <span>{item.createdDate}</span>
                                             <Button outline onClick={() => handleLikeOrUnlike(item)}>{item.liked ? <HeartFill /> : <Heart />}</Button>

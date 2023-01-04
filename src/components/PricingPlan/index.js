@@ -3,6 +3,7 @@ import { Fonts, List } from "react-bootstrap-icons";
 import { Button } from "reactstrap";
 import { postTypePlan } from "../../constants";
 import { formatCurrency } from "../../utils";
+
 function PricingPlan(props) {
     const [postPlan, setPostPlan] = useState(1);
     const handleClickPostPlan = (id) => {

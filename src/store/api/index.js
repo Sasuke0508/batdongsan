@@ -5,6 +5,14 @@ const instance = axios.create({
     baseURL: config.rootLinkAPI,
 });
 
+instance.interceptors.request.use(_req => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+        _req.headers.Authorization = `Bearer ${token}`;
+    }
+    return _req;
+})
+
 instance.interceptors.response.use(res => {
     return res.data;
 })

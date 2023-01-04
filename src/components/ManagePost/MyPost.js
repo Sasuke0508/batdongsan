@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Calendar, Filter, Search, Sliders } from "react-bootstrap-icons";
+import { Calendar, Filter, Search } from "react-bootstrap-icons";
 import { Button, Input } from "reactstrap";
 import { postService } from "../../services";
 import Select from "../core/Select";
-import ListPostItem from './ListPostItem'
+import ListPostItem from './ListPostItem';
 
 const daysOption = [
     { label: "Mặc định", value: '' },

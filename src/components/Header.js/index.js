@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Bell, CaretDown, Heart } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import logo from "../../assets/img/logo_app.png";
 import { listMenuItem, notiList, userSettingsOptions } from "../../constants";
-import { tokenDispatch } from "../../store/slices/tokenSlice";
 import { settingsDispatch } from "../../store/slices/settingsSlice";
+import { tokenDispatch } from "../../store/slices/tokenSlice";
 import { countUnreadNoti, msgPendingFeature } from "../../utils";
 import LoginModal from "../core/LoginModal";
 import Notification from "../Notification";
-import logo from "../../assets/img/logo_app.png";
 
 function Header(props) {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const loginModalRef = useRef();
 
     const currentUser = useSelector(store => store.tokenSlice.user);
-    const loginStatus = useSelector(state => state.settingsSlice.user.loginStatus)
     const loggedIn = !!currentUser;
     
     const [openModalLogin, setOpenModalLogin] = useState(false);
@@ -46,7 +46,7 @@ function Header(props) {
     };
     return (
         <div className="header">
-            <LoginModal open={openModalLogin} initMode={initMode} onToggle={() => setOpenModalLogin(!openModalLogin)} />
+            <LoginModal initMode={initMode} ref={loginModalRef} />
             <div className="d-flex header__container justify-content-between px-4">
                 <div className="d-flex">
                     <div onClick={() => navigate("/")}>
@@ -72,7 +72,7 @@ function Header(props) {
                     ))}
                 </div>
                 <div className="menu-action d-flex align-items-center">
-                    {loginStatus && <div
+                    {loggedIn && <div
                         className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2"
                         onClick={() => handleClickMenu("/post/saved")}
                     >
@@ -81,7 +81,7 @@ function Header(props) {
                     </div>
                     }
 
-                    {loginStatus && (
+                    {loggedIn && (
                         <div className="position-relative">
                             <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
                                 <Bell />
@@ -90,13 +90,13 @@ function Header(props) {
                             <Notification open={openNoti} setOpen={setOpenNoti} />
                         </div>
                     )}
-                    {!loginStatus &&
+                    {!loggedIn &&
                         <>
                             <div
                                 className="menu-action__item px-2 py-1 mx-2"
                                 onClick={() => {
                                     setInitMode("login");
-                                    setOpenModalLogin(true);
+                                    loginModalRef.current.onToggle();
                                 }}
                             >
                                 Đăng nhập
@@ -105,7 +105,7 @@ function Header(props) {
                                 className="menu-action__item px-2 py-1 mx-2"
                                 onClick={() => {
                                     setInitMode("signup");
-                                    setOpenModalLogin(true);
+                                    loginModalRef.current.onToggle();
                                 }}
                             >
                                 Đăng ký

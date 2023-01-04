@@ -1,12 +1,6 @@
 import api from "../store/api";
 import { validator } from "../utils";
 
-const udpateUserInfo = [
-    {
-        
-    }
-]
-
 const userService = {
     
     updateUserInfo: async (updateUserInfo) => {

@@ -1,37 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { instance } from "../../store/api";
 
 const tokenSlice = createSlice({
     name: 'TOKEN',
     initialState: {
-        user: null,
-        interceptorId: null,
+        user: JSON.parse(localStorage.getItem('token') ?? 'null'),
     },
     reducers: {
         setToken: (state, {payload: user}) => {
-            const id = instance.interceptors.request.use(_req => {
-                _req.headers.Authorization = `Bearer ${user.accessToken}`;
-                return _req;
-            })
+            localStorage.setItem('token', JSON.stringify(user));
+            sessionStorage.setItem('token', user.accessToken);
             return {
                 user,
-                interceptorId: id,
             }
         },
         removeToken: ({interceptorId}, action) => {
-            instance.interceptors.request.eject(interceptorId);
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             return {
-                user: null,
-                interceptorId: null,
-            }
+                user: null
+            };
         },
         updateUserInfo: (state, {payload}) => {
+            const newUser = {
+                ...state.user,
+                systemUser: payload,
+            };
+            localStorage.setItem('token', JSON.stringify(newUser));
             return {
-                user: {
-                    ...state.user,
-                    systemUser: payload,
-                },
-                interceptorId: state.interceptorId
+                user: newUser
             }
         }
     }

@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "reactstrap";
-import { recommendedData } from "../../constants";
+import { Button, Collapse } from "reactstrap";
+import { postService } from "../../services";
 import NewsCard from "../core/NewsCard";
-import useSearchPost from "../../hooks/useSearchPost";
 
 function Recommended(props) {
 
-    const { listPost, totalPage, searchFunc } = useSearchPost('findAll');
-    const [expandNews, setExpandNews] = useState(true);
+    const user = useSelector(store => store.tokenSlice.user);
+
+    const search = () => {
+        postService.findAll({page: 1, limit: 16}, {
+            sort: '-created'
+        })
+        .then(res => res?.data)
+        .then(data => data?.content)
+        .then(content => {
+            if (!content) return;
+            setListPost1(content.slice(0, 8));
+            setListPost2(content.slice(8, 16));
+        })
+    }
+
+    useEffect(() => {
+        search();
+    }, [user]);
+
+    const [listPost1, setListPost1] = useState([]);
+    const [listPost2, setListPost2] = useState([]);
+    const [expandNews, setExpandNews] = useState(false);
     const navigate = useNavigate();
 
     const handleClickExpand = () => {
-        if (expandNews) {
-            setExpandNews(false);
+        if (!expandNews) {
+            setExpandNews(true);
             return;
         }
         navigate("/post");
@@ -33,13 +53,17 @@ function Recommended(props) {
                     </span>
                 </div>
             </div>
-            <NewsCard data={listPost} wrapItem={false} searchFunc={searchFunc}/>
-            {expandNews && <NewsCard data={recommendedData} wrapItem={false}></NewsCard>}
+
+            <NewsCard data={listPost1} wrapItem={false} searchFunc={search}/>
+            <Collapse isOpen={expandNews}>
+                <NewsCard data={listPost2} wrapItem={false} searchFunc={search} />
+            </Collapse>
             <div className="w-100 mt-4 d-flex justify-content-center">
                 <Button outline onClick={handleClickExpand} className="d-flex align-items-center">
                     {!expandNews ? "Xem thêm" : "Tất Cả"}
                 </Button>
             </div>
+            
         </div>
     );
 }

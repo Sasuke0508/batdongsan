@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { CaretDown } from "react-bootstrap-icons";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { bedRoomOptions, mediaOptions, utilityOptions } from "../../constants";
+import { bedRoomOptions, mediaOptions } from "../../constants";
 import { utilitiesService } from "../../services";
 
 function SelectMore({ value, onChange: handleChange, open, toggle }) {

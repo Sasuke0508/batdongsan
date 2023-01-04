@@ -4,10 +4,8 @@ import {
     Globe,
     Headphones,
     Person,
-    Phone,
-    PhoneFlip,
-    Send,
-    TelephoneOutbound,
+    Phone, Send,
+    TelephoneOutbound
 } from "react-bootstrap-icons";
 import {
     Button,
@@ -16,7 +14,7 @@ import {
     DropdownItem,
     DropdownMenu,
     Input,
-    Row,
+    Row
 } from "reactstrap";
 import logo from "../../assets/img/logo_app.png";
 
