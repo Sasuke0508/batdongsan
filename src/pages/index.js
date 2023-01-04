@@ -16,13 +16,12 @@ function Pages(props) {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/post/:id" element={<PostDetailPage />} />
-            <Route path="/post/saved" element={ <PrivateRoute component={PostSavedPage} /> } />
+            <Route path="/post/saved" element={<PostSavedPage />} />
             <Route path="/post" element={<PostPage />} />
-            <Route path="/manager-post/*" element={ <PrivateRoute component={CreatePostPage} /> } />
+            <Route path="/manager-post/*" element={<CreatePostPage />} />
             <Route path="/pricing-plan" element={<PricingPlanPage />} />
-            <Route path="/user-settings" element={ <PrivateRoute component={UserSettingsPage} /> } />
+            <Route path="/user-settings" element={<UserSettingsPage />} />
             <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
     );

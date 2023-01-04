@@ -1,10 +1,23 @@
-import React from "react";
-import useSearchPost from "../../hooks/useSearchPost";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
+import { recommendedData } from "../../constants";
 import NewsCard from "../core/NewsCard";
+import useSearchPost from "../../hooks/useSearchPost";
 
 function Recommended(props) {
 
     const { listPost, totalPage, searchFunc } = useSearchPost('findAll');
+    const [expandNews, setExpandNews] = useState(true);
+    const navigate = useNavigate();
+
+    const handleClickExpand = () => {
+        if (expandNews) {
+            setExpandNews(false);
+            return;
+        }
+        navigate("/post");
+    };
 
     return (
         <div className="recommended page-container-xl mt-4">
@@ -20,7 +33,13 @@ function Recommended(props) {
                     </span>
                 </div>
             </div>
-            <NewsCard data={listPost} wrapItem={false} isShowMore={totalPage == 1} searchFunc={searchFunc}/>
+            <NewsCard data={listPost} wrapItem={false} searchFunc={searchFunc}/>
+            {expandNews && <NewsCard data={recommendedData} wrapItem={false}></NewsCard>}
+            <div className="w-100 mt-4 d-flex justify-content-center">
+                <Button outline onClick={handleClickExpand} className="d-flex align-items-center">
+                    {!expandNews ? "Xem thêm" : "Tất Cả"}
+                </Button>
+            </div>
         </div>
     );
 }

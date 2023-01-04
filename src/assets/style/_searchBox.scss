@@ -1,6 +1,7 @@
 .search-box {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
+    padding-top: 200px;
 
     .tab-content {
         background-color: #00000099;
@@ -37,7 +38,8 @@
 .search-bar {
     @include box-shadow-element;
     .search-bar__item {
-        min-width: 14.5%;
+        min-width: 12.5%;
+        margin: 0 6px;
     }
 }
 

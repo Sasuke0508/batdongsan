@@ -7,11 +7,19 @@ import Footer from "./components/Footer";
 import Header from "./components/Header.js";
 import Pages from "./pages/index.js";
 import { tokenDispatch } from "./store/slices/tokenSlice";
+import { settingsDispatch } from "./store/slices/settingsSlice";
 
 function App() {
+    
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const token = useSelector(store => store.tokenSlice.user);
-    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const loginStatus = localStorage.getItem("find_room_login_status");
+        dispatch(settingsDispatch.actSetLoginStatus(loginStatus == "true"));
+    }, []);
+    
 
     useEffect(() => {
 
@@ -59,7 +67,6 @@ function App() {
                 </div>
             )}
         </div>
-
     );
 }
 export default App;

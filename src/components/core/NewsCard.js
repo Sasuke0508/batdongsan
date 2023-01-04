@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Heart, HeartFill, Image } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { settingsDispatch } from "../../store/slices/settingsSlice";
 import DragToScroll from "./DragToScroll";
 
 function NewsCard(props) {
-    const { data, wrapItem, title, isShowMore, searchFunc } = props;
+    const { data, wrapItem, title, searchFunc } = props;
     
     const navigate = useNavigate();
     const token = useSelector(store => store.tokenSlice.user);
@@ -17,10 +17,6 @@ function NewsCard(props) {
     const handleClickCard = (postId) => {
         navigate(`/post/${postId}`);
     };
-
-    const handleShowMore = () => {
-        navigate('/post');
-    }
 
     const handleLikeOrUnlike = async (post) => {
         if (!token) {
@@ -96,14 +92,6 @@ function NewsCard(props) {
                             </Col>
                         ))}
                     </Row>
-                    {
-                        isShowMore && 
-                        <div className="d-flex justify-content-center mt-3">
-                            <Button outline onClick={handleShowMore}>
-                                Xem thêm
-                            </Button>
-                        </div>
-                    }
                     </DragToScroll>
                 </div>
             </div>

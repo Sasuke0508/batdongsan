@@ -18,8 +18,9 @@ function CreatePost(props) {
                 <Col md={10}>
                     <Routes>
                         <Route path="/create-new-post" element={<CreateNewPost />} />
-                        <Route path="*" element={<Navigate to="create-new-post" />} />
                         <Route path="/my-post" element={<MyPostPage />} />
+                        {/* <Route path="/list-post" element={<ListPost />} /> */}
+                        <Route path="*" element={<Navigate to="create-new-post" />} />
                     </Routes>
                 </Col>
             </Row>

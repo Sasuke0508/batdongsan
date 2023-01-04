@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { notiList } from "../../constants";
+import useClickOutside from "../core/useClickOutside";
 
 function Notification({ open, setOpen }) {
     const navigate = useNavigate()
@@ -10,10 +11,14 @@ function Notification({ open, setOpen }) {
         setOpen(false)
         navigate('/post/saved')
     }
+    const closeModal = () => {
+        setOpen(false)
+    }
+    const ref = useClickOutside(closeModal)
 
     return (
         open && (
-            <div className="notification p-2 bg-white position-absolute">
+            <div ref={ref} className="notification p-2 bg-white position-absolute">
                 <h6 className="mt-2 text-center">Thông báo</h6>
                 <hr />
                 <div className="noti__list">

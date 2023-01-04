@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, Input } from 'reactstrap';
 import useForm from '../../hooks/useForm';
 import { accountService } from '../../services';
 import { settingsDispatch } from '../../store/slices/settingsSlice';
 
-function SignupView({ setViewMode }) {
+function SignupView({ setViewMode, closeModal }) {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const { data, onChange } = useForm({
@@ -27,6 +29,10 @@ function SignupView({ setViewMode }) {
                 })
             );
             setViewMode('login');
+            dispatch(settingsDispatch.actSetLoginStatus(true));
+            localStorage.setItem('find_room_login_status', true);
+            navigate('/');
+            closeModal?.();
         } catch(err) {
             dispatch(
                 settingsDispatch.actSetToastMessage({
@@ -74,14 +80,18 @@ function SignupView({ setViewMode }) {
                 onChange={onChange}
             />
             <Button className='w-100 mt-3' primary="true" onClick={handleRegister}>Đăng ký</Button>
-            <p className='mt-3'>
+            <p className="mt-3">
                 Bằng việc tiếp tục, bạn đồng ý với{" "}
-                <a color='info' href="#">Điều khoản sử dụng</a>{" "}
+                <a color="info" href="#">
+                    Điều khoản sử dụng
+                </a>{" "}
                 của chúng tôi
             </p>
-            <p className='mt-3'>
+            <p className="mt-3">
                 Đã có tài khoản?{" "}
-                <a color='info' href="#" onClick={() => setViewMode('login')}>Đăng nhập</a>{" "}
+                <a color="info" href="#" onClick={() => setViewMode("login")}>
+                    Đăng nhập
+                </a>{" "}
             </p>
         </div>
     );

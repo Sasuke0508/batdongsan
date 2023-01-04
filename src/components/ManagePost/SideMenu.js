@@ -26,15 +26,9 @@ function SideMenu(props) {
             children: [
                 { title: "Thông tin số dư" },
                 { title: "Lịch sử giao dịch" },
-                { title: "Nhóm khuyễn mãi" },
                 { title: "Nạp tiền vào tài khoản" },
                 { title: "Quản lý điểm tích luỹ" },
             ],
-        },
-        {
-            title: "Quản lý TK Doanh nghiệp",
-            icon: <Buildings size={22} />,
-            children: [{ title: "Đăng ký tài khoản Doanh nghiệp" }],
         },
         {
             title: "Báo giá &  Hướng dẫn",

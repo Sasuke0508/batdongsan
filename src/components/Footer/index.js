@@ -18,6 +18,7 @@ import {
     Input,
     Row,
 } from "reactstrap";
+import logo from "../../assets/img/logo_app.png";
 
 function index(props) {
     return (
@@ -25,10 +26,7 @@ function index(props) {
             <div className="page-container-xl">
                 <div className="d-flex justify-content-between">
                     <div>
-                        <img
-                            src="https://staticfile.batdongsan.com.vn/images/logo/standard/black/logo_gray-5.svg"
-                            alt="logo-app"
-                        />
+                        <img className="logo-app" style={{ width: "100px" }} src={logo} alt="logo" />
                     </div>
                     <div className="d-flex justify-content-end">
                         <div className="d-flex align-items-center mx-2">
@@ -41,20 +39,20 @@ function index(props) {
                             </div>
                         </div>
                         <div className="d-flex align-items-center mx-2">
-                            <Person size={36} />
+                            <Person size={36} className="me-2" />
                             <div className="d-flex flex-column">
                                 <div>Hỗ trợ khách hàng</div>
                                 <div>
-                                    <b>trogiup.batdongsan.com.vn</b>
+                                    <b>trogiup@phongtrochothue.com</b>
                                 </div>
                             </div>
                         </div>
                         <div className="d-flex align-items-center mx-2">
-                            <Headphones size={36} className="me-2"/>
+                            <Headphones size={36} className="me-2" />
                             <div className="d-flex flex-column">
                                 <div>Chăm sóc khách hàng </div>
                                 <div>
-                                    <b>hotro@batdongsan.com.vn</b>
+                                    <b>hotro@phongtrochothue.com</b>
                                 </div>
                             </div>
                         </div>
@@ -64,17 +62,12 @@ function index(props) {
                     <Col md={5}>
                         <h6>CÔNG TY CỔ PHẦN PROPERTYGURU VIỆT NAM</h6>
                         <div className="d-flex align-items-center my-1">
-                            <GeoAlt size={38} className="me-2"/>
-                            <span className="ms-3">
-                                Tầng 31, Keangnam Hanoi Landmark, Phạm Hùng, Nam
-                                Từ Liêm, Hà Nội
-                            </span>
+                            <GeoAlt size={38} className="me-2" />
+                            <span className="ms-3">Tầng 31, Keangnam Hanoi Landmark, Phạm Hùng, Nam Từ Liêm, Hà Nội</span>
                         </div>
                         <div className="d-flex align-items-center mt-2">
-                            <TelephoneOutbound size={28} className="me-2"/>
-                            <span className="ms-3">
-                                (024) 3562 5939 - (024) 3562 5940
-                            </span>
+                            <TelephoneOutbound size={28} className="me-2" />
+                            <span className="ms-3">(024) 3562 5939 - (024) 3562 5940</span>
                         </div>
                         <div className="d-flex flex-column align-items-start justify-content-end mt-3">
                             <img
@@ -133,11 +126,7 @@ function index(props) {
                             <h6>QUỐC GIA & NGÔN NGỮ</h6>
                         </div>
                         <div className="d-flex">
-                            <Dropdown
-                                className="w-100"
-                                isOpen={true}
-                                toggle={() => {}}
-                            >
+                            <Dropdown className="w-100" isOpen={true} placeholder="Nhập email của bạn" toggle={() => {}}>
                                 <DropdownMenu>
                                     <DropdownItem>
                                         <Globe className="me-2" />

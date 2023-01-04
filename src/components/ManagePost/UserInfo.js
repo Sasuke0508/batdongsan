@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 import {
-    ArrowDown,
-    ArrowUp,
-    BoxSeam,
-    Buildings,
-    CaretDown,
-    CaretUp,
     Clipboard,
-    CreditCard,
-    Gear,
-    GraphUp,
-    GraphUpArrow,
-    ListUl,
-    Paperclip,
-    QuestionCircleFill,
+    CreditCard, QuestionCircleFill
 } from "react-bootstrap-icons";
 import { Button, Tooltip } from "reactstrap";
+import Swal from "sweetalert2";
+import logo from "../../assets/img/user/user_avatar.jpg";
+
 
 function UserInfo(props) {
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);
+    const handleClickAddFund = () => {
+        Swal.fire('', 'Đã sao chép số mã chuyển khoản!')
+    }
     return (
         <div className="user-info px-2">
             <div className="d-flex align-items-center">
-                <img className="avatar me-2" alt="avatar" src="https://icons.getbootstrap.com/assets/img/icons-hero.png" />
+                <img className="avatar me-2" alt="avatar" src={logo} />
                 <div>
-                    <h5>user2078504</h5>
+                    <h5>tuanan2078504</h5>
                     <div id="userPoint">
-                        0 điểm <QuestionCircleFill />
+                        22 điểm <QuestionCircleFill />
                     </div>
                     <Tooltip isOpen={tooltipOpen} target="userPoint" toggle={toggle}>
                         Điểm tích luỹ
@@ -38,26 +32,14 @@ function UserInfo(props) {
                 <h5>Số dư tài khoản</h5>
                 <div className="d-flex justify-content-between">
                     <div>TK tin đăng</div>
-                    <h6>0</h6>
-                </div>
-                <div className="d-flex justify-content-between">
-                    <div>TK ngoài tin đăng</div>
-                    <h6>0</h6>
-                </div>
-                <div className="d-flex justify-content-between">
-                    <div>TK khuyến mãi 1</div>
-                    <h6>40.000</h6>
-                </div>
-                <div className="d-flex justify-content-between">
-                    <div>TK khuyến mãi 2</div>
-                    <h6>0</h6>
+                    <h6>200.000đ</h6>
                 </div>
                 <div className="transfer-box p-3 d-flex justify-content-between align-items-center">
                     <div>
                         <div>Mã chuyển khoản</div>
                         <h6>BDS20785044</h6>
                     </div>
-                    <div>
+                    <div className="cursor-pointer" onClick={handleClickAddFund}>
                         <Clipboard size={26} />
                     </div>
                 </div>

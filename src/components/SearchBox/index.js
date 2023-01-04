@@ -42,6 +42,7 @@ function SearchBox(props) {
         toggle('houseType');
     };
 
+
     const handleChangePrice = (type, value) => {
         setPrice((prev) => ({
             ...prev,
@@ -49,6 +50,7 @@ function SearchBox(props) {
         }));
         toggle("price");
     };
+    
     const handleChangeAreaSize = (type, value) => {
         setAreaSize((prev) => ({
             ...prev,

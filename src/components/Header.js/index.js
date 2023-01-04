@@ -1,64 +1,66 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Bell, CaretDown, Heart } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { listMenuItem, notiList, userSettingsOptions } from "../../constants";
 import { tokenDispatch } from "../../store/slices/tokenSlice";
-import { countUnreadNoti } from "../../utils";
+import { settingsDispatch } from "../../store/slices/settingsSlice";
+import { countUnreadNoti, msgPendingFeature } from "../../utils";
 import LoginModal from "../core/LoginModal";
 import Notification from "../Notification";
+import logo from "../../assets/img/logo_app.png";
 
 function Header(props) {
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+
     const currentUser = useSelector(store => store.tokenSlice.user);
+    const loginStatus = useSelector(state => state.settingsSlice.user.loginStatus)
     const loggedIn = !!currentUser;
+    
+    const [openModalLogin, setOpenModalLogin] = useState(false);
     const [initMode, setInitMode] = useState("login");
     const [openNoti, setOpenNoti] = useState(false);
     const [openUserSettings, setOpenUserSettings] = useState(false);
-    
-    const navigate = useNavigate();
-    const loginModalRef = useRef();
-    const dispatch = useDispatch();
 
-    const handlePathMenu = (path) => {
+    const handleClickMenu = (path) => {
         setOpenUserSettings(false);
         if (path === '/login') {
             navigate('/login', { state: {initMode : 'changePassword'}})
             return
         }
+        if (path === '/logout') {
+            dispatch(settingsDispatch.actSetLoginStatus(false))
+            dispatch(tokenDispatch.removeToken());
+            localStorage.setItem('find_room_login_status', false)
+            navigate('/')
+            return
+        }
+        if (!path) {
+            msgPendingFeature()
+            return
+        }
         navigate(path);
     };
-
-    const handleOpenModal = (viewModel) => {
-        setInitMode(viewModel);
-        loginModalRef.current.onToggle();
-    }
-
-    const handleLogout = () => {
-        dispatch(
-            tokenDispatch.removeToken()
-        );
-        navigate('/login');
-    }
-
     return (
         <div className="header">
-            <LoginModal initMode={initMode} ref={loginModalRef}/>
+            <LoginModal open={openModalLogin} initMode={initMode} onToggle={() => setOpenModalLogin(!openModalLogin)} />
             <div className="d-flex header__container justify-content-between px-4">
                 <div className="d-flex">
                     <div onClick={() => navigate("/")}>
-                        <img className="logo-app" src="https://staticfile.batdongsan.com.vn/images/logo/standard/red/logo.svg" alt="logo" />
+                        <img className="logo-app" src={logo} alt="logo" />
                     </div>
                     {listMenuItem.map((menuItem, indexMenu) => (
                         <div className="menu__item mx-2 position-relative d-flex align-items-center" key={indexMenu}>
-                            <div onClick={() => handlePathMenu(menuItem.path)}>{menuItem.title}</div>
+                            <div onClick={() => handleClickMenu(menuItem.path)}>{menuItem.title}</div>
                             {menuItem.subMenu && (
                                 <div className="sub-menu position-absolute py-2">
                                     {menuItem.subMenu.map((subMenuItem, indexSubMenu) => (
                                         <div
                                             className="sub-menu__item px-2 mx-2"
-                                            onClick={() => handlePathMenu(subMenuItem.path)}
+                                            onClick={() => handleClickMenu(subMenuItem.path)}
                                             key={indexSubMenu}
                                         >
                                             {subMenuItem.title}
@@ -70,36 +72,41 @@ function Header(props) {
                     ))}
                 </div>
                 <div className="menu-action d-flex align-items-center">
+                    {loginStatus && <div
+                        className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2"
+                        onClick={() => handleClickMenu("/post/saved")}
+                    >
+                        <Heart />
+                        <div className="noti__count position-absolute">1</div>
+                    </div>
+                    }
 
-                    {loggedIn && (
-                       <>
-                            <div
-                                className="menu-action__item menu-action__item--saved-post position-relative px-2 py-1 mx-2"
-                                onClick={() => handlePathMenu("/post/saved")}
-                            >
-                                <Heart />
-                                <div className="noti__count position-absolute">1</div>
+                    {loginStatus && (
+                        <div className="position-relative">
+                            <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
+                                <Bell />
                             </div>
-                            <div className="position-relative">
-                                <div className="menu-action__item px-2 py-1 mx-2" onClick={() => setOpenNoti(!openNoti)}>
-                                    <Bell />
-                                </div>
-                                <div className="noti__count position-absolute">{countUnreadNoti(notiList)}</div>
-                                <Notification open={openNoti} setOpen={setOpenNoti} />
-                            </div>
-                       </>
+                            <div className="noti__count position-absolute">{countUnreadNoti(notiList)}</div>
+                            <Notification open={openNoti} setOpen={setOpenNoti} />
+                        </div>
                     )}
-                    {!loggedIn &&
+                    {!loginStatus &&
                         <>
                             <div
                                 className="menu-action__item px-2 py-1 mx-2"
-                                onClick={() => handleOpenModal('login')}
+                                onClick={() => {
+                                    setInitMode("login");
+                                    setOpenModalLogin(true);
+                                }}
                             >
                                 Đăng nhập
                             </div>
                             <div
                                 className="menu-action__item px-2 py-1 mx-2"
-                                onClick={() => handleOpenModal('signup')}
+                                onClick={() => {
+                                    setInitMode("signup");
+                                    setOpenModalLogin(true);
+                                }}
                             >
                                 Đăng ký
                             </div>
@@ -130,19 +137,7 @@ function Header(props) {
                                             <div
                                                 key={index}
                                                 className="mx-3 d-flex my-2 align-items-center"
-                                                onClick={() => {
-                                                    if (item.path) {
-                                                        handlePathMenu(item.path);
-                                                    } else if (item.onClick) {
-                                                        item.onClick((type) => {
-
-                                                            if (type === 'LOG_OUT') {
-                                                                handleLogout();
-                                                            }
-                                                            
-                                                        });
-                                                    }
-                                                }}
+                                                onClick={() => handleClickMenu(item.path)}
                                             >
                                                 <div className="me-2">{item.icon}</div>
                                                 <label className="d-flex align-items-center me-3 cursor-pointer">
@@ -155,16 +150,18 @@ function Header(props) {
                             </div>
                         </div>
                     )}
-                    {loggedIn && 
-                    <div className="menu-action__item mx-2">
-                        <Button outline className="has-border" color="white" onClick={() => navigate("/manager-post")}>
-                            Đăng tin
-                        </Button>
-                    </div>}
+                    {
+                        loggedIn && 
+                        <div className="menu-action__item mx-2">
+                            <Button outline className="has-border" color="white" onClick={() => navigate("/manager-post")}>
+                                Đăng tin
+                            </Button>
+                        </div>
+                    }
+                    </div>
                 </div>
-            </div>
         </div>
-    );
+    )
 }
 
 export default Header;

@@ -95,10 +95,7 @@ function Footer(props) {
                     <Col md={3} key={index}>
                         <div className="d-flex flex-column">
                             {item.map((title, indexTitle) => (
-                                <div
-                                    key={indexTitle}
-                                    className={`my-1 title__item ${indexTitle === 0 ? "title__item--bold" : ""}`}
-                                >
+                                <div key={indexTitle} className={`my-1 title__item ${indexTitle === 0 ? "title__item--bold" : ""}`}>
                                     {title}
                                 </div>
                             ))}

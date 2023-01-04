@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ArrowClockwise, Building, CaretDown, House, Search } from "react-bootstrap-icons";
-import { Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
+import { ArrowClockwise, CaretDown, Search } from "react-bootstrap-icons";
+import { Button, Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
 import { getAddressLabelText } from "./getAddress";
 import SelectAddress from "./SelectAddress";
 import SelectAreaSize from "./SelectAreaSize";
@@ -11,7 +11,7 @@ import SelectProductType from "./SelectProductType";
 function SearchBar(props) {
     const defaultSearch = {
         sellType: 0,
-        houseType: [],
+        houseType: "",
         searchText: "",
         address: {
             city: "",
@@ -57,6 +57,7 @@ function SearchBar(props) {
 
     const handleChangeHouseType = (value) => {
         setSearchHouseType(value);
+        toggle('houseType');
     };
 
     const handleChangePrice = (type, value) => {
@@ -64,14 +65,14 @@ function SearchBar(props) {
             ...prev,
             [type]: value,
         }));
-        toggle("price");
+        toggle('price');
     };
     const handleChangeAreaSize = (type, value) => {
         setAreaSize((prev) => ({
             ...prev,
             [type]: value,
         }));
-        toggle("areaSize");
+        toggle('areaSize');
     };
 
     const handleChangeFilterMore = (type, value) => {
@@ -79,7 +80,7 @@ function SearchBar(props) {
             ...prev,
             [type]: value,
         }));
-        // toggle("filterMore");
+        toggle("filterMore");
     };
 
     const handleResetSearch = () => {
@@ -93,7 +94,7 @@ function SearchBar(props) {
 
     return (
         <div className="search-bar">
-            <div className="d-flex align-items-center p-3">
+            <div className="d-flex align-items-center p-3" style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}>
                 <div className="d-flex align-items-center" style={{ flex: "1" }}>
                     <Button outline>
                         <Search />

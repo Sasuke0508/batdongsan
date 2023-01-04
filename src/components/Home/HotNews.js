@@ -5,7 +5,7 @@ function HotNews(props) {
     const data = [
         {
             id: 1,
-            title: "7 Câu Hỏi Thường Gặp Khi Mua Đất Không Có Sổ Đỏ",
+            title: "7 Câu Hỏi Thường Gặp Khi Thuê Nhà Trọ Nguyên Căn",
             image_url:
                 "https://file4.batdongsan.com.vn/crop/610x342/2022/11/27/JGcIp0rf/20221127133230-5aa0.jpg",
         },
@@ -17,13 +17,13 @@ function HotNews(props) {
         },
         {
             id: 3,
-            title: "Quy Hoạch 1/2000 Là Gì Và 4 Câu Hỏi Cần Làm Rõ",
+            title: "Quy Hoạch Nhà Đất cho thuê 1/2000 Là Gì Và 4 Câu Hỏi Cần Làm Rõ",
             image_url:
                 "https://file4.batdongsan.com.vn/crop/610x342/2022/11/25/JGcIp0rf/20221125134518-8551.jpg",
         },
     ];
     return (
-        <div className="mt-3 hot-news page-container-xl">
+        <div className="my-3 hot-news page-container-xl">
             <h3>Tin tức tiêu điểm</h3>
             <Row>
                 {data.map((item, index) => (

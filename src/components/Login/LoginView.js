@@ -57,7 +57,9 @@ function LoginView({ setViewMode, onToggle }) {
                 })
             );
 
-            navigate('/');
+            dispatch(settingsDispatch.actSetLoginStatus(true))
+            localStorage.setItem('find_room_login_status', true)
+            navigate('/')
             loginContext?.onToggle();
         } catch(err) {
             dispatch(
@@ -105,11 +107,11 @@ function LoginView({ setViewMode, onToggle }) {
             <div className="text-center">Hoặc đăng nhập bằng</div>
             <div className="d-flex justify-content-center mt-3 pb-2">
                 <Button className="d-flex align-items-center me-2" outline>
-                    <Facebook className="me-2" />
+                    <Facebook color="#4285F4" className="me-2" />
                     Facebook
                 </Button>
                 <Button className="d-flex align-items-center" outline>
-                    <Google className="me-2" />
+                    <Google color="#e03c31" className="me-2" />
                     Google
                 </Button>
             </div>

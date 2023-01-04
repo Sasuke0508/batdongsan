@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import getAddress from '../components/core/getAddress';
 import { sellTypes } from '../constants';
 
@@ -99,3 +100,7 @@ export function join(array, delimiter) {
     if (!array?.length) return null;
     return array.join(delimiter);
 }
+
+export const msgPendingFeature = () => {
+    Swal.fire("", "Tính năng đang phát triển!");
+};

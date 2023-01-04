@@ -21,7 +21,7 @@ const LoginModal = forwardRef(({ initMode }, ref) => {
         <LoginContext.Provider value={{open, onToggle}}>
             <div className="request-modal">
                 <Modal centered size="lg" isOpen={open} toggle={onToggle}>
-                    <Login initMode={initMode} />
+                    <Login initMode={initMode} closeModal={() => onToggle(false)}/>
                 </Modal>
             </div>
         </LoginContext.Provider>

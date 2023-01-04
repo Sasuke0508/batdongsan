@@ -5,23 +5,19 @@ function Utility(props) {
     const data = [
         {
             title: "Xem tuổi xây nhà",
-            image_url:
-                "https://staticfile.batdongsan.com.vn/images/icons/color/ic-ying-yang.svg",
+            image_url: "https://staticfile.batdongsan.com.vn/images/icons/color/ic-ying-yang.svg",
         },
         {
             title: "Chi phí làm nhà",
-            image_url:
-                "https://staticfile.batdongsan.com.vn/images/icons/color/ic-house.svg",
+            image_url: "https://staticfile.batdongsan.com.vn/images/icons/color/ic-house.svg",
         },
         {
             title: "Tính lãi suất",
-            image_url:
-                "https://staticfile.batdongsan.com.vn/images/home/calculator.svg",
+            image_url: "https://staticfile.batdongsan.com.vn/images/home/calculator.svg",
         },
         {
             title: "Tư vấn phong thủy",
-            image_url:
-                "https://staticfile.batdongsan.com.vn/images/icons/color/ic-feng-shui.svg",
+            image_url: "https://staticfile.batdongsan.com.vn/images/icons/color/ic-feng-shui.svg",
         },
     ];
     return (
@@ -31,7 +27,9 @@ function Utility(props) {
                 {data.map((item, index) => (
                     <Col key={index} md={3} className="">
                         <div className="utility__item d-flex align-items-center p-2 px-3">
-                            <div><img className="item__image" alt="utility" src={item.image_url}/></div>
+                            <div>
+                                <img className="item__image" alt="utility" src={item.image_url} />
+                            </div>
                             <div className="ms-2">{item.title}</div>
                         </div>
                     </Col>

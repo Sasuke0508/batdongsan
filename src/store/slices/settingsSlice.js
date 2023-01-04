@@ -1,48 +1,49 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import api from '../api'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import api from "../api";
 
 const initialState = {
-    toastMsg : {
-        open : false,
-        content : '',
-        error : false
-    }
-}
+    toastMsg: {
+        open: false,
+        content: "",
+        error: false,
+    },
+    user: {
+        loginStatus: false,
+    },
+};
 
 const settingsSlice = createSlice({
-    name: 'settings',
+    name: "settings",
     initialState,
     reducers: {
         actSetToastMessage: (state, action) => {
-            state.toastMsg = action.payload
+            state.toastMsg = action.payload;
+        },
+        actSetLoginStatus: (state, action) => {
+            state.user.loginStatus = action.payload;
         },
     },
-})
+});
 
 export const counterAction = {
-    fetchUserById: createAsyncThunk(
-        'fetchUserById', async (params, thunkApi) => {
-            const response = await api.get(params, 'products')
-            if (response.data) {
-                thunkApi.dispatch(settingsDispatch.changeObject(response.data))
-                return true
-            }
-            return false
+    fetchUserById: createAsyncThunk("fetchUserById", async (params, thunkApi) => {
+        const response = await api.get(params, "products");
+        if (response.data) {
+            thunkApi.dispatch(settingsDispatch.changeObject(response.data));
+            return true;
         }
-    ),
-    postProduct: createAsyncThunk(
-        'postProduct', async (params, thunkApi) => {
-            const response = await api.post(params, 'products')
-            if (response.data) {
-                thunkApi.dispatch(settingsDispatch.postObject(response.data))
-                return true
-            }
-            return false
+        return false;
+    }),
+    postProduct: createAsyncThunk("postProduct", async (params, thunkApi) => {
+        const response = await api.post(params, "products");
+        if (response.data) {
+            thunkApi.dispatch(settingsDispatch.postObject(response.data));
+            return true;
         }
-    ),
-
-}
+        return false;
+    }),
+};
 
 // Action creators are generated for each case reducer function
-export const settingsDispatch = settingsSlice.actions
-export default settingsSlice.reducer
+export const settingsDispatch = settingsSlice.actions;
+export default settingsSlice.reducer;

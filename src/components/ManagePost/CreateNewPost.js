@@ -3,19 +3,19 @@ import {
     ArrowClockwise,
     ChevronRight,
     CloudArrowUp,
-    InfoCircle,
-    QuestionCircleFill,
+    InfoCircle, QuestionCircleFill,
     X,
     Youtube
 } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Badge, Button, Card, Col, Input, Label, Progress, Row, Tooltip } from "reactstrap";
-import { sellTypes, sellUnits } from "../../constants/menu";
+import Swal from "sweetalert2";
+import { sellTypes, sellUnits, utilityList as initUtilityList } from "../../constants/menu";
 import useFormInput from "../../hooks/useFormInput";
 import { postService, utilitiesService } from "../../services";
 import { settingsDispatch } from "../../store/slices/settingsSlice";
-import { checkArrayHasItem, formatCurrency, getAddressName } from "../../utils";
+import { checkArrayHasItem, convertInputTextToObject, formatCurrency, getAddressName, msgPendingFeature } from "../../utils";
 import { uploadImage } from "../core/firebase";
 import Select from "../core/Select";
 import SelectAddress from "../core/SelectAddress";
@@ -24,8 +24,11 @@ import QuantityInfo from "./QuantityInfo";
 
 function CreateNewPost(props) {
 
+    const location = useLocation();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
+    const dataEditPost = location?.state?.dataEditPost || {};
 
     useEffect(() => {
 
@@ -76,21 +79,25 @@ function CreateNewPost(props) {
     // thong tin co ban
     const [id, setId] = useState(null);
     const typeOfRealEstate = useFormInput(sellTypes[0].value);
-    const [address, setAddress] = useState({
-        city: "",
-        district: "",
-        ward: "",
-        number: "",
-    });
+    const [address, setAddress] = useState(
+        dataEditPost.address || {
+            city: "",
+            district: "",
+            ward: "",
+            number: "",
+        }
+    );
 
     // thong tin bai dang
-    const title = useFormInput('');
-    const content = useFormInput('');
+    const title = useFormInput(dataEditPost.title || '');
+    const content = useFormInput(dataEditPost.description || '');
 
     // thong tin bat dong san
-    const areaSize = useFormInput(0);
-    const [price, setPrice] = useState({ value: "", unit: sellUnits[0].value });
-    const [quantityInfo, setQuantityInfo] = useState({ 
+    const areaSize = useFormInput(dataEditPost.areaSize || "");
+    const [price, setPrice] = useState(dataEditPost.price || { value: "", unit: sellUnits[0].value });
+    const [quantityInfo, setQuantityInfo] = useState(
+        dataEditPost.quantityInfo ||  
+    { 
         numberOfBedroom: 0, 
         numberOfBathroom: 0, 
         numberOfFloor: 0 
@@ -100,7 +107,7 @@ function CreateNewPost(props) {
     const [utilitiesIdList, setUtilitiesIdList] = useState([]);
 
     // Thong tin lien he
-    const [contactInformation, setContactInformation] = useState({
+    const [contactInformation, setContactInformation] = useState(dataEditPost.contactInfo || {
         fullName: "",
         phoneNumber1: "",
         address: "",
@@ -109,15 +116,16 @@ function CreateNewPost(props) {
 
     // file upload
     const [fileUpload, setFileUpload] = useState([]);
-    const [imageUrls, setImageUrls] = useState([]);
+    const [imageUrls, setImageUrls] = useState(dataEditPost.imageUrls || []);
     const [loadingUploadImage, setLoadingUploadImage] = useState({
         status: false,
-        value : 0,
-    })
+        value: 0,
+    });
 
     // Post config
-    const [postPlan, setPostPlan] = useState({});
+    const [highlightPost, setHighlightPost] = useState(false);
     const [autoRePost, setAutoRePost] = useState(false);
+    const [postPlan, setPostPlan] = useState({});
 
     const [tooltipOpen, setTooltipOpen] = useState({
         highlightPost: false,
@@ -143,20 +151,23 @@ function CreateNewPost(props) {
     };
     
     const handleChangeContactInfo = (value, field) => {
-        const newValue = { ...contactInformation, [field]: value };
-        setContactInformation(newValue);
+        setContactInformation({...contactInformation, [field]: value });
     };
-    
+
     const handleUploadFiles = async (files) => {
-        setLoadingUploadImage({status : true, value : 10})
+        setLoadingUploadImage({ status: true, value: 10 });
         const arrayImage = Object.values(files);
         const result = await Promise.all(arrayImage.map((item) => uploadImage(item)));
-        setFileUpload(files)
-        setImageUrls(result)
-        setLoadingUploadImage({status : true, value : 100})
+        setFileUpload(files);
+        if(result.length > 16) {
+            Swal.fire('', 'Tối đa 16 ảnh!')
+        } else {
+            setImageUrls(result);
+        }
+        setLoadingUploadImage({ status: true, value: 100 });
         setTimeout(() => {
-            setLoadingUploadImage({status : false, value : 10})
-        }, 500)
+            setLoadingUploadImage({ status: false, value: 10 });
+        }, 500);
     };
 
     const handleClickCancelFile = () => {
@@ -218,6 +229,7 @@ function CreateNewPost(props) {
                     content: `${id ? 'Cập nhật' : 'Thêm mới'} thành công`,
                 })
             );
+            navigate('/post')
         } catch(err) {
             dispatch(
                 settingsDispatch.actSetToastMessage({
@@ -227,12 +239,11 @@ function CreateNewPost(props) {
                 })
             );
         }
-    };
+    }
 
     const toggle = (type) => setTooltipOpen({ ...tooltipOpen, [type]: !tooltipOpen[type] });
     
     useEffect(() => {
-        // component did mount
         loadUtilities();
     }, []);
 
@@ -248,7 +259,7 @@ function CreateNewPost(props) {
                 <div className="mt-2">
                     <div className="mt-2">
                         <h6 className="required">
-                            Loại phòng cho thuê
+                            Loại phòng
                         </h6>
                         <Select 
                             label="VD: Nhà riêng" 
@@ -514,7 +525,7 @@ function CreateNewPost(props) {
             </Card>
             <Card className="mt-3 p-4">
                 <div className="d-flex justify-content-between align-items-center">
-                    <Button outline>Xem trước giao diện</Button>
+                    <Button outline onClick={msgPendingFeature}>Xem trước giao diện</Button>
                     <div className="d-flex align-items-center">
                         <div className="me-2">
                             <div>Tổng tiền</div>
@@ -531,5 +542,4 @@ function CreateNewPost(props) {
         </div>
     );
 }
-
 export default CreateNewPost;

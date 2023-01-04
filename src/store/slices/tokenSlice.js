@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { instance } from "../api";
+import { instance } from "../../store/api";
 
 const tokenSlice = createSlice({
     name: 'TOKEN',
