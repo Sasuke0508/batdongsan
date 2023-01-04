@@ -22,7 +22,7 @@ function QuantityInfo({label, value, setValue, min = 0, max = 999}) {
     }
 
     return (
-        <div className="d-flex justify-content-between">
+        <div className="d-flex mt-2 justify-content-between">
             <h6>{ label }</h6>
             <div className="d-flex align-items-center">
                 <Button outline onClick={handleDecrease}>
@@ -33,6 +33,7 @@ function QuantityInfo({label, value, setValue, min = 0, max = 999}) {
                     type="number"
                     value={value}
                     onChange={handleChangeQuantityInfo}
+                    className="text-center"
                 />
                 <Button outline onClick={handleIncrease}>
                     <Plus />
