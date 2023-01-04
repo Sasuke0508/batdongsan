@@ -229,7 +229,7 @@ function CreateNewPost(props) {
                     content: `${id ? 'Cập nhật' : 'Thêm mới'} thành công`,
                 })
             );
-            navigate('/post')
+            navigate('/manager-post/my-post');
         } catch(err) {
             dispatch(
                 settingsDispatch.actSetToastMessage({

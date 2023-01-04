@@ -10,7 +10,7 @@ function Home(props) {
         <div className="home-page position-relative">
             <img id="home-page-background" src={logo} alt="background" />
             <div className="" style={{ height: "670px" }}>
-                <SearchBox />
+                <SearchBox searchHref/>
             </div>
             <Recommended />
             <RecommendedByLocation />

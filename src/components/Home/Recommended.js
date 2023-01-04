@@ -11,7 +11,8 @@ function Recommended(props) {
 
     const search = () => {
         postService.findAll({page: 1, limit: 16}, {
-            sort: '-created'
+            sort: '-created',
+            status: 'ACTIVE',
         })
         .then(res => res?.data)
         .then(data => data?.content)

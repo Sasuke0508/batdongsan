@@ -9,11 +9,13 @@ import SelectMore from "../core/SelectMore";
 import SelectPrice from "../core/SelectPrice";
 import SelectProductType from "../core/SelectProductType";
 import { searchDispatch, defaultValueSearch } from '../../store/slices/searchSlice';
+import { useNavigate } from "react-router-dom";
 
 function SearchBox(props) {
 
     const dispatch = useDispatch();
     const dataSearch = useSelector(store => store.searchSlice);
+    const navigate = useNavigate();
 
     const [houseType, setHouseType] = useState(dataSearch.houseType);
     const [searchText, setSearchText] = useState(dataSearch.searchText);
@@ -76,7 +78,10 @@ function SearchBox(props) {
                 price,
                 areaSize,
             })
-        )
+        );
+        if (props.searchHref) {
+            navigate('/post');
+        }
     }
 
     const handleResetSearch = () => {
